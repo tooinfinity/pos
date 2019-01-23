@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('page')
-  Roles
+  Moderators
 @stop 
 
 @section('content')

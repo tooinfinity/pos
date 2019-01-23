@@ -27,9 +27,8 @@ Route::get('/provider', 'Provider\ProviderController@index')->name('provider');
 Route::get('/client', 'Client\ClientController@index')->name('client');
 Route::get('/report', 'Report\ReportController@index')->name('report');
 Route::get('/box', 'Box\BoxController@index')->name('box');
-Route::get('/setting', 'Setting\SettingController@index')->name('setting');
-Route::get('/setting/role', 'Setting\RoleController@index')->name('setting.role');
-Route::get('/setting/permission', 'Setting\PermissionController@index')->name('setting.permission');
+Route::get('/moderator', 'Moderator\ModeratorController@index')->name('moderator');
+
 
 
 

@@ -94,33 +94,15 @@
                   </p>
                 </a>
             </li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="{{ url('/setting') }}" class="nav-link active">
-              <i class="nav-icon fas fa-cogs"></i>
-              <p>
-                Settings
-                <i class="right fa fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ url('/setting') }}" class="nav-link">
-                  <i class="fas fa-clipboard-list nav-icon"></i>
-                  <p>General</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ url('/role') }}" class="nav-link">
+            <li class="nav-item">
+              <a href="{{ url('/moderator') }}" class="nav-link">
                   <i class="nav-icon fas fa-users-cog"></i>
-                  <p>Roles</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ url('/permission') }}" class="nav-link">
-                  <i class="nav-icon fas fa-user-lock"></i>
-                  <p>Permissions</p>
-                </a>
-              </li>
+                <p>
+                  Moderator
+                </p>
+              </a>
+             </li>
+            
             </ul>
           </li>
           
