@@ -60,7 +60,7 @@ class ModeratorController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        
     }
 
     /**
