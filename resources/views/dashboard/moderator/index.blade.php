@@ -17,49 +17,7 @@
                 </div>
                 <div class="col-md-4">
                   <button type="submit" class="btn btn-success"><i class="fas fa-search"></i>    Search</button>
-                  <a type="" data-toggle="modal" data-target="#create" class="btn btn-success" href="{{ route('moderator.create') }}"><i class="fas fa-user-plus"></i>   add new moderator</a>
-                  <!-- Modal -->
-                  <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="createTitle" aria-hidden="true">
-                      <div class="modal-dialog  modal-dialog-centered modal-lg" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title text-dark" id="createTitle">Create a new moderator</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body text-dark">
-                            <form action="" method="post">
-
-                                <div class="form-group">
-                                  <label>first name</label>
-                                  <input type="text" name="first_name" id="" class="form-control" value="{{ old('first_name') }}">
-                                </div>
-                                <div class="form-group">
-                                    <label>last name</label>
-                                    <input type="text" name="last_name" id="" class="form-control" value="{{ old('last_name') }}">
-                                  </div>
-                                  <div class="form-group">
-                                      <label>Email</label>
-                                      <input type="email" name="email" id="" class="form-control" value="{{ old('email') }}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>first name</label>
-                                        <input type="text" name="first_name" id="" class="form-control" value="{{ old('first_name') }}">
-                                      </div>
-
-
-                            </form>
-
-
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  <a type="" class="btn btn-success" href="{{ route('moderator.create') }}"><i class="fas fa-user-plus"></i>   add new moderator</a>
                 </div>
               </div>
             </form>
