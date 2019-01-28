@@ -94,6 +94,7 @@
                   </p>
                 </a>
             </li>
+            @if (auth()->user()->hasRole('super_admin'))
             <li class="nav-item">
               <a href="{{ url('/moderator') }}" class="nav-link">
                   <i class="nav-icon fas fa-users-cog"></i>
@@ -102,7 +103,7 @@
                 </p>
               </a>
              </li>
-            
+            @endif
             </ul>
           </li>
           

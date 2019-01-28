@@ -23,7 +23,7 @@
                               @include('partials._errors')
                               @include('dashboard.moderator.form')
                           </div>
-                         </div>
+                        </div>
                           <div class="modal-footer form-group">
                             <button type="submit" class="btn btn-success" href="{{ route('moderator.store') }}"><i class="fas fa-user-plus"></i>  Add new moderator</button>
                           </div>

@@ -16,9 +16,13 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::group([ 'middleware' => 'auth'], function()
+{
+    Route::get('/dashboard', 'Dashboard\DashboardController@index')->name('dashboard');
+    Route::resource('/moderator', 'Dashboard\ModeratorController')->except(['show']);
+});
 
-
-Route::get('/dashboard', 'Dashboard\DashboardController@index')->name('dashboard');
+//Route::get('/dashboard', 'Dashboard\DashboardController@index')->name('dashboard');
 /*Route::get('/category',  'Dashboard\CategoryController@index')->name('category');
 Route::get('/product', 'Dashboard\ProductController@index')->name('product');
 Route::get('/sale', 'Dashboard\SaleController@index')->name('sale');
@@ -29,7 +33,7 @@ Route::get('/report', 'Dashboard\ReportController@index')->name('report');
 Route::get('/box', 'Dashboard\BoxController@index')->name('box');*/
 
 
-Route::resource('/moderator', 'Dashboard\ModeratorController')->except(['show']);
+
 
 
 

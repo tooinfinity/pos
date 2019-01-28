@@ -18,3 +18,10 @@
         <label>Password Confirmation</label>
         <input type="password" name="password_confirmation" id="" class="form-control" required>
       </div>
+      <div class="form-group">
+            @include('dashboard.moderator.permission')
+      </div>
+
+
+
+      

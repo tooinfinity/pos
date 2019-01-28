@@ -45,11 +45,11 @@ class ModeratorController extends Controller
             'email'      => 'required',
             'password'   => 'required|confirmed',
         ]);
-        $request_data = $request->except(['password']);
+        $request_data = $request->except(['password', 'password_confirmation', 'permissions']);
         $request_data ['password'] = bcrypt($request->password);
-        $user = User::create($request_data);
-        //Alert::success('Success Message', 'created successfully');
-        //session()->flash('success', __('added successfully'));
+        $moderator = User::create($request_data);
+        $moderator->attachRole('employer');
+        $moderator->syncPermissions($request->permissions);
         Toastr::success('created successfully');
         return redirect()->route('moderator.index');
         
