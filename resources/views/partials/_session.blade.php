@@ -1,7 +1,7 @@
-@if (session('success'))
+@if (session()->has('success'))
 
         <script>
-            new Noty({
+            swal ({
                 type: 'success',
                 layout: 'topRight',
                 text:"{{ session('success') }}",

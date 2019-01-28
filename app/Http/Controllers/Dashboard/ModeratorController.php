@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Alert;
+use Toastr;
 
 class ModeratorController extends Controller
 {
@@ -48,8 +48,9 @@ class ModeratorController extends Controller
         $request_data = $request->except(['password']);
         $request_data ['password'] = bcrypt($request->password);
         $user = User::create($request_data);
-        Alert::success('Success Message', 'created successfully');
+        //Alert::success('Success Message', 'created successfully');
         //session()->flash('success', __('added successfully'));
+        Toastr::success('created successfully');
         return redirect()->route('moderator.index');
         
     }

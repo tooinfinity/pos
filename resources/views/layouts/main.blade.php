@@ -11,10 +11,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <title>Store LTE</title>
   <link rel="stylesheet" href="/css/app.css">
-  <link rel="stylesheet" href="/css/sweetalert.css">
+  <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
-    @include('sweet::alert')
+    
   <!-- Navbar -->
      @include('layouts.navbar')
   <!-- /.navbar -->
@@ -74,6 +74,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- REQUIRED SCRIPTS -->
 
 <script src="/js/app.js"></script>
-<script src="/js/sweetalert.js"></script>
+<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+
+{!! Toastr::message() !!}
+
 </body>
 </html>
