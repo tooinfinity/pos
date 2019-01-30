@@ -67,7 +67,7 @@ return [
     |
     */
     'user_models' => [
-        'users' => 'App\User',
+        'users' => 'App\User'
     ],
 
     /*
@@ -94,8 +94,7 @@ return [
         /**
          * Team model
          */
-        'team' => 'App\Team',
-
+        'team' => 'App\Team'
     ],
 
     /*
@@ -135,8 +134,7 @@ return [
         /**
          * Permission - Role intermediate table.
          */
-        'permission_role' => 'permission_role',
-
+        'permission_role' => 'permission_role'
     ],
 
     /*
@@ -166,8 +164,7 @@ return [
         /**
          * Role foreign key on Laratrust's role_user and permission_user tables.
          */
-        'team' => 'team_id',
-
+        'team' => 'team_id'
     ],
 
     /*
@@ -188,13 +185,12 @@ return [
          * Method to be called in the middleware return case.
          * Available: abort|redirect
          */
-        'handling' => 'abort',
+        'handling' => 'redirect',
 
         /**
          * Parameter passed to the middleware_handling method
          */
-        'params' => '403',
-
+        'params' => '403'
     ],
 
     /*
@@ -206,5 +202,5 @@ return [
     | Available: camel_case|snake_case|kebab_case
     |
     */
-    'magic_can_method_case' => 'kebab_case',
+    'magic_can_method_case' => 'kebab_case'
 ];

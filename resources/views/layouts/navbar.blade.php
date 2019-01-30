@@ -27,25 +27,28 @@
                 <i class="fas fa-bell fa-2x"></i> <br>
                 <span class="badge badge-warning navbar-badge">15</span>
             </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-header">15 Notifications</span>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="true">
+                <img src="dist/img/user2-160x160.jpg" class="img-circle dropdown-item" alt="User Image">
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right text-center">
+                <img src="dist/img/user2-160x160.jpg" class="img-circle dropdown-item" alt="User Image">
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fa fa-envelope mr-2"></i> 4 new messages
-                    <span class="float-right text-muted text-sm">3 mins</span>
+                <span class="dropdown-item dropdown-header">{{ auth()->user()->first_name }}
+                    {{ auth()->user()->last_name }}</span>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item dropdown-header"><i class="fas fa-user-circle"></i> Profile</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item dropdown-header" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i class="fas fa-power-off"></i> 
+                    {{ __('Logout') }}
                 </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fa fa-users mr-2"></i> 8 friend requests
-                    <span class="float-right text-muted text-sm">12 hours</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fa fa-file mr-2"></i> 3 new reports
-                    <span class="float-right text-muted text-sm">2 days</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
             </div>
         </li>
     </ul>

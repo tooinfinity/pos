@@ -10,15 +10,21 @@ Moderators
     <div class="card card-primary">
         <div class="card-header with-border">
             <h3 class="card-title">List Moderators</h3>
-            <form action="">
+            <form action="{{ route('moderator.index') }}" method="get">
                 <div class="row">
                     <div class="col-md-4">
-                        <input type="text" value="search" class="form-control" placeholder="Search">
+                        <input type="text" name="search" value="{{ request()->search }}" class="form-control"
+                            placeholder="Search">
                     </div>
                     <div class="col-md-4">
                         <button type="submit" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
+                        @if (auth()->user()->hasPermission('create_users'))
                         <a type="" class="btn btn-success" href="{{ route('moderator.create') }}"><i
                                 class="fas fa-user-plus"></i> add new moderator</a>
+                        @else
+                        <a type="" class="btn btn-success disabled" href="#"><i class="fas fa-user-plus"></i> add new
+                            moderator</a>
+                        @endif
                     </div>
                 </div>
             </form>
@@ -46,20 +52,33 @@ Moderators
                         <td>{{ $moderators -> last_name }}</td>
                         <td>{{ $moderators -> email }}</td>
                         <td>
+                            @if (auth()->user()->hasPermission('update_users'))
                             <a class="btn btn-warning btn-sm" href="{{ route('moderator.edit', $moderators->id) }}"><i
                                     class="fas fa-user-edit"></i> update</a>
+                            @else
+                            <a class="btn btn-warning btn-sm disabled"
+                                href="{{ route('moderator.edit', $moderators->id) }}"><i class="fas fa-user-edit"></i>
+                                update</a>
+                            @endif
+                            @if (auth()->user()->hasPermission('delete_users'))
                             <form action="{{ route('moderator.destroy', $moderators->id) }}" method="post"
                                 style="display:inline-block;">
                                 {{ csrf_field() }}
                                 {{ method_field('delete') }}
-                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-user-times"></i>
+                                <button type="submit" class="btn btn-danger btn-sm remove"><i class="fas fa-user-times"></i>
                                     delete</button>
                             </form>
+                            @else
+                            <button type="submit" class="btn btn-danger btn-sm disabled"><i
+                                    class="fas fa-user-times"></i> delete</button>
+                            @endif
+
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
+            {{ $moderator->appends(request()->query())->links() }}
             @else
             <h2>no data saved</h2>
             @endif

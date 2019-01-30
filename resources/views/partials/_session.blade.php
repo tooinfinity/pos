@@ -1,13 +1,13 @@
-@if (session()->has('success'))
+@if (session('success'))
 
 <script>
-swal({
-    type: 'success',
-    layout: 'topRight',
-    text: "{{ session('success') }}",
-    timeout: 2000,
-    killer: true
+    new Noty({
+        type: 'success',
+        layout: 'topRight',
+        text: "{{ session('success') }}",
+        timeout: 2000,
+        killer: true
 
-}).show();
+    }).show();
 </script>
 @endif

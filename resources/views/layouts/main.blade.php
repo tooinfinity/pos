@@ -13,7 +13,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <title>Store LTE</title>
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
-
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
 
@@ -78,8 +77,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="/js/app.js"></script>
     <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     {!! Toastr::message() !!}
+    @include('sweetalert::alert')
+
+    <script>
+         $('.remove').click(function(){
+      swal({
+          title: "Are you sure want to remove this item?",
+          text: "You will not be able to recover this item",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonClass: "btn-danger",
+          confirmButtonText: "Confirm",
+          cancelButtonText: "Cancel",
+          closeOnConfirm: false,
+          closeOnCancel: false
+        },
+        function(isConfirm) {
+          if (isConfirm) {
+            swal("Deleted!", "Your item deleted.", "success");
+          } else {
+            swal("Cancelled", "You Cancelled", "error");
+          }
+      });
+    });
+    </script>
 
 </body>
 

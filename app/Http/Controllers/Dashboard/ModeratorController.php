@@ -6,17 +6,36 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Toastr;
+use Alert;
 
 class ModeratorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:read_users'])->only('index');
+        $this->middleware(['permission:create_users'])->only('create');
+        $this->middleware(['permission:update_users'])->only('edit');
+        $this->middleware(['permission:delete_users'])->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $moderator = User::all();
+        $moderator = User::whereRoleIs('employer')
+            ->when($request->search, function ($query) use ($request) {
+                return $query
+                    ->where('first_name', 'like', '%' . $request->search . '%')
+                    ->orwhere(
+                        'last_name',
+                        'like',
+                        '%' . $request->search . '%'
+                    );
+            })
+            ->latest()
+            ->paginate(5);
         return view('dashboard.moderator.index', compact('moderator'));
     }
 
@@ -28,7 +47,6 @@ class ModeratorController extends Controller
     public function create()
     {
         return view('dashboard.moderator.create', compact('moderator'));
-
     }
 
     /**
@@ -39,20 +57,25 @@ class ModeratorController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate ([
+        $request->validate([
             'first_name' => 'required',
-            'last_name'  => 'required',
-            'email'      => 'required',
-            'password'   => 'required|confirmed',
+            'last_name' => 'required',
+            'email' => 'required',
+            'password' => 'required|confirmed'
         ]);
-        $request_data = $request->except(['password', 'password_confirmation', 'permissions']);
-        $request_data ['password'] = bcrypt($request->password);
+        $request_data = $request->except([
+            'password',
+            'password_confirmation',
+            'permissions'
+        ]);
+        $request_data['password'] = bcrypt($request->password);
         $moderator = User::create($request_data);
         $moderator->attachRole('employer');
         $moderator->syncPermissions($request->permissions);
-        Toastr::success('created successfully');
+        //Toastr::success('created successfully');
+        //alert()->success('SuccessAlert', 'created successfully');
+        toast('Success Toast', 'success', 'top-right');
         return redirect()->route('moderator.index');
-        
     }
 
     /**
@@ -61,7 +84,7 @@ class ModeratorController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(User $moderator)
     {
         //
     }
@@ -72,9 +95,9 @@ class ModeratorController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(User $moderator)
     {
-        
+        return view('dashboard.moderator.edit', compact('moderator'));
     }
 
     /**
@@ -84,9 +107,18 @@ class ModeratorController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $moderator)
     {
-        //
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required'
+        ]);
+        $request_data = $request->except(['permissions']);
+        $moderator->update($request_data);
+        $moderator->syncPermissions($request->permissions);
+        Toastr::success('udated successfully');
+        return redirect()->route('moderator.index');
     }
 
     /**
@@ -95,8 +127,10 @@ class ModeratorController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(User $moderator)
     {
-        //
+        $moderator->delete();
+        Toastr::success('deleted successfully');
+        return redirect()->route('moderator.index');
     }
 }

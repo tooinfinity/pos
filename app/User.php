@@ -17,16 +17,21 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'first_name','last_name', 'email', 'password',
-    ];
+    protected $fillable = ['first_name', 'last_name', 'email', 'password'];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
+
+    public function getFirstNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
+    public function getLastNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
 }

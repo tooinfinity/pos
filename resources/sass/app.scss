@@ -16,8 +16,9 @@ $fa-font-path:"../webfonts";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
 @import "~@fortawesome/fontawesome-free/scss/brands.scss";
-
-
+// NOTY notification
+@import "~noty/src/noty.scss";
+@import "~noty/src/themes/mint.scss";
 
 .navbar-laravel {
   background-color: #fff;

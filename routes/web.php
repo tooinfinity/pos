@@ -12,14 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-Auth::routes();
-Route::group([ 'middleware' => 'auth'], function()
-{
-    Route::get('/dashboard', 'Dashboard\DashboardController@index')->name('dashboard');
-    Route::resource('/moderator', 'Dashboard\ModeratorController')->except(['show']);
+Auth::routes(['register' => false]);
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/dashboard', 'Dashboard\DashboardController@index')->name(
+        'dashboard'
+    );
+    Route::resource('/moderator', 'Dashboard\ModeratorController')->except([
+        'show'
+    ]);
 });
 
 //Route::get('/dashboard', 'Dashboard\DashboardController@index')->name('dashboard');
@@ -31,12 +34,3 @@ Route::get('/provider', 'Dashboard\ProviderController@index')->name('provider');
 Route::get('/client', 'Dashboard\ClientController@index')->name('client');
 Route::get('/report', 'Dashboard\ReportController@index')->name('report');
 Route::get('/box', 'Dashboard\BoxController@index')->name('box');*/
-
-
-
-
-
-
-
-Route::get('/home', 'HomeController@index')->name('home');
-

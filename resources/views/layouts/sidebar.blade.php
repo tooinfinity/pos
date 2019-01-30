@@ -12,7 +12,7 @@
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="text-center text-light">
                 <i class="fas fa-user-tie fa-2x nav-icon"></i> <br>
-                <span class="brand-text font-weight-dark">Meghlaoui</span>
+                <span class="brand-text font-weight-dark">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</span>
             </div>
         </div>
 
@@ -94,7 +94,7 @@
                         </p>
                     </a>
                 </li>
-                @if (auth()->user()->hasRole('super_admin'))
+                @if (auth()->user()->hasPermission('read_users'))
                 <li class="nav-item">
                     <a href="{{ url('/moderator') }}" class="nav-link">
                         <i class="nav-icon fas fa-users-cog"></i>
