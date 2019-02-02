@@ -10,9 +10,11 @@
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="text-center text-light">
-                <i class="fas fa-user-tie fa-2x nav-icon"></i> <br>
-                <span class="brand-text font-weight-dark">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</span>
+            <div class="image">
+                <img src="{{ asset('uploads/moderator_images/admin.png') }}"  class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</a>
             </div>
         </div>
 

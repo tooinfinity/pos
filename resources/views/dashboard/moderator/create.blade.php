@@ -15,12 +15,12 @@ Create Moderators
         <!-- /.card-header -->
         <div class="card-body">
 
-            <form action="{{ route('moderator.store') }}" method="post">
+            <form action="{{ route('moderator.store') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 {{ method_field('post') }}
+                @include('partials._errors')
                 <div class="row">
                     <div class="col-md-6">
-                        @include('partials._errors')
                         <div class="form-group">
                             <label>first name</label>
                             <input type="text" name="first_name" id="" class="form-control"
@@ -74,6 +74,15 @@ Create Moderators
                                     <!-- /.tab-content -->
                                 </div><!-- /.card-body -->
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Moderator Photo</label>
+                            <input type="file" name="image" id="" class="form-control image">
+                        </div>
+                        <div class="form-group">
+                            <img src="{{ asset('uploads/moderator_images/default.png') }}" style="width:200px;" class="img-circle img-thumbnail img-preview" alt="" srcset="">
                         </div>
                     </div>
                 </div>

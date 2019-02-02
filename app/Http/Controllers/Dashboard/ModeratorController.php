@@ -6,6 +6,9 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Alert;
+use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class ModeratorController extends Controller
 {
@@ -59,15 +62,31 @@ class ModeratorController extends Controller
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => 'required',
-            'password' => 'required|confirmed'
+            'email' => 'required|unique:users',
+            'image' => 'image',
+            'password' => 'required|confirmed',
+            'permissions' => 'required|min:1'
         ]);
         $request_data = $request->except([
             'password',
             'password_confirmation',
-            'permissions'
+            'permissions',
+            'image'
         ]);
         $request_data['password'] = bcrypt($request->password);
+        if ($request->image) {
+            Image::make($request->image)
+                ->resize(300, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })
+                ->save(
+                    public_path(
+                        'uploads/moderator_images/' .
+                            $request->image->hashName()
+                    )
+                );
+            $request_data['image'] = $request->image->hashName();
+        }
         $moderator = User::create($request_data);
         $moderator->attachRole('employer');
         $moderator->syncPermissions($request->permissions);
@@ -110,9 +129,32 @@ class ModeratorController extends Controller
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => 'required'
+            'email' => [
+                'required',
+                Rule::unique('users')->ignore($moderator->id)
+            ],
+            'image' => 'image',
+            'permissions' => 'required|min:1'
         ]);
-        $request_data = $request->except(['permissions']);
+        $request_data = $request->except(['permissions', 'image']);
+        if ($request->image) {
+            if ($moderator->image != 'default.png') {
+                Storage::disk('public_uploads')->delete(
+                    '/moderator_images/' . $moderator->image
+                );
+            }
+            Image::make($request->image)
+                ->resize(300, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })
+                ->save(
+                    public_path(
+                        'uploads/moderator_images/' .
+                            $request->image->hashName()
+                    )
+                );
+            $request_data['image'] = $request->image->hashName();
+        }
         $moderator->update($request_data);
         $moderator->syncPermissions($request->permissions);
         toast('Updated Successfully', 'success', 'top-right');
@@ -127,10 +169,11 @@ class ModeratorController extends Controller
      */
     public function destroy(User $moderator)
     {
-        //$moderator->delete();
-        /*Alert::success('Moderator deleted successfully', 'Success')->persistent(
-            "Close"
-        );*/
+        if ($moderator->image != 'default.png') {
+            Storage::disk('public_uploads')->delete(
+                '/moderator_images/' . $moderator->image
+            );
+        }
 
         $moderator->delete();
         toast('deleted Successfully', 'error', 'top-right');

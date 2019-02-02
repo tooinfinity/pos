@@ -41,6 +41,7 @@ Moderators
                         <th>First name</th>
                         <th>Last name</th>
                         <th>Email</th>
+                        <th>Image</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -51,6 +52,7 @@ Moderators
                         <td>{{ $moderators -> first_name }}</td>
                         <td>{{ $moderators -> last_name }}</td>
                         <td>{{ $moderators -> email }}</td>
+                        <td><img src="{{ $moderators -> image_path }}" style="width:50px;" class="img-circle img-thumbnail" alt="" srcset=""></td>
                         <td>
                             @if (auth()->user()->hasPermission('update_users'))
                             <a class="btn btn-warning btn-sm" href="{{ route('moderator.edit', $moderators->id) }}"><i
@@ -80,7 +82,7 @@ Moderators
             </table>
             {{ $moderator->appends(request()->query())->links() }}
             @else
-            <h2>no data saved</h2>
+            <h2 class="text-center">no data saved</h2>
             @endif
         </div>
         <!-- /.card-body -->

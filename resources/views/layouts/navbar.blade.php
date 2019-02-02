@@ -27,13 +27,17 @@
                 <i class="fas fa-bell fa-2x"></i> <br>
                 <span class="badge badge-warning navbar-badge">15</span>
             </a>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="true">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle dropdown-item" alt="User Image">
+        </li> <br> <br>
+        <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle user-panel" style="text-decoration: none;" data-toggle="dropdown">
+                <img src="{{ asset('uploads/moderator_images/admin.png') }}" style="width:40px;"
+                    class="user-image img-circle" alt="User Image">
+                <span class="hidden-xs">{{ auth()->user()->first_name }}
+                    {{ auth()->user()->last_name }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right text-center">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle dropdown-item" alt="User Image">
+                <img src="{{ asset('uploads/moderator_images/admin.png') }}" style="width:150px;"
+                    class="img-thumbnail dropdown-item" alt="User Image">
                 <div class="dropdown-divider"></div>
                 <span class="dropdown-item dropdown-header">{{ auth()->user()->first_name }}
                     {{ auth()->user()->last_name }}</span>
@@ -42,7 +46,8 @@
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item dropdown-header" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"><i class="fas fa-power-off"></i> 
+                                                     document.getElementById('logout-form').submit();"><i
+                        class="fas fa-power-off"></i>
                     {{ __('Logout') }}
                 </a>
 

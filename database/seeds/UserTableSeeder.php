@@ -18,8 +18,7 @@ class UserTableSeeder extends Seeder
             'last_name' => 'admin',
             'email' => 'touwfiq@app.com',
             'password' => bcrypt('25031992'),
-
-
+            'image' => 'admin.png'
         ]);
         $user->attachRole('super_admin');
     }

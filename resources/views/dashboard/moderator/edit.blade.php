@@ -15,12 +15,12 @@ Update Moderators
         <!-- /.card-header -->
         <div class="card-body">
 
-            <form action="{{ route('moderator.update', $moderator->id) }}" method="post">
+            <form action="{{ route('moderator.update', $moderator->id) }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 {{ method_field('put') }}
+                @include('partials._errors')
                 <div class="row">
                     <div class="col-md-6">
-                        @include('partials._errors')
                         <div class="form-group">
                             <label>first name</label>
                             <input type="text" name="first_name" id="" class="form-control"
@@ -66,6 +66,15 @@ Update Moderators
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Moderator Photo</label>
+                                <input type="file" name="image" id="" class="form-control image">
+                            </div>
+                            <div class="form-group">
+                                <img src="{{ $moderator->image_path }}" style="width:200px;" class="img-circle img-thumbnail img-preview" alt="" srcset="">
+                            </div>
+                        </div>
                 </div>
                 <div class="modal-footer form-group">
                     <button type="submit" class="btn btn-success"><i class="fas fa-user-edit"></i> Update a moderator</button>
