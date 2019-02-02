@@ -5,7 +5,7 @@ Moderators
 @stop
 
 @section('content')
-
+@include('sweet::alert')
 <div class="col-md-12">
     <div class="card card-primary">
         <div class="card-header with-border">
@@ -61,12 +61,12 @@ Moderators
                                 update</a>
                             @endif
                             @if (auth()->user()->hasPermission('delete_users'))
-                            <form action="{{ route('moderator.destroy', $moderators->id) }}" method="post"
+                            <button id="delete" onclick="deletemoderator({{ $moderators->id }})" class="btn btn-danger btn-sm"><i class="fas fa-user-times"></i>
+                                delete</button>
+                            <form id="form-delete-{{ $moderators->id }}" action="{{ route('moderator.destroy', $moderators->id) }}" method="post"
                                 style="display:inline-block;">
                                 {{ csrf_field() }}
                                 {{ method_field('delete') }}
-                                <button type="submit" class="btn btn-danger btn-sm remove"><i class="fas fa-user-times"></i>
-                                    delete</button>
                             </form>
                             @else
                             <button type="submit" class="btn btn-danger btn-sm disabled"><i
@@ -87,5 +87,6 @@ Moderators
 
     </div>
 </div>
+
 
 @stop

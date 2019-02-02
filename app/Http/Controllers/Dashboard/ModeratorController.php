@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Dashboard;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Toastr;
 use Alert;
 
 class ModeratorController extends Controller
@@ -73,8 +72,7 @@ class ModeratorController extends Controller
         $moderator->attachRole('employer');
         $moderator->syncPermissions($request->permissions);
         //Toastr::success('created successfully');
-        //alert()->success('SuccessAlert', 'created successfully');
-        toast('Success Toast', 'success', 'top-right');
+        toast('Created Successfully', 'success', 'top-right');
         return redirect()->route('moderator.index');
     }
 
@@ -117,7 +115,7 @@ class ModeratorController extends Controller
         $request_data = $request->except(['permissions']);
         $moderator->update($request_data);
         $moderator->syncPermissions($request->permissions);
-        Toastr::success('udated successfully');
+        toast('Updated Successfully', 'success', 'top-right');
         return redirect()->route('moderator.index');
     }
 
@@ -129,8 +127,13 @@ class ModeratorController extends Controller
      */
     public function destroy(User $moderator)
     {
+        //$moderator->delete();
+        /*Alert::success('Moderator deleted successfully', 'Success')->persistent(
+            "Close"
+        );*/
+
         $moderator->delete();
-        Toastr::success('deleted successfully');
+        toast('deleted Successfully', 'error', 'top-right');
         return redirect()->route('moderator.index');
     }
 }

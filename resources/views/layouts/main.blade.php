@@ -12,7 +12,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <title>Store LTE</title>
     <link rel="stylesheet" href="/css/app.css">
-    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
 
@@ -76,33 +76,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <script src="/js/app.js"></script>
     <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js"></script>
 
-    {!! Toastr::message() !!}
     @include('sweetalert::alert')
-
-    <script>
-         $('.remove').click(function(){
-      swal({
-          title: "Are you sure want to remove this item?",
-          text: "You will not be able to recover this item",
-          type: "warning",
-          showCancelButton: true,
-          confirmButtonClass: "btn-danger",
-          confirmButtonText: "Confirm",
-          cancelButtonText: "Cancel",
-          closeOnConfirm: false,
-          closeOnCancel: false
-        },
-        function(isConfirm) {
-          if (isConfirm) {
-            swal("Deleted!", "Your item deleted.", "success");
-          } else {
-            swal("Cancelled", "You Cancelled", "error");
-          }
-      });
-    });
+    <script type="text/javascript">
+        function deletemoderator(id){
+            Swal({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'error',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText:'No, cancel!'
+                }).then((result) => {
+                if (result.value) {
+                    event.preventDefault();
+                    document.getElementById('form-delete-'+id).submit();
+                } else if (
+                    // Read more about handling dismissals
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Your imaginary file is safe :)',
+                    'error'
+                    )
+                }
+                });
+            }
+        
     </script>
 
 </body>
