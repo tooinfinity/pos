@@ -9,7 +9,9 @@
 
     <title>Store LTE</title>
     <link rel="stylesheet" href="/css/app.css">
+    {{--
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">
+    --}}
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
@@ -73,8 +75,8 @@
     <!-- REQUIRED SCRIPTS -->
 
     <script src="/js/app.js"></script>
-    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js"></script>
+    --}}
 
     @include('sweetalert::alert')
     <script type="text/javascript">
