@@ -19,8 +19,8 @@ Moderators
                     <div class="col-md-4">
                         <button type="submit" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
                         @if (auth()->user()->hasPermission('create_users'))
-                        <a type="" class="btn btn-success" href="{{ route('moderator.create') }}"><i
-                                class="fas fa-user-plus"></i> add new moderator</a>
+                        <a type="" class="btn btn-success" href="{{ route('moderator.create') }}"><i class="fas fa-user-plus"></i>
+                            add new moderator</a>
                         @else
                         <a type="" class="btn btn-success disabled" href="#"><i class="fas fa-user-plus"></i> add new
                             moderator</a>
@@ -37,7 +37,7 @@ Moderators
 
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>no</th>
                         <th>First name</th>
                         <th>Last name</th>
                         <th>Email</th>
@@ -52,27 +52,29 @@ Moderators
                         <td>{{ $moderators -> first_name }}</td>
                         <td>{{ $moderators -> last_name }}</td>
                         <td>{{ $moderators -> email }}</td>
-                        <td><img src="{{ $moderators -> image_path }}" style="width:50px;" class="img-circle img-thumbnail" alt="" srcset=""></td>
+                        <td><img src="{{ $moderators -> image_path }}" style="width:50px;" class="img-circle img-thumbnail"
+                                alt="" srcset=""></td>
                         <td>
                             @if (auth()->user()->hasPermission('update_users'))
                             <a class="btn btn-warning btn-sm" href="{{ route('moderator.edit', $moderators->id) }}"><i
                                     class="fas fa-user-edit"></i> update</a>
                             @else
-                            <a class="btn btn-warning btn-sm disabled"
-                                href="{{ route('moderator.edit', $moderators->id) }}"><i class="fas fa-user-edit"></i>
+                            <a class="btn btn-warning btn-sm disabled" href="{{ route('moderator.edit', $moderators->id) }}"><i
+                                    class="fas fa-user-edit"></i>
                                 update</a>
                             @endif
                             @if (auth()->user()->hasPermission('delete_users'))
-                            <button id="delete" onclick="deletemoderator({{ $moderators->id }})" class="btn btn-danger btn-sm"><i class="fas fa-user-times"></i>
+                            <button id="delete" onclick="deletemoderator({{ $moderators->id }})" class="btn btn-danger btn-sm"><i
+                                    class="fas fa-user-times"></i>
                                 delete</button>
-                            <form id="form-delete-{{ $moderators->id }}" action="{{ route('moderator.destroy', $moderators->id) }}" method="post"
-                                style="display:inline-block;">
+                            <form id="form-delete-{{ $moderators->id }}" action="{{ route('moderator.destroy', $moderators->id) }}"
+                                method="post" style="display:inline-block;">
                                 {{ csrf_field() }}
                                 {{ method_field('delete') }}
                             </form>
                             @else
-                            <button type="submit" class="btn btn-danger btn-sm disabled"><i
-                                    class="fas fa-user-times"></i> delete</button>
+                            <button type="submit" class="btn btn-danger btn-sm disabled"><i class="fas fa-user-times"></i>
+                                delete</button>
                             @endif
 
                         </td>

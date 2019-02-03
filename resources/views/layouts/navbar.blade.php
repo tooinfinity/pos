@@ -30,22 +30,20 @@
         </li> <br> <br>
         <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle user-panel" style="text-decoration: none;" data-toggle="dropdown">
-                <img src="{{ asset('uploads/moderator_images/admin.png') }}" style="width:40px;"
-                    class="user-image img-circle" alt="User Image">
+                <img src="{{ auth()->user()->image_path }}" style="width:40px;" class="user-image img-circle" alt="User Image">
                 <span class="hidden-xs">{{ auth()->user()->first_name }}
                     {{ auth()->user()->last_name }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right text-center">
-                <img src="{{ asset('uploads/moderator_images/admin.png') }}" style="width:150px;"
-                    class="img-thumbnail dropdown-item" alt="User Image">
+                <img src="{{ asset('uploads/moderator_images/admin.png') }}" style="width:150px;" class="img-thumbnail dropdown-item"
+                    alt="User Image">
                 <div class="dropdown-divider"></div>
                 <span class="dropdown-item dropdown-header">{{ auth()->user()->first_name }}
                     {{ auth()->user()->last_name }}</span>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item dropdown-header"><i class="fas fa-user-circle"></i> Profile</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item dropdown-header" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
+                <a class="dropdown-item dropdown-header" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i
                         class="fas fa-power-off"></i>
                     {{ __('Logout') }}

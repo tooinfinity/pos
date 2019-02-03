@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
+
 <html lang="en">
 
 <head>
@@ -81,48 +78,50 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     @include('sweetalert::alert')
     <script type="text/javascript">
-    function deletemoderator(id) {
-        Swal({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            type: 'error',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, cancel!'
-        }).then((result) => {
-            if (result.value) {
-                event.preventDefault();
-                document.getElementById('form-delete-' + id).submit();
-            } else if (
-                // Read more about handling dismissals
-                result.dismiss === Swal.DismissReason.cancel
-            ) {
-                swalWithBootstrapButtons.fire(
-                    'Cancelled',
-                    'Your imaginary file is safe :)',
-                    'error'
-                )
-            }
-        });
-    }
+        function deletemoderator(id) {
+            Swal({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'error',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!'
+            }).then((result) => {
+                if (result.value) {
+                    event.preventDefault();
+                    document.getElementById('form-delete-' + id).submit();
+                } else if (
+                    // Read more about handling dismissals
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        'Your imaginary file is safe :)',
+                        'error'
+                    )
+                }
+            });
+        }
+
     </script>
     <script>
-    $(document).ready( function () {
-        $(".image").change(function() {
-            if (this.files && this.files[0]) {
-                var reader = new FileReader();
+        $(document).ready(function () {
+            $(".image").change(function () {
+                if (this.files && this.files[0]) {
+                    var reader = new FileReader();
 
-                reader.onload = function(e) {
-                    $('.img-preview').attr('src', e.target.result);
+                    reader.onload = function (e) {
+                        $('.img-preview').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(this.files[0]);
                 }
 
-                reader.readAsDataURL(this.files[0]);
-            }
-
+            });
         });
-    });
+
     </script>
 
 </body>

@@ -1,73 +1,88 @@
-@extends('layouts.app')
+<!doctype html>
+<html lang="en">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/css/app.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="/css/materialize.min.css">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+    <title>Login</title>
+</head>
 
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+<body class="text-center">
+    <style>
+        .login {
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%,-50%);
+        box-sizing: border-box;
+        max-width: 600px;
+        padding: 30px;
+        padding-top: 80px;
+        margin: 0 auto;
+        }
+        body {
+        margin: 0;
+        padding: 0;
+        background: url('../uploads/settings/informatique.jpg')no-repeat center center fixed;
+        background-size: cover;
+        background-position: center;
+        height: 100%;
+        overflow: hidden;
+        }
+        .avatar{
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        top: -50px;
+        left:calc(50% - 50px);
+        }
+    </style>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+    <div class="container">
+        <div class="row">
+            <div class="login">
+                <div class="card ">
+                    <div class="card-content">
+                        <img class="avatar" src="{{ asset('uploads/settings/login.png') }}" alt="">
 
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
+                        <center>
+                            <h2>Login to Your Store</h2>
+                            <br>
+                            @include('partials._errors')
+                            <form class="container" action="{{ route('login') }}" method="post">
+                                {{ csrf_field() }}
+                                {{ method_field('post') }}
+                                <div class=" input-field col s12">
+                                    <label for="email">Email address</label>
+                                    <input class="validate" type="email" name="email" id="email">
                                 </div>
-                            </div>
-                        </div>
+                                <div class=" input-field col s12">
+                                    <label for="password">Password</label>
+                                    <input class="validate" type="password" name="password" id="password">
+                                </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
+                                <button type="submit" name="login" value="login" class="btn btn-primary">Sign In</button>
+                            </form>
+                        </center>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
-</div>
-@endsection
+
+    <script src="/js/app.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="/js/materialize.min.js"></script>
+</body>
+
+</html>

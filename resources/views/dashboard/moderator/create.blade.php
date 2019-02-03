@@ -20,16 +20,17 @@ Create Moderators
                 {{ method_field('post') }}
                 @include('partials._errors')
                 <div class="row">
+                
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>first name</label>
-                            <input type="text" name="first_name" id="" class="form-control"
-                                value="{{ old('first_name') }}" required>
+                            <input type="text" name="first_name" id="" class="form-control" value="{{ old('first_name') }}"
+                                required>
                         </div>
                         <div class="form-group">
                             <label>last name</label>
-                            <input type="text" name="last_name" id="" class="form-control"
-                                value="{{ old('last_name') }}" required>
+                            <input type="text" name="last_name" id="" class="form-control" value="{{ old('last_name') }}"
+                                required>
                         </div>
                         <div class="form-group">
                             <label>Email</label>
@@ -54,7 +55,8 @@ Create Moderators
                                     @endphp
                                     <ul class="nav nav-pills ml-auto p-2">
                                         @foreach ($models as $index=>$model)
-                                        <li class="nav-item {{ $index == 0 ? 'active' :'' }}"><a class="nav-link {{ $index == 0 ? 'active' :'' }}" href="#{{ $model }}" data-toggle="tab">{{ $model }}</a></li>
+                                        <li class="nav-item {{ $index == 0 ? 'active' :'' }}"><a class="nav-link {{ $index == 0 ? 'active' :'' }}"
+                                                href="#{{ $model }}" data-toggle="tab">{{ $model }}</a></li>
                                         @endforeach
                                     </ul>
                                 </div><!-- /.card-header -->
@@ -64,8 +66,8 @@ Create Moderators
                                         @foreach ($models as $index=>$model)
                                         <div class="tab-pane  {{ $index == 0 ? 'active' :'' }}" id="{{ $model }}">
                                             @foreach ($maps as $map)
-                                            <label><input type="checkbox" name="permissions[]"
-                                                    value="{{ $map .'_'. $model }}">{{ $map }}</label>
+                                            <label><input type="checkbox" name="permissions[]" value="{{ $map .'_'. $model }}">{{
+                                                $map }}</label>
                                             @endforeach
                                         </div>
                                         @endforeach
@@ -82,13 +84,14 @@ Create Moderators
                             <input type="file" name="image" id="" class="form-control image">
                         </div>
                         <div class="form-group">
-                            <img src="{{ asset('uploads/moderator_images/default.png') }}" style="width:200px;" class="img-circle img-thumbnail img-preview" alt="" srcset="">
+                            <img src="{{ asset('uploads/moderator_images/default.png') }}" style="width:200px;" class="img-circle img-thumbnail img-preview"
+                                alt="" srcset="">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer form-group">
-                    <button type="submit" class="btn btn-success" href="{{ route('moderator.store') }}"><i
-                            class="fas fa-user-plus"></i> Add new moderator</button>
+                    <button type="submit" class="btn btn-success" href="{{ route('moderator.store') }}"><i class="fas fa-user-plus"></i>
+                        Add new moderator</button>
                 </div>
             </form>
 
