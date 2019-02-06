@@ -31,6 +31,7 @@
                         </p>
                     </a>
                 </li>
+                @if (auth()->user()->hasPermission('read_categories'))
                 <li class="nav-item">
                     <a href="{{ url('/category') }}" class="nav-link">
                         <i class="nav-icon fas fa-list-alt"></i>
@@ -39,6 +40,7 @@
                         </p>
                     </a>
                 </li>
+                @endif
                 <li class="nav-item">
                     <a href="{{ url('/product') }}" class="nav-link">
                         <i class="nav-icon fas fa-archive"></i>

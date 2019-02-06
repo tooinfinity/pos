@@ -23,13 +23,11 @@ Update Moderators
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>first name</label>
-                            <input type="text" name="first_name" id="" class="form-control"
-                                value="{{ $moderator->first_name }}">
+                            <input type="text" name="first_name" id="" class="form-control" value="{{ $moderator->first_name }}">
                         </div>
                         <div class="form-group">
                             <label>last name</label>
-                            <input type="text" name="last_name" id="" class="form-control"
-                                value="{{ $moderator->last_name }}">
+                            <input type="text" name="last_name" id="" class="form-control" value="{{ $moderator->last_name }}">
                         </div>
                         <div class="form-group">
                             <label>Email</label>
@@ -55,7 +53,9 @@ Update Moderators
                                         @foreach ($models as $index=>$model)
                                         <div class="tab-pane  {{ $index == 0 ? 'active' :'' }}" id="{{ $model }}">
                                             @foreach ($maps as $map)
-                                            <label><input type="checkbox" name="permissions[]" {{ $moderator->hasPermission($map .'_'. $model) ? 'checked' : '' }} value="{{ $map .'_'. $model }}">{{ $map }}</label>
+                                            <label><input type="checkbox" name="permissions[]"
+                                                    {{ $moderator->hasPermission($map .'_'. $model) ? 'checked' : '' }}
+                                                    value="{{ $map .'_'. $model }}">{{ $map }}</label>
                                             @endforeach
                                         </div>
                                         @endforeach
@@ -67,14 +67,15 @@ Update Moderators
                         </div>
                     </div>
                     <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Moderator Photo</label>
-                                <input type="file" name="image" id="" class="form-control image">
-                            </div>
-                            <div class="form-group">
-                                <img src="{{ $moderator->image_path }}" style="width:200px;" class="img-circle img-thumbnail img-preview" alt="" srcset="">
-                            </div>
+                        <div class="form-group">
+                            <label>Moderator Photo</label>
+                            <input type="file" name="image" id="" class="form-control image">
                         </div>
+                        <div class="form-group">
+                            <img src="{{ $moderator->image_path }}" style="width:200px;" class="img-circle img-thumbnail img-preview"
+                                alt="" srcset="">
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer form-group">
                     <button type="submit" class="btn btn-success"><i class="fas fa-user-edit"></i> Update a moderator</button>
