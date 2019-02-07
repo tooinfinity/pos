@@ -90,7 +90,6 @@ class ModeratorController extends Controller
         $moderator = User::create($request_data);
         $moderator->attachRole('employer');
         $moderator->syncPermissions($request->permissions);
-        //Toastr::success('created successfully');
         toast('Created Successfully', 'success', 'top-right');
         return redirect()->route('moderator.index');
     }

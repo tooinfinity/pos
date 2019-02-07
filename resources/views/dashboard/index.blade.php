@@ -12,7 +12,7 @@ Dashboard
     <!-- small box -->
     <div class="small-box bg-info">
         <div class="inner">
-            <h3>{{ $moderator->count() }}</h3>
+            <h3>{{ $moderator->count()-1 }}</h3>
 
             <p>Mederators</p>
         </div>

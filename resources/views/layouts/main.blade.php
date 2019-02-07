@@ -9,6 +9,8 @@
 
     <title>Store LTE</title>
     <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
     {{--
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">
     --}}
@@ -75,8 +77,12 @@
     <!-- REQUIRED SCRIPTS -->
 
     <script src="/js/app.js"></script>
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js"></script>
-    --}}
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
 
     @include('sweetalert::alert')
     <script type="text/javascript">
@@ -122,6 +128,19 @@
                 }
 
             });
+        });
+
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#category_table').DataTable({
+                "aLengthMenu": [
+                    [5, 10, 20, -1],
+                    [5, 10, 20, "All"]
+                ],
+                "iDisplayLength": 5
+            });
+
         });
 
     </script>

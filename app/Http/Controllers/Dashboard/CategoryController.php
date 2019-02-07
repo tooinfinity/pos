@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $categories = Category::paginate(5);
+        $categories = Category::all();
         return view('dashboard.category.index', compact('categories'));
     }
 
@@ -79,11 +79,11 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            'category_name' => 'required|unique:categories,category_name',
-            'brand_name' => 'unique:categories,brand_name',
+            'category_name' => 'required|unique:categories,category_name,' . $category->id,
+            'brand_name' => 'unique:categories,brand_name,' . $category->id,
 
         ]);
-        Category::update($request->all());
+        $category->update($request->all());
         toast('Category created Successfully', 'success', 'top-right');
         return redirect()->route('category.index');
     }
@@ -96,6 +96,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        toast('Category deleted Successfully', 'error', 'top-right');
+        return redirect()->route('moderator.index');
     }
 }
