@@ -20,7 +20,7 @@ Create Moderators
                 {{ method_field('post') }}
                 @include('partials._errors')
                 <div class="row">
-                
+
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>first name</label>
@@ -50,7 +50,7 @@ Create Moderators
                                 <div class="card-header d-flex p-0">
                                     <h3 class="card-title p-3">Moderator Permission</h3>
                                     @php
-                                    $models = ['users','category'];
+                                    $models = ['users','categories'];
                                     $maps = ['create', 'read', 'update', 'delete'];
                                     @endphp
                                     <ul class="nav nav-pills ml-auto p-2">
@@ -66,7 +66,8 @@ Create Moderators
                                         @foreach ($models as $index=>$model)
                                         <div class="tab-pane  {{ $index == 0 ? 'active' :'' }}" id="{{ $model }}">
                                             @foreach ($maps as $map)
-                                            <label><input type="checkbox" name="permissions[]" value="{{ $map .'_'. $model }}">{{
+                                            <label><input type="checkbox" name="permissions[]" value="{{ $map .'_'. $model }}">
+                                                {{
                                                 $map }}</label>
                                             @endforeach
                                         </div>

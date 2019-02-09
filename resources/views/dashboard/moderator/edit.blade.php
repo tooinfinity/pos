@@ -55,7 +55,7 @@ Update Moderators
                                             @foreach ($maps as $map)
                                             <label><input type="checkbox" name="permissions[]"
                                                     {{ $moderator->hasPermission($map .'_'. $model) ? 'checked' : '' }}
-                                                    value="{{ $map .'_'. $model }}">{{ $map }}</label>
+                                                    value="{{ $map .'_'. $model }}"> {{ $map }}</label>
                                             @endforeach
                                         </div>
                                         @endforeach

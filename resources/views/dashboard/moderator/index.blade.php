@@ -9,20 +9,18 @@ Moderators
 <div class="col-md-12">
     <div class="card card-primary">
         <div class="card-header with-border">
-            <h3 class="card-title">List Moderators</h3>
             <form action="{{ route('moderator.index') }}" method="get">
-                <div class="row">
-                    <div class="col-md-4">
-                        <input type="text" name="search" value="{{ request()->search }}" class="form-control"
-                            placeholder="Search">
+                <div class="row no-gutters">
+                    <div class="col-12 col-sm-6 col-md-8">
+                        <h3 class="card-title">List Moderators</h3>
                     </div>
-                    <div class="col-md-4">
-                        <button type="submit" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
+                    <div class="col-6 col-md-4">
                         @if (auth()->user()->hasPermission('create_users'))
-                        <a type="" class="btn btn-success" href="{{ route('moderator.create') }}"><i class="fas fa-user-plus"></i>
+                        <a type="" class="btn btn-success float-right" href="{{ route('moderator.create') }}"><i class="fas fa-user-plus"></i>
                             add new moderator</a>
                         @else
-                        <a type="" class="btn btn-success disabled" href="#"><i class="fas fa-user-plus"></i> add new
+                        <a type="" class="btn btn-success disabled float-right" href="#"><i class="fas fa-user-plus"></i>
+                            add new
                             moderator</a>
                         @endif
                     </div>
@@ -33,11 +31,11 @@ Moderators
         <!-- /.card-header -->
         <div class="card-body">
             @if ($moderator->count() > 0)
-            <table class="table table-hover">
+            <table id="moderator_table" class="table table-hover">
 
                 <thead>
                     <tr>
-                        <th>no</th>
+                        <th>No</th>
                         <th>First name</th>
                         <th>Last name</th>
                         <th>Email</th>

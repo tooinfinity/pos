@@ -28,7 +28,6 @@ Categories Page
                             category</a>
                         @endif
                     </div>
-
                 </div>
             </form>
         </div>

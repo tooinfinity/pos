@@ -10,6 +10,7 @@
     <title>Store LTE</title>
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/all.css" />
 
     {{--
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">
@@ -82,7 +83,7 @@
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
 
     @include('sweetalert::alert')
     <script type="text/javascript">
@@ -140,7 +141,22 @@
                 ],
                 "iDisplayLength": 5
             });
+            $('#moderator_table').DataTable({
+                "aLengthMenu": [
+                    [5, 10, 20, -1],
+                    [5, 10, 20, "All"]
+                ],
+                "iDisplayLength": 5
+            });
 
+        });
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-red',
+            });
         });
 
     </script>
