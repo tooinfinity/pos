@@ -14,7 +14,7 @@ Categories Page
 
                 <div class="row no-gutters">
                     <div class="col-12 col-sm-6 col-md-8">
-                        <h3 class="card-title">List Moderators</h3>
+                        <h3 class="card-title">List Categories</h3>
                     </div>
                     <div class="col-6 col-md-4">
                         @if (auth()->user()->hasPermission('create_categories'))

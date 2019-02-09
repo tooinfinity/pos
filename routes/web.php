@@ -26,8 +26,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/category', 'Dashboard\CategoryController')->except([
         'show'
     ]);
-
-    Route::get('/category/search', 'Dashboard\CategoryController@search')->name('category.search');
+    Route::resource('/product', 'Dashboard\ProductController')->except([
+        'show'
+    ]);
 
 });
 
