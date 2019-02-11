@@ -18,14 +18,13 @@ class CreateProductsTable extends Migration
             $table->integer('category_id')->unsigned();
             $table->string('codebar');
             $table->string('product_name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('image')->default('product.png');
             $table->double('purchase_price', 8, 2);
             $table->double('sale_price', 8, 2);
             $table->integer('min_stock');
             $table->integer('stock');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-
             $table->timestamps();
         });
     }

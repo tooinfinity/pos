@@ -35,7 +35,7 @@
                     {{ auth()->user()->last_name }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right text-center">
-                <img src="{{ asset('uploads/moderator_images/admin.png') }}" style="width:150px;" class="img-thumbnail dropdown-item"
+                <img src="{{ auth()->user()->image_path }}" style="width:150px;" class="img-thumbnail dropdown-item"
                     alt="User Image">
                 <div class="dropdown-divider"></div>
                 <span class="dropdown-item dropdown-header">{{ auth()->user()->first_name }}

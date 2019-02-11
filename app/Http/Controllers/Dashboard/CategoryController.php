@@ -39,7 +39,6 @@ class CategoryController extends Controller
     {
         $request->validate([
             'category_name' => 'required|unique:categories,category_name',
-            'brand_name' => 'unique:categories,brand_name',
 
         ]);
         Category::create($request->all());
@@ -80,7 +79,6 @@ class CategoryController extends Controller
     {
         $request->validate([
             'category_name' => 'required|unique:categories,category_name,' . $category->id,
-            'brand_name' => 'unique:categories,brand_name,' . $category->id,
 
         ]);
         $category->update($request->all());

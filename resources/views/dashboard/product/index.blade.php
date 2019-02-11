@@ -47,20 +47,22 @@ Products Page
                                     <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1" colspan="1"
                                         aria-label="Browser: activate to sort column ascending" style="width: 359px;">Codebar</th>
                                     <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1" colspan="1"
-                                        aria-label="Platform(s): activate to sort column ascending" style="width: 320px;">Product
+                                        aria-label="Platform(s): activate to sort column ascending" style="width: 283px;">Product
                                         name</th>
                                     <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1" colspan="1"
-                                        aria-label="Platform(s): activate to sort column ascending" style="width: 320px;">Description</th>
+                                        aria-label="Platform(s): activate to sort column ascending" style="width: 283px;">Description</th>
                                     <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1" colspan="1"
-                                        aria-label="Platform(s): activate to sort column ascending" style="width: 320px;">Purchase
+                                        aria-label="Platform(s): activate to sort column ascending" style="width: 283px;">Purchase
                                         Price</th>
                                     <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1" colspan="1"
-                                        aria-label="Platform(s): activate to sort column ascending" style="width: 320px;">Sale
+                                        aria-label="Platform(s): activate to sort column ascending" style="width: 283px;">Sale
                                         Price</th>
                                     <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1" colspan="1"
-                                        aria-label="Platform(s): activate to sort column ascending" style="width: 320px;">Stock</th>
+                                        aria-label="Platform(s): activate to sort column ascending" style="width: 283px;">Stock</th>
                                     <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1" colspan="1"
-                                        aria-label="Engine version: activate to sort column ascending" style="width: 243px;">Action</th>
+                                        aria-label="Platform(s): activate to sort column ascending" style="width: 320px;">Image</th>
+                                    <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1" colspan="1"
+                                        aria-label="Engine version: activate to sort column ascending" style="width: 359px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -69,8 +71,14 @@ Products Page
 
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
-                                    <td>{{ $product -> category_name }}</td>
-                                    <td>{{ $product -> brand_name }}</td>
+                                    <td>{{ $product -> codebar }}</td>
+                                    <td>{{ $product -> product_name }}</td>
+                                    <td>{{ $product -> description }}</td>
+                                    <td>{{ $product -> purchase_price }}</td>
+                                    <td>{{ $product -> sale_price }}</td>
+                                    <td>{{ $product -> stock }}</td>
+                                    <td><img src="{{ $product -> image_path }}" style="width:50px;" class="img-circle img-thumbnail"
+                                            alt=""></td>
                                     <td>
                                         @if (auth()->user()->hasPermission('update_categories'))
                                         <a class="btn btn-warning btn-sm" href="{{ route('product.edit', $product->id) }}"><i
@@ -109,6 +117,7 @@ Products Page
                                     <th rowspan="1" colspan="1">Purchase Price</th>
                                     <th rowspan="1" colspan="1">Sale Price</th>
                                     <th rowspan="1" colspan="1">Stock</th>
+                                    <th rowspan="1" colspan="1">Image</th>
                                     <th rowspan="1" colspan="1">Action</th>
                                 </tr>
                             </tfoot>

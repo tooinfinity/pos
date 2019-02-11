@@ -23,27 +23,34 @@ Create Products
 
                     <div class="col-md-6">
                         <div class="form-group">
+                            <label>Categories</label>
+                            <select name="category_id" class="form-control">
+                                <option value="">All Categorie</option>
+                                @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->category_name }} {{
+                                    $category->brand_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label>Codebar</label>
                             <div style="display: flex;">
-                                <input type="text" name="codebar" id="" class="form-control" value="{{ old('codebar') }}"
-                                    required> <br>
+                                <input type="text" name="codebar" id="" class="form-control" value="{{ old('codebar') }}">
+                                <br>
                                 <button class="btn btn-primary btn">Generate a codebar</button>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Product name</label>
-                            <input type="text" name="product_name" id="" class="form-control" value="{{ old('product_name') }}"
-                                required>
+                            <input type="text" name="product_name" id="" class="form-control" value="{{ old('product_name') }}">
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea type="text" name="description" id="" class="form-control" value="{{ old('description') }}"
-                                required></textarea>
+                            <textarea type="text" name="description" id="" class="form-control" value="{{ old('description') }}"></textarea>
                         </div>
                         <div class="form-group">
                             <label>Purchase Price</label>
-                            <input type="number" name="purchase_price" id="" class="form-control" value="{{ old('purchase_price') }}"
-                                required>
+                            <input type="number" name="purchase_price" id="" class="form-control" value="{{ old('purchase_price') }}">
                         </div>
                         <div class="form-group">
                             <label>Sale Price</label>
