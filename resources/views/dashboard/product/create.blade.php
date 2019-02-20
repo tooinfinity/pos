@@ -34,11 +34,16 @@ Create Products
                             </select>
                         </div>
                         <div class="form-group">
+
                             <label>Codebar</label>
-                            <div style="display: flex;">
-                                <input type="text" name="codebar" id="bar" class="form-control bar" value="{{ old('codebar') }}">
-                                <button type="button" id="button_barcode" class="btn btn-primary float-right">Generate
-                                    a codebar</button>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <input type="text" name="codebar" id="bar" class="form-control bar" value="{{ old('codebar') }}">
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="button" id="button_barcode" class="btn btn-primary float-right">Generate
+                                        a codebar</button>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">

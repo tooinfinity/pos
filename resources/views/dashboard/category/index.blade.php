@@ -51,6 +51,9 @@ Categories Page
                                         aria-label="Platform(s): activate to sort column ascending" style="width: 320px;">Brand
                                         name</th>
                                     <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1" colspan="1"
+                                        aria-label="Platform(s): activate to sort column ascending" style="width: 320px;">Related
+                                        Product</th>
+                                    <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1" colspan="1"
                                         aria-label="Engine version: activate to sort column ascending" style="width: 243px;">Action</th>
                                 </tr>
                             </thead>
@@ -62,6 +65,12 @@ Categories Page
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $category -> category_name }}</td>
                                     <td>{{ $category -> brand_name }}</td>
+                                    <td><a href="{{ route('product.index', ['category_id'=>$category->id]) }}" class="btn btn-info text-white"><i
+                                                class="fas fa-link"></i>
+                                            {{
+                                            $category ->
+                                            products->count() }} Related
+                                            Product</a></td>
                                     <td>
                                         @if (auth()->user()->hasPermission('update_categories'))
                                         <a class="btn btn-warning btn-sm" href="{{ route('category.edit', $category->id) }}"><i
@@ -96,6 +105,7 @@ Categories Page
                                     <th rowspan="1" colspan="1">No</th>
                                     <th rowspan="1" colspan="1">Category name</th>
                                     <th rowspan="1" colspan="1">Brand name</th>
+                                    <th rowspan="1" colspan="1">Related Product</th>
                                     <th rowspan="1" colspan="1">Action</th>
                                 </tr>
                             </tfoot>

@@ -27,14 +27,14 @@ Dashboard
     <!-- small box -->
     <div class="small-box bg-success">
         <div class="inner">
-            <h3>53<sup style="font-size: 20px">%</sup></h3>
+            <h3>{{ $categories->count() }}</h3>
 
-            <p>Bounce Rate</p>
+            <p>All Category</p>
         </div>
         <div class="icon">
             <i class="ion ion-stats-bars"></i>
         </div>
-        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="{{ route('category.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
     </div>
 </div>
 <!-- ./col -->
@@ -42,14 +42,16 @@ Dashboard
     <!-- small box -->
     <div class="small-box bg-warning">
         <div class="inner">
-            <h3>44</h3>
+            <h3>{{ $products->count() }} All Products</h3>
+            <p>{{ $totalVolume = $products->sum(function ($product) {
+                return $product->sale_price - $product->purchase_price;
+                } )}} Total Profit</p>
 
-            <p>User Registrations</p>
         </div>
         <div class="icon">
             <i class="ion ion-person-add"></i>
         </div>
-        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="{{ route('product.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
     </div>
 </div>
 <!-- ./col -->

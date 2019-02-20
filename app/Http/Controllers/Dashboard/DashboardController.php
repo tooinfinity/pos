@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\User;
+use App\Product;
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class DashboardController extends Controller
@@ -12,6 +14,8 @@ class DashboardController extends Controller
     public function index()
     {
         $moderator = User::all();
-        return view('dashboard.index', compact('moderator'));
+        $categories = Category::all();
+        $products = Product::all();
+        return view('dashboard.index', compact('moderator', 'categories', 'products', 'sumprofit'));
     }
 }

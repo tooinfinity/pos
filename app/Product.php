@@ -8,7 +8,7 @@ class Product extends Model
 {
     protected $guarded = [];
 
-    protected $appends = ['image_path'];
+    protected $appends = ['image_path', 'profit'];
 
     public function category()
     {
@@ -17,5 +17,10 @@ class Product extends Model
     public function getImagePathAttribute()
     {
         return asset('uploads/product_images/' . $this->image);
+    }
+    public function getProfitAttribute()
+    {
+        $profit = $this->sale_price - $this->purchase_price;
+        return $profit;
     }
 }
