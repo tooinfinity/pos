@@ -13,6 +13,7 @@ try {
     require('bootstrap');
     require('admin-lte');
     require('icheck');
+    require('jsbarcode');
 } catch (e) {}
 
 /**

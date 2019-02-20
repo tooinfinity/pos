@@ -16991,6 +16991,290 @@ return jQuery;
 
 /***/ }),
 
+/***/ "./node_modules/jsbarcode/lib/exceptions/exceptions.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/jsbarcode/lib/exceptions/exceptions.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.InvalidInputException = InvalidInputException;
+exports.InvalidElementException = InvalidElementException;
+exports.NoElementException = NoElementException;
+
+function InvalidInputException(symbology, input) {
+  this.name = 'InvalidInputException';
+  this.symbology = symbology;
+  this.input = input;
+  this.message = '"' + this.input + '" is not a valid input for ' + this.symbology;
+}
+
+InvalidInputException.prototype = Error.prototype;
+
+function InvalidElementException() {
+  this.name = 'InvalidElementException';
+  this.message = 'Not supported type to render on';
+}
+
+InvalidElementException.prototype = Error.prototype;
+
+function NoElementException() {
+  this.name = 'NoElementException';
+  this.message = 'No element to render on.';
+}
+
+NoElementException.prototype = Error.prototype;
+//# sourceMappingURL=exceptions.js.map
+
+/***/ }),
+
+/***/ "./node_modules/jsbarcode/lib/help/fixOptions.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/jsbarcode/lib/help/fixOptions.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = fixOptions;
+exports.default = _default;
+
+function fixOptions(options) {
+  // Fix the margins
+  options.marginTop = options.marginTop || options.margin;
+  options.marginBottom = options.marginBottom || options.margin;
+  options.marginRight = options.marginRight || options.margin;
+  options.marginLeft = options.marginLeft || options.margin;
+  return options;
+}
+//# sourceMappingURL=fixOptions.js.map
+
+/***/ }),
+
+/***/ "./node_modules/jsbarcode/lib/help/linearizeEncodings.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/jsbarcode/lib/help/linearizeEncodings.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = linearizeEncodings; // Encodings can be nestled like [[1-1, 1-2], 2, [3-1, 3-2]
+// Convert to [1-1, 1-2, 2, 3-1, 3-2]
+
+exports.default = _default;
+
+function linearizeEncodings(encodings) {
+  var linearEncodings = [];
+
+  function nextLevel(encoded) {
+    if (Array.isArray(encoded)) {
+      for (var i = 0; i < encoded.length; i++) {
+        nextLevel(encoded[i]);
+      }
+    } else {
+      encoded.text = encoded.text || '';
+      encoded.data = encoded.data || '';
+      linearEncodings.push(encoded);
+    }
+  }
+
+  nextLevel(encodings);
+  return linearEncodings;
+}
+//# sourceMappingURL=linearizeEncodings.js.map
+
+/***/ }),
+
+/***/ "./node_modules/jsbarcode/lib/index.js":
+/*!*********************************************!*\
+  !*** ./node_modules/jsbarcode/lib/index.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _linearizeEncodings = _interopRequireDefault(__webpack_require__(/*! ./help/linearizeEncodings.js */ "./node_modules/jsbarcode/lib/help/linearizeEncodings.js"));
+
+var _fixOptions = _interopRequireDefault(__webpack_require__(/*! ./help/fixOptions.js */ "./node_modules/jsbarcode/lib/help/fixOptions.js"));
+
+var _exceptions = __webpack_require__(/*! ./exceptions/exceptions.js */ "./node_modules/jsbarcode/lib/exceptions/exceptions.js");
+
+var _defaults = _interopRequireDefault(__webpack_require__(/*! ./options/defaults.js */ "./node_modules/jsbarcode/lib/options/defaults.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+// The protype of the object returned from the JsBarcode() call
+var API = function API() {}; // The first call of the library API
+// Will return an object with all barcodes calls and the data that is used
+// by the renderers
+
+
+var JsBarcode = function JsBarcode(element, text, options) {
+  var api = new API();
+
+  if (typeof element === 'string') {
+    element = document.querySelector(element);
+  }
+
+  if (typeof element === 'undefined') {
+    throw new _exceptions.NoElementException('No element to render on was provided.');
+  } // Variables that will be pased through the API calls
+
+
+  api._encodings = [];
+  api._options = _objectSpread({}, _defaults.default, options || {});
+  api._element = element; // If text is set, use the simple syntax (render the barcode directly)
+
+  if (typeof text !== 'undefined') {
+    options = options || {};
+
+    api._encodings.push(encode(text, api._options));
+
+    api.options(options).render();
+  }
+
+  return api;
+}; // encode() handles the Encoder call and builds the binary string to be rendered
+
+
+function encode(text, options) {
+  // Ensure that text is a string
+  text = '' + text;
+  var Encoder = options.encoder;
+  var encoder = new Encoder(text, options); // If the input is not valid for the encoder, throw error.
+  // If the valid callback option is set, call it instead of throwing error
+
+  if (!encoder.valid()) {
+    throw new _exceptions.InvalidInputException(encoder.constructor.name, text);
+  } // Make a request for the binary data (and other infromation) that should be rendered
+
+
+  var encoded = encoder.encode();
+  return encoded;
+} // Sets global encoder options
+// Added to the api by the JsBarcode function
+
+
+API.prototype.options = function (options) {
+  this._options = _objectSpread({}, this._options, options);
+  return this;
+}; // Will create a blank space (usually in between barcodes)
+
+
+API.prototype.blank = function (size) {
+  var zeroes = new Array(size + 1).join('0');
+
+  this._encodings.push({
+    data: zeroes
+  });
+
+  return this;
+}; // Will encode another barcode
+
+
+API.prototype.barcode = function (text, options) {
+  this._encodings.push(encode(text, _objectSpread({}, this._options, options || {})));
+
+  return this;
+}; // The render API call. Calls the real render function.
+
+
+API.prototype.render = function () {
+  render(this._element, this._encodings, this._options);
+  return this;
+};
+
+API.prototype._defaults = _defaults.default; // Prepares the encodings and calls the renderer
+
+function render(element, encodings, options) {
+  encodings = (0, _linearizeEncodings.default)(encodings);
+
+  for (var i = 0; i < encodings.length; i++) {
+    encodings[i].options = _objectSpread({}, options, encodings[i].options);
+    (0, _fixOptions.default)(encodings[i].options);
+  }
+
+  (0, _fixOptions.default)(options);
+  options.renderer(element, encodings, options);
+}
+
+var _default = JsBarcode;
+exports.default = _default;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/jsbarcode/lib/options/defaults.js":
+/*!********************************************************!*\
+  !*** ./node_modules/jsbarcode/lib/options/defaults.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var defaults = {
+  width: 2,
+  height: 100,
+  format: 'auto',
+  displayValue: true,
+  fontOptions: '',
+  font: 'monospace',
+  text: undefined,
+  textAlign: 'center',
+  textPosition: 'bottom',
+  textMargin: 2,
+  fontSize: 20,
+  background: '#ffffff',
+  lineColor: '#000000',
+  margin: 10,
+  marginTop: undefined,
+  marginBottom: undefined,
+  marginLeft: undefined,
+  marginRight: undefined,
+  valid: function valid() {}
+};
+var _default = defaults;
+exports.default = _default;
+//# sourceMappingURL=defaults.js.map
+
+/***/ }),
+
 /***/ "./node_modules/lodash/lodash.js":
 /*!***************************************!*\
   !*** ./node_modules/lodash/lodash.js ***!
@@ -51648,6 +51932,8 @@ try {
   __webpack_require__(/*! admin-lte */ "./node_modules/admin-lte/dist/js/adminlte.min.js");
 
   __webpack_require__(/*! icheck */ "./node_modules/icheck/icheck.js");
+
+  __webpack_require__(/*! jsbarcode */ "./node_modules/jsbarcode/lib/index.js");
 } catch (e) {}
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

@@ -18,8 +18,7 @@
         "needim/noty": "^3.1",
         "realrashid/sweet-alert": "^1.1",
         "santigarcor/laratrust": "5.0.*",
-        "uxweb/sweet-alert":"dev-master"
-
+        "uxweb/sweet-alert": "dev-master"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

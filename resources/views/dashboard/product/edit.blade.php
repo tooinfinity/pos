@@ -22,12 +22,28 @@ Procuct Update
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>first name</label>
-                            <input type="text" name="first_name" id="" class="form-control" value="{{ $product->codebar }}">
+                            <label>Categories</label>
+                            <select name="category_id" class="form-control">
+                                <option value="">All Categorie</option>
+                                @foreach ($categories as $category)
+                                <option value="{{ $category->id }}"
+                                    {{ $product->category_id == $category->id ? 'selected' : ''}}>{{
+                                    $category->category_name }} {{
+                                    $category->brand_name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label>last name</label>
-                            <input type="text" name="last_name" id="" class="form-control" value="{{ $product->product_name }}">
+                            <label>Codebar</label>
+                            <div style="display: flex;">
+                                <input type="text" name="codebar" id="bar" class="form-control bar" value="{{ $product->codebar }}">
+                                <button type="button" id="button_barcode" class="btn btn-primary float-right">Generate
+                                    a codebar</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Product name</label>
+                            <input type="text" name="product_name" id="" class="form-control" value="{{ $product->product_name }}">
                         </div>
                         <div class="form-group">
                             <label>Description</label>
@@ -60,7 +76,7 @@ Procuct Update
                             </div>
                         </div>
                         <div class="form-group">
-                            <img src="{{ $produc->image_path }}" style="width:200px;" class="img-circle img-thumbnail img-preview"
+                            <img src="{{ $product->image_path }}" style="width:200px;" class="img-circle img-thumbnail img-preview"
                                 alt="" srcset="">
                         </div>
                     </div>

@@ -27,7 +27,8 @@ Create Products
                             <select name="category_id" class="form-control">
                                 <option value="">All Categorie</option>
                                 @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->category_name }} {{
+                                <option value="{{ $category->id }}{{ old('category_id') == $category->id ? 'selected' : ''}}">{{
+                                    $category->category_name }} {{
                                     $category->brand_name }}</option>
                                 @endforeach
                             </select>
@@ -35,9 +36,9 @@ Create Products
                         <div class="form-group">
                             <label>Codebar</label>
                             <div style="display: flex;">
-                                <input type="text" name="codebar" id="" class="form-control" value="{{ old('codebar') }}">
-                                <br>
-                                <button class="btn btn-primary btn">Generate a codebar</button>
+                                <input type="text" name="codebar" id="bar" class="form-control bar" value="{{ old('codebar') }}">
+                                <button type="button" id="button_barcode" class="btn btn-primary float-right">Generate
+                                    a codebar</button>
                             </div>
                         </div>
                         <div class="form-group">

@@ -32,6 +32,7 @@
     "dependencies": {
         "admin-lte": "^3.0.0-alpha.2",
         "icheck": "^1.0.2",
+        "jsbarcode": "^4.0.0-alpha.5",
         "noty": "^3.2.0-beta"
     }
 }

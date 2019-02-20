@@ -79,6 +79,10 @@
 
     <script src="/js/app.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="/js/ean13.min.js"></script>
+    <script src="/js/jquery-ean13.min.js"></script>
+    <script src="/js/printThis.js"></script>
+    <script src="/js/JsBarcode.all.min.js"></script>
 
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
@@ -152,15 +156,26 @@
         });
 
     </script>
+
+
     <script>
         $(document).ready(function () {
             $('input').iCheck({
                 checkboxClass: 'icheckbox_square-red',
+
             });
         });
 
     </script>
+    <script>
+        var barcode = 6130000000000;
+        $('#button_barcode').click(function () {
+            //var rnd = Math.floor(6130000000000 + Math.random() * 900000000);
+            barcode++;
+            document.getElementById('bar').value = barcode;
+        });
 
+    </script>
 </body>
 
 </html>
