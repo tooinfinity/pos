@@ -29,6 +29,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/product', 'Dashboard\ProductController')->except([
         'show'
     ]);
+    Route::resource('/client', 'Dashboard\ClientController')->except([
+        'show'
+    ]);
 
 });
 

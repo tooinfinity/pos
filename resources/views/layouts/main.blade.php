@@ -145,6 +145,20 @@
                 ],
                 "iDisplayLength": 5
             });
+            $('#product_table').DataTable({
+                "aLengthMenu": [
+                    [5, 10, 20, -1],
+                    [5, 10, 20, "All"]
+                ],
+                "iDisplayLength": 5
+            });
+            $('#client_table').DataTable({
+                "aLengthMenu": [
+                    [5, 10, 20, -1],
+                    [5, 10, 20, "All"]
+                ],
+                "iDisplayLength": 5
+            });
             $('#moderator_table').DataTable({
                 "aLengthMenu": [
                     [5, 10, 20, -1],

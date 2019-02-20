@@ -75,6 +75,7 @@
                         </p>
                     </a>
                 </li>
+                @if (auth()->user()->hasPermission('read_clients'))
                 <li class="nav-item">
                     <a href="{{ url('/client') }}" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
@@ -83,6 +84,8 @@
                         </p>
                     </a>
                 </li>
+                @endif
+
                 <li class="nav-item">
                     <a href="{{ url('/report') }}" class="nav-link">
                         <i class="nav-icon fas fa-chart-pie"></i>

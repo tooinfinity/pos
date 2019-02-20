@@ -58,34 +58,34 @@ Products Page
 
     <!-- /.card-header -->
     <div class="card-body">
-        <div id="category_table_wrapper" class="dataTables_wrapper dt-bootstrap4">
+        <div id="product_table_wrapper" class="dataTables_wrapper dt-bootstrap4">
             <div class="row">
                 <div class="col-sm-12">
-                    <table id="category_table" class="table table-bordered table-striped table-hover  dataTable" role="grid"
-                        aria-describedby="category_table_info">
+                    <table id="product_table" class="table table-bordered table-striped table-hover  dataTable" role="grid"
+                        aria-describedby="product_table_info">
                         <thead>
                             <tr role="row">
-                                <th class="sorting_asc" tabindex="0" aria-controls="category_table" rowspan="1" colspan="1"
+                                <th class="sorting_asc" tabindex="0" aria-controls="product_table" rowspan="1" colspan="1"
                                     aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
                                     style="width: 283px;">No</th>
-                                <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1" colspan="1"
+                                <th class="sorting" tabindex="0" aria-controls="product_table" rowspan="1" colspan="1"
                                     aria-label="Browser: activate to sort column ascending" style="width: 359px;">Codebar</th>
-                                <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1" colspan="1"
+                                <th class="sorting" tabindex="0" aria-controls="product_table" rowspan="1" colspan="1"
                                     aria-label="Platform(s): activate to sort column ascending" style="width: 283px;">Product
                                     name</th>
-                                <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1" colspan="1"
+                                <th class="sorting" tabindex="0" aria-controls="product_table" rowspan="1" colspan="1"
                                     aria-label="Platform(s): activate to sort column ascending" style="width: 283px;">Description</th>
-                                <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1" colspan="1"
+                                <th class="sorting" tabindex="0" aria-controls="product_table" rowspan="1" colspan="1"
                                     aria-label="Platform(s): activate to sort column ascending" style="width: 283px;">Purchase
                                     Price</th>
-                                <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1" colspan="1"
+                                <th class="sorting" tabindex="0" aria-controls="product_table" rowspan="1" colspan="1"
                                     aria-label="Platform(s): activate to sort column ascending" style="width: 283px;">Sale
                                     Price</th>
-                                <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1" colspan="1"
+                                <th class="sorting" tabindex="0" aria-controls="product_table" rowspan="1" colspan="1"
                                     aria-label="Platform(s): activate to sort column ascending" style="width: 283px;">Stock</th>
-                                <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1" colspan="1"
+                                <th class="sorting" tabindex="0" aria-controls="product_table" rowspan="1" colspan="1"
                                     aria-label="Platform(s): activate to sort column ascending" style="width: 320px;">Image</th>
-                                <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1" colspan="1"
+                                <th class="sorting" tabindex="0" aria-controls="product_table" rowspan="1" colspan="1"
                                     aria-label="Engine version: activate to sort column ascending" style="width: 359px;">Action</th>
                             </tr>
                         </thead>
