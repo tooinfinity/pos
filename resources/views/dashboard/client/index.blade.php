@@ -68,16 +68,16 @@ clients Page
                                     <td>
                                         @if (auth()->user()->hasPermission('update_clients'))
                                         <a class="btn btn-warning btn-sm" href="{{ route('client.edit', $client->id) }}"><i
-                                                class="fas fa-user-edit"></i>
+                                                class="fas fa-edit"></i>
                                             update</a>
                                         @else
                                         <a class="btn btn-warning btn-sm disabled" href="{{ route('client.edit', $client->id) }}"><i
-                                                class="fas fa-user-edit"></i>
+                                                class="fas fa-edit"></i>
                                             update</a>
                                         @endif
                                         @if (auth()->user()->hasPermission('delete_clients'))
                                         <button id="delete" onclick="deletemoderator({{ $client->id }})" class="btn btn-danger btn-sm"><i
-                                                class="fas fa-user-times"></i>
+                                                class="fas fa-trash"></i>
                                             delete</button>
                                         <form id="form-delete-{{ $client->id }}" action="{{ route('client.destroy', $client->id) }}"
                                             method="post" style="display:inline-block;">
@@ -85,7 +85,7 @@ clients Page
                                             {{ method_field('delete') }}
                                         </form>
                                         @else
-                                        <button type="submit" class="btn btn-danger btn-sm disabled"><i class="fas fa-user-times"></i>
+                                        <button type="submit" class="btn btn-danger btn-sm disabled"><i class="fas fa-trash"></i>
                                             delete</button>
                                         @endif
 

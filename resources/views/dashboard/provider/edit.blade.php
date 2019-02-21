@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('page')
-Update Client
+Update provider
 @stop
 
 @section('content')
@@ -9,13 +9,13 @@ Update Client
 <div class="col-md-12">
     <div class="card card-primary">
         <div class="card-header with-border">
-            <h3 class="card-title">Update a Client</h3>
+            <h3 class="card-title">Update a provider</h3>
         </div>
 
         <!-- /.card-header -->
         <div class="card-body">
 
-            <form action="{{ route('client.update', $client->id) }}" method="post">
+            <form action="{{ route('provider.update', $provider->id) }}" method="post">
                 {{ csrf_field() }}
                 {{ method_field('put') }}
                 @include('partials._errors')
@@ -23,23 +23,23 @@ Update Client
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Client name</label>
-                            <input type="text" name="client_name" id="" class="form-control" value="{{ $client->client_name }}">
+                            <label>provider name</label>
+                            <input type="text" name="provider_name" id="" class="form-control" value="{{ $provider->provider_name }}">
                         </div>
                         <div class="form-group">
                             <label>phone</label>
-                            <input type="text" name="phone" id="" class="form-control" value="{{ $client->phone }}">
+                            <input type="text" name="phone" id="" class="form-control" value="{{ $provider->phone }}">
                         </div>
                         <div class="form-group">
                             <label>Address</label>
-                            <textarea type="text" name="address" id="" class="form-control">{{ $client->address }}</textarea>
+                            <textarea type="text" name="address" id="" class="form-control">{{ $provider->address }}</textarea>
 
                         </div>
 
                     </div>
                 </div>
                 <div class="modal-footer form-group">
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Update Client</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Update provider</button>
                 </div>
             </form>
 

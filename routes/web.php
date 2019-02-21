@@ -32,15 +32,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/client', 'Dashboard\ClientController')->except([
         'show'
     ]);
-
+    Route::resource('/provider', 'Dashboard\ProviderController')->except([
+        'show'
+    ]);
 });
 
 //Route::get('/dashboard', 'Dashboard\DashboardController@index')->name('dashboard');
-/*
-Route::get('/product', 'Dashboard\ProductController@index')->name('product');
-Route::get('/sale', 'Dashboard\SaleController@index')->name('sale');
-Route::get('/purchase', 'Dashboard\PurchaseController@index')->name('purchase');
-Route::get('/provider', 'Dashboard\ProviderController@index')->name('provider');
-Route::get('/client', 'Dashboard\ClientController@index')->name('client');
-Route::get('/report', 'Dashboard\ReportController@index')->name('report');
-Route::get('/box', 'Dashboard\BoxController@index')->name('box');*/

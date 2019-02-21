@@ -83,6 +83,7 @@
     <script src="/js/jquery-ean13.min.js"></script>
     <script src="/js/printThis.js"></script>
     <script src="/js/JsBarcode.all.min.js"></script>
+    <script src="/js/moment.js"></script>
 
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
@@ -159,6 +160,13 @@
                 ],
                 "iDisplayLength": 5
             });
+            $('#provider_table').DataTable({
+                "aLengthMenu": [
+                    [5, 10, 20, -1],
+                    [5, 10, 20, "All"]
+                ],
+                "iDisplayLength": 5
+            });
             $('#moderator_table').DataTable({
                 "aLengthMenu": [
                     [5, 10, 20, -1],
@@ -187,6 +195,16 @@
             //var rnd = Math.floor(6130000000000 + Math.random() * 900000000);
             barcode++;
             document.getElementById('bar').value = barcode;
+        });
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            var interval = setInterval(function () {
+                var momentNow = moment();
+                $('#date-part').html(momentNow.format('dddd') + ' ' + momentNow.format('DD MMMM YYYY'));
+                $('#time-part').html(momentNow.format('kk:mm:ss'));
+            }, 100);
         });
 
     </script>

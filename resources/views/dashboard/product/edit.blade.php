@@ -82,7 +82,7 @@ Procuct Update
                     </div>
                 </div>
                 <div class="modal-footer form-group">
-                    <button type="submit" class="btn btn-success"><i class="fas fa-user-edit"></i> Update a moderator</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Update a moderator</button>
                 </div>
             </form>
 

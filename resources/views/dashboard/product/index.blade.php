@@ -106,16 +106,16 @@ Products Page
                                 <td>
                                     @if (auth()->user()->hasPermission('update_categories'))
                                     <a class="btn btn-warning btn-sm" href="{{ route('product.edit', $product->id) }}"><i
-                                            class="fas fa-user-edit"></i>
+                                            class="fas fa-edit"></i>
                                         update</a>
                                     @else
                                     <a class="btn btn-warning btn-sm disabled" href="{{ route('product.edit', $product->id) }}"><i
-                                            class="fas fa-user-edit"></i>
+                                            class="fas fa-edit"></i></i>
                                         update</a>
                                     @endif
                                     @if (auth()->user()->hasPermission('delete_products'))
                                     <button id="delete" onclick="deletemoderator({{ $product->id }})" class="btn btn-danger btn-sm"><i
-                                            class="fas fa-user-times"></i>
+                                            class="fas fa-trash"></i>
                                         delete</button>
                                     <form id="form-delete-{{ $product->id }}" action="{{ route('product.destroy', $product->id) }}"
                                         method="post" style="display:inline-block;">
@@ -123,7 +123,7 @@ Products Page
                                         {{ method_field('delete') }}
                                     </form>
                                     @else
-                                    <button type="submit" class="btn btn-danger btn-sm disabled"><i class="fas fa-user-times"></i>
+                                    <button type="submit" class="btn btn-danger btn-sm disabled"><i class="fas fa-trash"></i>
                                         delete</button>
                                     @endif
 

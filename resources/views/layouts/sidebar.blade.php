@@ -67,6 +67,7 @@
                         </p>
                     </a>
                 </li>
+                @if (auth()->user()->hasPermission('read_providers'))
                 <li class="nav-item">
                     <a href="{{ url('/provider') }}" class="nav-link">
                         <i class="nav-icon fas fa-truck"></i>
@@ -75,6 +76,7 @@
                         </p>
                     </a>
                 </li>
+                @endif
                 @if (auth()->user()->hasPermission('read_clients'))
                 <li class="nav-item">
                     <a href="{{ url('/client') }}" class="nav-link">

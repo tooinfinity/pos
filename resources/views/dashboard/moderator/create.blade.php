@@ -45,12 +45,14 @@ Create Moderators
                             <label>Password Confirmation</label>
                             <input type="password" name="password_confirmation" id="" class="form-control" required>
                         </div>
+                    </div>
+                    <div class="col-md-6">
                         <div class="form-group">
                             <div class="card">
                                 <div class="card-header d-flex p-0">
                                     <h3 class="card-title p-3">Moderator Permission</h3>
                                     @php
-                                    $models = ['users','categories','products'];
+                                    $models = ['users','categories','products','clients','providers'];
                                     $maps = ['create', 'read', 'update', 'delete'];
                                     @endphp
                                     <ul class="nav nav-pills ml-auto p-2">
@@ -78,8 +80,6 @@ Create Moderators
                                 </div><!-- /.card-body -->
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
                         <div class="form-group">
                             <div class="custom-file">
                                 <input type="file" name="image" class="form-control image custom-file-input" id="customFile">

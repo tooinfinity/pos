@@ -33,12 +33,14 @@ Update Moderators
                             <label>Email</label>
                             <input type="email" name="email" id="" class="form-control" value="{{ $moderator->email }}">
                         </div>
+                    </div>
+                    <div class="col-md-6">
                         <div class="form-group">
                             <div class="card">
                                 <div class="card-header d-flex p-0">
                                     <h3 class="card-title p-3">Moderator Permission</h3>
                                     @php
-                                    $models = ['users', 'category'];
+                                    $models = ['users','categories','products','clients','providers'];
                                     $maps = ['create', 'read', 'update', 'delete'];
                                     @endphp
                                     <ul class="nav nav-pills ml-auto p-2">
@@ -55,7 +57,8 @@ Update Moderators
                                             @foreach ($maps as $map)
                                             <label><input type="checkbox" name="permissions[]"
                                                     {{ $moderator->hasPermission($map .'_'. $model) ? 'checked' : '' }}
-                                                    value="{{ $map .'_'. $model }}"> {{ $map }}</label>
+                                                    value="{{ $map .'_'. $model }}">
+                                                {{ $map }}</label>
                                             @endforeach
                                         </div>
                                         @endforeach
@@ -65,8 +68,6 @@ Update Moderators
                                 </div><!-- /.card-body -->
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Moderator Photo</label>
                             <input type="file" name="image" id="" class="form-control image">

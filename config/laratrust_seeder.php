@@ -7,6 +7,7 @@ return [
             'categories' => 'c,r,u,d',
             'products' => 'c,r,u,d',
             'clients' => 'c,r,u,d',
+            'providers' => 'c,r,u,d',
         ],
         'employer' => []
     ],

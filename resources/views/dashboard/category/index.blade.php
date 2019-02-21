@@ -74,16 +74,16 @@ Categories Page
                                     <td>
                                         @if (auth()->user()->hasPermission('update_categories'))
                                         <a class="btn btn-warning btn-sm" href="{{ route('category.edit', $category->id) }}"><i
-                                                class="fas fa-user-edit"></i>
+                                                class="fas fa-edit"></i>
                                             update</a>
                                         @else
                                         <a class="btn btn-warning btn-sm disabled" href="{{ route('category.edit', $category->id) }}"><i
-                                                class="fas fa-user-edit"></i>
+                                                class="fas fa-edit"></i>
                                             update</a>
                                         @endif
                                         @if (auth()->user()->hasPermission('delete_categories'))
                                         <button id="delete" onclick="deletemoderator({{ $category->id }})" class="btn btn-danger btn-sm"><i
-                                                class="fas fa-user-times"></i>
+                                                class="fas fa-trash"></i>
                                             delete</button>
                                         <form id="form-delete-{{ $category->id }}" action="{{ route('category.destroy', $category->id) }}"
                                             method="post" style="display:inline-block;">
@@ -91,7 +91,7 @@ Categories Page
                                             {{ method_field('delete') }}
                                         </form>
                                         @else
-                                        <button type="submit" class="btn btn-danger btn-sm disabled"><i class="fas fa-user-times"></i>
+                                        <button type="submit" class="btn btn-danger btn-sm disabled"><i class="fas fa-trash"></i>
                                             delete</button>
                                         @endif
 
