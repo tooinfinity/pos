@@ -32,7 +32,7 @@ Create Client
                         </div>
                         <div class="form-group">
                             <label>Address</label>
-                            <textarea type="text" name="address" id="" class="form-control" value="{{ old('address') }}"></textarea>
+                            <textarea type="text" name="address" id="" class="form-control">{{ old('address') }}</textarea>
 
                         </div>
 

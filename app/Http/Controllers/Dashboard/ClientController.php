@@ -67,7 +67,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        return view('dashboard.client.edit', compact('client'));
     }
 
     /**
@@ -79,7 +79,15 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        //
+        $request->validate([
+            'client_name' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+
+        ]);
+        $client->update($request->all());
+        toast('Client Updated Successfully', 'success', 'top-right');
+        return redirect()->route('client.index');
     }
 
     /**
@@ -90,6 +98,8 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+        $client->delete();
+        toast('Client deleted Successfully', 'error', 'top-right');
+        return redirect()->route('client.index');
     }
 }

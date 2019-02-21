@@ -82,7 +82,7 @@ class CategoryController extends Controller
 
         ]);
         $category->update($request->all());
-        toast('Category created Successfully', 'success', 'top-right');
+        toast('Category Updated Successfully', 'success', 'top-right');
         return redirect()->route('category.index');
     }
 
@@ -96,6 +96,6 @@ class CategoryController extends Controller
     {
         $category->delete();
         toast('Category deleted Successfully', 'error', 'top-right');
-        return redirect()->route('moderator.index');
+        return redirect()->route('category.index');
     }
 }
