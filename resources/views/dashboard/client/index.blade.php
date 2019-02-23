@@ -52,6 +52,8 @@ clients Page
                                     <th class="sorting" tabindex="0" aria-controls="client_table" rowspan="1" colspan="1"
                                         aria-label="Platform(s): activate to sort column ascending" style="width: 320px;">Address</th>
                                     <th class="sorting" tabindex="0" aria-controls="client_table" rowspan="1" colspan="1"
+                                        aria-label="Platform(s): activate to sort column ascending" style="width: 320px;">Description</th>
+                                    <th class="sorting" tabindex="0" aria-controls="client_table" rowspan="1" colspan="1"
                                         aria-label="Engine version: activate to sort column ascending" style="width: 243px;">Action</th>
                                 </tr>
                             </thead>
@@ -64,7 +66,7 @@ clients Page
                                     <td>{{ $client -> client_name }}</td>
                                     <td>{{ $client -> phone }}</td>
                                     <td>{{ $client -> address }}</td>
-
+                                    <td>{{ $client -> description }}</td>
                                     <td>
                                         @if (auth()->user()->hasPermission('update_clients'))
                                         <a class="btn btn-warning btn-sm" href="{{ route('client.edit', $client->id) }}"><i
@@ -100,6 +102,7 @@ clients Page
                                     <th rowspan="1" colspan="1">client name</th>
                                     <th rowspan="1" colspan="1">Phone</th>
                                     <th rowspan="1" colspan="1">Address</th>
+                                    <th rowspan="1" colspan="1">Description</th>
                                     <th rowspan="1" colspan="1">Action</th>
                                 </tr>
                             </tfoot>

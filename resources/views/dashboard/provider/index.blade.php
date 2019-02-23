@@ -51,6 +51,8 @@ providers Page
                                         aria-label="Platform(s): activate to sort column ascending" style="width: 320px;">phone</th>
                                     <th class="sorting" tabindex="0" aria-controls="provider_table" rowspan="1" colspan="1"
                                         aria-label="Platform(s): activate to sort column ascending" style="width: 320px;">Address</th>
+                                    <th class="sorting" tabindex="0" aria-controls="client_table" rowspan="1" colspan="1"
+                                        aria-label="Platform(s): activate to sort column ascending" style="width: 320px;">Description</th>
                                     <th class="sorting" tabindex="0" aria-controls="provider_table" rowspan="1" colspan="1"
                                         aria-label="Engine version: activate to sort column ascending" style="width: 243px;">Action</th>
                                 </tr>
@@ -64,7 +66,7 @@ providers Page
                                     <td>{{ $provider -> provider_name }}</td>
                                     <td>{{ $provider -> phone }}</td>
                                     <td>{{ $provider -> address }}</td>
-
+                                    <td>{{ $provider -> description }}</td>
                                     <td>
                                         @if (auth()->user()->hasPermission('update_providers'))
                                         <a class="btn btn-warning btn-sm" href="{{ route('provider.edit', $provider->id) }}"><i
@@ -100,6 +102,7 @@ providers Page
                                     <th rowspan="1" colspan="1">provider name</th>
                                     <th rowspan="1" colspan="1">Phone</th>
                                     <th rowspan="1" colspan="1">Address</th>
+                                    <th rowspan="1" colspan="1">Description</th>
                                     <th rowspan="1" colspan="1">Action</th>
                                 </tr>
                             </tfoot>

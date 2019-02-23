@@ -18,6 +18,7 @@ class CreateClientsTable extends Migration
             $table->string('client_name');
             $table->string('phone');
             $table->string('address');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
@@ -32,3 +33,4 @@ class CreateClientsTable extends Migration
         Schema::dropIfExists('clients');
     }
 }
+

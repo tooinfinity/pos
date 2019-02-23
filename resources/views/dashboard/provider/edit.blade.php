@@ -33,9 +33,11 @@ Update provider
                         <div class="form-group">
                             <label>Address</label>
                             <textarea type="text" name="address" id="" class="form-control">{{ $provider->address }}</textarea>
-
                         </div>
-
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea type="text" name="description" id="" class="form-control">{{ $provider->description }}</textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer form-group">

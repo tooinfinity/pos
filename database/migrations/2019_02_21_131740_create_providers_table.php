@@ -18,6 +18,7 @@ class CreateProvidersTable extends Migration
             $table->string('provider_name');
             $table->string('phone');
             $table->string('address');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

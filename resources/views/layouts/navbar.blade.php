@@ -6,51 +6,36 @@
             <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
         </li>
     </ul>
-
-    <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-        <div class="input-group input-group-sm">
-            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-            <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                    <i class="fa fa-search"></i>
-                </button>
-            </div>
-        </div>
-    </form>
     <ul class="navbar-nav">
-        <li class="nav-item">
-            <div class="font-weight-bold" id='date-part' style="font-size: 1.2em;padding: 5px;"></div>
-
+        <li class="nav-item" style="font-size: 1.3em;padding: 5px;">
+            <a href="#" title="" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-flat pull-left m-8 hidden-xs btn-sm mt-10"
+                data-original-title="POS">
+                <strong><i class="fa fa-th-large"></i> &nbsp; POS</strong>
+            </a>
+        </li>
+        <!-- Notifications Dropdown Menu -->
+        <li class="nav-item dropdown" style="font-size: 1.3em;padding: 5px;">
+            <a class="btn btn-primary btn-flat pull-left m-8 hidden-xs btn-sm mt-10" data-toggle="dropdown" href="#">
+                <i class="fas fa-bell"></i> <span>9</span>
+            </a>
         </li>
     </ul>
-    <br>
-    <ul class="navbar-nav">
+    <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+            <div class="font-weight-bold" id='date-part' style="font-size: 1.2em;padding: 5px;"></div>
+        </li>
         <li class="nav-item">
             <div class="font-weight-bold" id='time-part' style="font-size: 1.3em;padding: 5px;"></div>
         </li>
     </ul>
-
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-        <li class="nav-item" style="font-size: 1.3em;padding: 5px;">
-<a href="#" title="" data-toggle="tooltip" data-placement="bottom" class="btn btn-success btn-flat pull-left m-8 hidden-xs btn-sm mt-10"
-    data-original-title="POS">
-    <strong><i class="fa fa-th-large"></i> &nbsp; POS</strong>
-</a>
-        </li>
-        <!-- Notifications Dropdown Menu -->
-        <li class="nav-item dropdown" style="font-size: 1.3em;padding: 5px;">
-            <a class="btn btn-success btn-flat pull-left m-8 hidden-xs btn-sm mt-10" data-toggle="dropdown" href="#">
-                <strong><i class="fas fa-bell"></i></strong>
-            </a>
-        </li>
-
         <li class="dropdown user user-menu" style="font-size: 1.3em;padding: 5px>
-            <a href="#" class="dropdown-toggle user-panel" style="text-decoration: none;" data-toggle="dropdown">
-                <img src="{{ auth()->user()->image_path }}" style="width:40px;" class="user-image img-circle" alt="User Image">
-                <span class="hidden-xs">{{ auth()->user()->first_name }}
-                    {{ auth()->user()->last_name }}</span>
+            <a href=" #" class="dropdown-toggle user-panel"
+            style="text-decoration: none;" data-toggle="dropdown">
+            <img src="{{ auth()->user()->image_path }}" style="width:40px;" class="user-image img-circle" alt="User Image">
+            <span class="hidden-xs">{{ auth()->user()->first_name }}
+                {{ auth()->user()->last_name }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right text-center">
                 <img src="{{ auth()->user()->image_path }}" style="width:150px;" class="img-thumbnail dropdown-item"

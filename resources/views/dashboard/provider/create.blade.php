@@ -35,7 +35,10 @@ Create provider
                             <textarea type="text" name="address" id="" class="form-control">{{ old('address') }}</textarea>
 
                         </div>
-
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea type="text" name="description" id="" class="form-control">{{ old('description') }}</textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer form-group">

@@ -33,9 +33,11 @@ Update Client
                         <div class="form-group">
                             <label>Address</label>
                             <textarea type="text" name="address" id="" class="form-control">{{ $client->address }}</textarea>
-
                         </div>
-
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea type="text" name="description" id="" class="form-control">{{ $client->description }}</textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer form-group">
