@@ -1,16 +1,11 @@
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+<nav class="navbar navbar-expand bg-white navbar-light border-bottom">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
-        </li>
-    </ul>
-    <ul class="navbar-nav">
         <li class="nav-item" style="font-size: 1.3em;padding: 5px;">
-            <a href="{{ route('pos') }}" title="" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-flat pull-left m-8 hidden-xs btn-sm mt-10"
-                data-original-title="POS">
-                <strong><i class="fa fa-th-large"></i> &nbsp; POS</strong>
+            <a href="{{ route('dashboard') }}" title="" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-flat pull-left m-8 hidden-xs btn-sm mt-10"
+                data-original-title="Dashboard">
+                <strong><i class="fas fa-undo"></i> &nbsp; Dashboard</strong>
             </a>
         </li>
         <!-- Notifications Dropdown Menu -->
@@ -20,14 +15,16 @@
             </a>
         </li>
     </ul>
-    <ul class="navbar-nav mx-auto">
-        <li class="nav-item">
-            <div class="font-weight-bold" id='date-part' style="font-size: 1.2em;padding: 5px;"></div>
-        </li>
-        <li class="nav-item">
-            <div class="font-weight-bold" id='time-part' style="font-size: 1.3em;padding: 5px;"></div>
-        </li>
-    </ul>
+    <div class="mx-auto">
+        <ul class="navbar-nav">
+            <li class="nav-item" style="display:inline-block;">
+                <div class="font-weight-bold" id='date-part' style="font-size: 1.2em;padding: 5px;"></div>
+            </li>
+            <li class="nav-item" style="display:inline-block;">
+                <div class="font-weight-bold" id='time-part' style="font-size: 1.3em;padding: 5px;"></div>
+            </li>
+        </ul>
+    </div>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <li class="dropdown user user-menu" style="font-size: 1.3em;padding: 5px>

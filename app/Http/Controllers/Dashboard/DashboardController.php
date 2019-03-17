@@ -18,4 +18,11 @@ class DashboardController extends Controller
         $products = Product::all();
         return view('dashboard.index', compact('moderator', 'categories', 'products', 'sumprofit'));
     }
+    public function pos()
+    {
+        $moderator = User::all();
+        $categories = Category::all();
+        $products = Product::all();
+        return view('dashboard.pos.index', compact('moderator', 'categories', 'products'));
+    }
 }
