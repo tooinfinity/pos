@@ -1,5 +1,4 @@
-<!-- Main Footer -->
-<footer class="main-footer">
+<footer class="">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
         by : Meghlaoui TouwfiQ

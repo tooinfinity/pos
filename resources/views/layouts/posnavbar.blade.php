@@ -20,7 +20,7 @@
             <li class="nav-item" style="display:inline-block;">
                 <div class="font-weight-bold" id='date-part' style="font-size: 1.2em;padding: 5px;"></div>
             </li>
-            <li class="nav-item" style="display:inline-block;">
+            <li c                           lass="nav-item" style="display:inline-block;">
                 <div class="font-weight-bold" id='time-part' style="font-size: 1.3em;padding: 5px;"></div>
             </li>
         </ul>

@@ -27,7 +27,8 @@ Create Products
                             <select name="category_id" class="form-control">
                                 <option value="">All Categorie</option>
                                 @foreach ($categories as $category)
-                                <option value="{{ $category->id }}{{ old('category_id') == $category->id ? 'selected' : ''}}">{{
+                                <option value="{{ $category->id }}"
+                                    {{ old('category_id') == $category->id ? 'selected' : ''}}>{{
                                     $category->category_name }} {{
                                     $category->brand_name }}</option>
                                 @endforeach

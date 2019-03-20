@@ -84,6 +84,8 @@
     <script src="/js/printThis.js"></script>
     <script src="/js/JsBarcode.all.min.js"></script>
     <script src="/js/moment.js"></script>
+    <script src="/js/sale.js"></script>
+    <script src="/js/jquery.nicescroll.min.js"></script>
 
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
@@ -91,6 +93,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
 
     @include('sweetalert::alert')
+    <script>
+        $(document).ready(function () {
+            $("html").niceScroll();
+        });
+
+    </script>
     <script type="text/javascript">
         function deletemoderator(id) {
             Swal({

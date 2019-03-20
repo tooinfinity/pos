@@ -49,7 +49,7 @@ class ProductController extends Controller
     {
         $request->validate([
             'category_id' => 'required',
-            'codebar' => 'required|digits:13|unique:products,codebar',
+            'codebar' => 'required|unique:products,codebar',
             'product_name' => 'required|unique:products,product_name',
             'purchase_price' => 'required',
             'sale_price' => 'required',

@@ -6,12 +6,12 @@ Point Of Sale Page
 
 @section('content')
 
-<div class="col-md-7  col-sm-12">
-    <div class="card card-primary card-outline" style="height: 100%;">
+<div class="col-md-7  col-sm-12 ">
+    <div class="card card-primary card-outline scroll" style="height:80vh;">
         <div class="card-header">
             <h3 class="card-title">List Of Sales Products</h3>
         </div> <!-- /.card-body -->
-        <div class="card-body" style="height: 100%;">
+        <div class="card-body" style="overflow-y:scroll;">
             <div class="row no-gutters">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -45,34 +45,87 @@ Point Of Sale Page
                 </div>
             </div>
             <div class="col-xs-12 table-responsive">
-                <table class="table table-bordered table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>Index</th>
-                            <th>Product</th>
-                            <th>Price</th>
-                            <th>Quntite</th>
-                            <th>SubTotal</th>
-                        </tr>
-                    </thead>
+                <form action="{{ route('sale.store') }}" method="post">
 
-                    <tbody class="neworderbody">
+                    {{ csrf_field() }}
+                    {{ method_field('post') }}
 
-                    </tbody>
-                </table>
+                    @include('partials._errors')
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Index</th>
+                                <th>Product</th>
+                                <th>Quntite</th>
+                                <th>Price</th>
+                                <th>Remove</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="order-list">
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>Total : </th>
+                                <th><input type="number" class="form-control input-sm total-price" disabled min="0"
+                                        value="0"></th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>Discount : </th>
+                                <th><input type="number" id="discount" class="form-control input-sm discount" min="0"
+                                        value="0"></th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>Total Amount : </th>
+                                <th><input type="number" id="total-amount" class="form-control input-sm total-amount"
+                                        disabled min="0" value="0"></th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>Select Payment Status : </th>
+                                <th>
+                                    <div class="form-group">
+                                        <select class="form-control">
+                                            <option>paid</option>
+                                            <option>notpaid</option>
+                                            <option>dept</option>
+                                        </select>
+                                    </div>
+                                </th>
+                            </tr>
+
+                        </tfoot>
+
+                    </table>
+
+                    <a href="{{ route('sale.store') }}" type="" class="btn btn-primary float-right"><i class="fa fa-plus"></i>
+                        Add new
+                        sale</a>
+                </form>
             </div>
 
 
         </div><!-- /.card-body -->
     </div>
-
 </div>
 <div class="col-md-5 col-sm-12">
-    <div class="card card-primary card-outline" style="height: 100%;">
+    <div class="card card-primary card-outline" style="height:80vh;">
         <div class="card-header">
             <h3 class="card-title">List Of Sales Products</h3>
         </div> <!-- /.card-body -->
-        <div class="card-body" style="height: 100%;">
+        <div class="card-body" style="overflow-y:scroll;">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -93,256 +146,22 @@ Point Of Sale Page
             </div>
 
             <div class="col-md-12 text-center">
-                <div class="eq-height-row" style="display: flex;flex-wrap: wrap;max-height: 480px;
-    overflow-y: scroll;
-    overflow-x: hidden;">
-                    <div class="row">
-                        <div class="col-md-3 col-xs-4">
-                            <div class="product_box bg-gray" data-toggle="tooltip" data-placement="bottom"
-                                data-variation_id="77" title="" data-original-title="Cistiben Forte  (AP0034)">
-                                <a href="#" id="add">
-                                    <div class="img-thumbnail">
-                                        <img src="{{ asset('uploads/product_images/product.png') }}" style="width:200px;"
-                                            class="img-thumbnail">
-                                    </div>
-                                    <div id="name" class="text text-muted text-uppercase">product name</div>
-                                    <div id="price" class="text text-muted text-uppercase">Price</div>
-                                    <div id="stock" class="text text-muted text-uppercase">stock</div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-xs-4">
-                            <div class="product_box bg-gray" data-toggle="tooltip" data-placement="bottom"
-                                data-variation_id="77" title="" data-original-title="Cistiben Forte  (AP0034)">
-                                <div class="img-thumbnail">
-                                    <img src="{{ asset('uploads/product_images/product.png') }}" style="width:200px;"
-                                        class="img-thumbnail">
-                                </div>
-                                <div class="text text-muted text-uppercase">
-                                    <small>Cistiben Forte
-                                    </small>
-                                </div>
-                                <small class="text-muted">
-                                    (AP0034)
-                                </small>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-xs-4">
-                            <div class="product_box bg-gray" data-toggle="tooltip" data-placement="bottom"
-                                data-variation_id="77" title="" data-original-title="Cistiben Forte  (AP0034)">
-                                <div class="img-thumbnail">
-                                    <img src="{{ asset('uploads/product_images/product.png') }}" style="width:200px;"
-                                        class="img-thumbnail">
-                                </div>
-                                <div class="text text-muted text-uppercase">
-                                    <small>Cistiben Forte
-                                    </small>
-                                </div>
-                                <small class="text-muted">
-                                    (AP0034)
-                                </small>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-xs-4">
-                            <div class="product_box bg-gray" data-toggle="tooltip" data-placement="bottom"
-                                data-variation_id="77" title="" data-original-title="Cistiben Forte  (AP0034)">
-                                <div class="img-thumbnail">
-                                    <img src="{{ asset('uploads/product_images/product.png') }}" style="width:200px;"
-                                        class="img-thumbnail">
-                                </div>
-                                <div class="text text-muted text-uppercase">
-                                    <small>Cistiben Forte
-                                    </small>
-                                </div>
-                                <small class="text-muted">
-                                    (AP0034)
-                                </small>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-xs-4">
-                            <div class="product_box bg-gray" data-toggle="tooltip" data-placement="bottom"
-                                data-variation_id="77" title="" data-original-title="Cistiben Forte  (AP0034)">
-                                <div class="img-thumbnail">
-                                    <img src="{{ asset('uploads/product_images/product.png') }}" style="width:200px;"
-                                        class="img-thumbnail">
-                                </div>
-                                <div class="text text-muted text-uppercase">
-                                    <small>Cistiben Forte
-                                    </small>
-                                </div>
-                                <small class="text-muted">
-                                    (AP0034)
-                                </small>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-xs-4">
-                            <div class="product_box bg-gray" data-toggle="tooltip" data-placement="bottom"
-                                data-variation_id="77" title="" data-original-title="Cistiben Forte  (AP0034)">
-                                <div class="img-thumbnail">
-                                    <img src="{{ asset('uploads/product_images/product.png') }}" style="width:200px;"
-                                        class="img-thumbnail">
-                                </div>
-                                <div class="text text-muted text-uppercase">
-                                    <small>Cistiben Forte
-                                    </small>
-                                </div>
-                                <small class="text-muted">
-                                    (AP0034)
-                                </small>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-xs-4">
-                            <div class="product_box bg-gray" data-toggle="tooltip" data-placement="bottom"
-                                data-variation_id="77" title="" data-original-title="Cistiben Forte  (AP0034)">
-                                <div class="img-thumbnail">
-                                    <img src="{{ asset('uploads/product_images/product.png') }}" style="width:200px;"
-                                        class="img-thumbnail">
-                                </div>
-                                <div class="text text-muted text-uppercase">
-                                    <small>Cistiben Forte
-                                    </small>
-                                </div>
-                                <small class="text-muted">
-                                    (AP0034)
-                                </small>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-xs-4">
-                            <div class="product_box bg-gray" data-toggle="tooltip" data-placement="bottom"
-                                data-variation_id="77" title="" data-original-title="Cistiben Forte  (AP0034)">
-                                <div class="img-thumbnail">
-                                    <img src="{{ asset('uploads/product_images/product.png') }}" style="width:200px;"
-                                        class="img-thumbnail">
-                                </div>
-                                <div class="text text-muted text-uppercase">
-                                    <small>Cistiben Forte
-                                    </small>
-                                </div>
-                                <small class="text-muted">
-                                    (AP0034)
-                                </small>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-xs-4">
-                            <div class="product_box bg-gray" data-toggle="tooltip" data-placement="bottom"
-                                data-variation_id="77" title="" data-original-title="Cistiben Forte  (AP0034)">
-                                <div class="img-thumbnail">
-                                    <img src="{{ asset('uploads/product_images/product.png') }}" style="width:200px;"
-                                        class="img-thumbnail">
-                                </div>
-                                <div class="text text-muted text-uppercase">
-                                    <small>Cistiben Forte
-                                    </small>
-                                </div>
-                                <small class="text-muted">
-                                    (AP0034)
-                                </small>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-xs-4">
-                            <div class="product_box bg-gray" data-toggle="tooltip" data-placement="bottom"
-                                data-variation_id="77" title="" data-original-title="Cistiben Forte  (AP0034)">
-                                <div class="img-thumbnail">
-                                    <img src="{{ asset('uploads/product_images/product.png') }}" style="width:200px;"
-                                        class="img-thumbnail">
-                                </div>
-                                <div class="text text-muted text-uppercase">
-                                    <small>Cistiben Forte
-                                    </small>
-                                </div>
-                                <small class="text-muted">
-                                    (AP0034)
-                                </small>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-xs-4">
-                            <div class="product_box bg-gray" data-toggle="tooltip" data-placement="bottom"
-                                data-variation_id="77" title="" data-original-title="Cistiben Forte  (AP0034)">
-                                <div class="img-thumbnail">
-                                    <img src="{{ asset('uploads/product_images/product.png') }}" style="width:200px;"
-                                        class="img-thumbnail">
-                                </div>
-                                <div class="text text-muted text-uppercase">
-                                    <small>Cistiben Forte
-                                    </small>
-                                </div>
-                                <small class="text-muted">
-                                    (AP0034)
-                                </small>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-xs-4">
-                            <div class="product_box bg-gray" data-toggle="tooltip" data-placement="bottom"
-                                data-variation_id="77" title="" data-original-title="Cistiben Forte  (AP0034)">
-                                <div class="img-thumbnail">
-                                    <img src="{{ asset('uploads/product_images/product.png') }}" style="width:200px;"
-                                        class="img-thumbnail">
-                                </div>
-                                <div class="text text-muted text-uppercase">
-                                    <small>Cistiben Forte
-                                    </small>
-                                </div>
-                                <small class="text-muted">
-                                    (AP0034)
-                                </small>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-xs-4">
-                            <div class="product_box bg-gray" data-toggle="tooltip" data-placement="bottom"
-                                data-variation_id="77" title="" data-original-title="Cistiben Forte  (AP0034)">
-                                <div class="img-thumbnail">
-                                    <img src="{{ asset('uploads/product_images/product.png') }}" style="width:200px;"
-                                        class="img-thumbnail">
-                                </div>
-                                <div class="text text-muted text-uppercase">
-                                    <small>Cistiben Forte
-                                    </small>
-                                </div>
-                                <small class="text-muted">
-                                    (AP0034)
-                                </small>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-xs-4">
-                            <div class="product_box bg-gray" data-toggle="tooltip" data-placement="bottom"
-                                data-variation_id="77" title="" data-original-title="Cistiben Forte  (AP0034)">
-                                <div class="img-thumbnail">
-                                    <img src="{{ asset('uploads/product_images/product.png') }}" style="width:200px;"
-                                        class="img-thumbnail">
-                                </div>
-                                <div class="text text-muted text-uppercase">
-                                    <small>Cistiben Forte
-                                    </small>
-                                </div>
-                                <small class="text-muted">
-                                    (AP0034)
-                                </small>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-xs-4">
-                            <div class="product_box bg-gray" data-toggle="tooltip" data-placement="bottom"
-                                data-variation_id="77" title="" data-original-title="Cistiben Forte  (AP0034)">
-                                <div class="img-thumbnail">
-                                    <img src="{{ asset('uploads/product_images/product.png') }}" style="width:200px;"
-                                        class="img-thumbnail">
-                                </div>
-                                <div class="text text-muted text-uppercase">
-                                    <small>Cistiben Forte
-                                    </small>
-                                </div>
-                                <small class="text-muted">
-                                    (AP0034)
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-
-
+                <div class="row">
+                    <ul class="users-list clearfix">
+                        @foreach ($products as $product)
+                        <li>
+                            <a href="" id="product-{{ $product->id }}" + data-name="{{ $product->product_name }}" +
+                                data-id="{{ $product->id }}" + data-price="{{ $product->sale_price }}" class="btn btn-success btn-sm add-product-btn">
+                                <img src="{{ $product -> image_path }}" style="width: 200px;" class="img-circle img-thumbnail"
+                                    alt="">
+                            </a>
+                        </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div><!-- /.card-body -->
     </div>
-
 </div>
 
 

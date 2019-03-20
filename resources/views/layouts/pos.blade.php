@@ -50,7 +50,9 @@
         <!-- /.content-wrapper -->
 
         <!-- Main Footer -->
-        @include('layouts.footer')
+        <div class="container-fluid">
+            @include('layouts.footerpos')
+        </div>
     </div>
     <!-- ./wrapper -->
 
@@ -60,9 +62,10 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="/js/ean13.min.js"></script>
     <script src="/js/jquery-ean13.min.js"></script>
-    <script src="/js/printThis.js"></script>
     <script src="/js/JsBarcode.all.min.js"></script>
     <script src="/js/moment.js"></script>
+    <script src="/js/sale.js"></script>
+    <script src="/js/jquery.nicescroll.min.js"></script>
 
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
@@ -70,6 +73,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
 
     @include('sweetalert::alert')
+    <script>
+        $(document).ready(function () {
+            $("body").niceScroll();
+        });
+
+    </script>
     <script>
         $(document).ready(function () {
             var interval = setInterval(function () {

@@ -8,7 +8,7 @@
     </ul>
     <ul class="navbar-nav">
         <li class="nav-item" style="font-size: 1.3em;padding: 5px;">
-            <a href="{{ route('pos') }}" title="" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-flat pull-left m-8 hidden-xs btn-sm mt-10"
+            <a href="{{ route('sale.create') }}" title="" data-toggle="tooltip" data-placement="bottom" class="btn btn-primary btn-flat pull-left m-8 hidden-xs btn-sm mt-10"
                 data-original-title="POS">
                 <strong><i class="fa fa-th-large"></i> &nbsp; POS</strong>
             </a>

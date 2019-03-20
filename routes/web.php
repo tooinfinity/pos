@@ -20,9 +20,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', 'Dashboard\DashboardController@index')->name(
         'dashboard'
     );
-    Route::get('dashboard/pos', 'Dashboard\DashboardController@pos')->name(
-        'pos'
-    );
+
     Route::resource('/moderator', 'Dashboard\ModeratorController')->except([
         'show'
     ]);
@@ -30,6 +28,9 @@ Route::group(['middleware' => 'auth'], function () {
         'show'
     ]);
     Route::resource('/product', 'Dashboard\ProductController')->except([
+        'show'
+    ]);
+    Route::resource('/sale', 'Dashboard\SaleController')->except([
         'show'
     ]);
     Route::resource('/client', 'Dashboard\ClientController')->except([
