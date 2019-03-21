@@ -18,7 +18,6 @@ class ProductSale extends Migration
             $table->double('total');
             $table->double('discount');
             $table->double('total_amount');
-            $table->double('total');
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->integer('sale_id')->unsigned();

@@ -12,45 +12,37 @@ Point Of Sale Page
             <h3 class="card-title">List Of Sales Products</h3>
         </div> <!-- /.card-body -->
         <div class="card-body" style="overflow-y:scroll;">
-            <div class="row no-gutters">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="">Select Client </label>
-                        <div class="row  no-gutters">
-                            <div class="col-md-9">
-                                <select class="form-control">
-                                    <option>Anonymous</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3">
-                                <button class="btn btn btn-primary"><i class="fas fa-plus"> Add Client</i></button>
+            <form action="{{ route('sale.store') }}" method="post">
+
+                {{ csrf_field() }}
+                {{ method_field('post') }}
+
+                @include('partials._errors')
+                <div class="row no-gutters">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Select Client </label>
+                            <div class="row  no-gutters">
+                                <div class="col-md-9">
+                                    <select name="client_id" class="form-control">
+                                        @foreach ($clients as $client)
+                                        <option value="{{ $client->id }}"
+                                            {{ old('category_id') == $client->id ? 'selected' : ''}}>{{
+                                    $client->client_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <a type="button" href="{{ route('client.create') }}" class=" btn btn btn-primary"><i
+                                            class="fas fa-plus"> Add
+                                            Client</i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="">Select Product </label>
-                        <div class="row  no-gutters">
-                            <div class="col-md-9">
-                                <select class="form-control">
-                                    <option>Anonymous</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3">
-                                <button class="btn btn btn-primary"><i class="fas fa-plus"> Add Product</i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 table-responsive">
-                <form action="{{ route('sale.store') }}" method="post">
+                <div class="col-xs-12 table-responsive">
 
-                    {{ csrf_field() }}
-                    {{ method_field('post') }}
-
-                    @include('partials._errors')
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
@@ -66,29 +58,29 @@ Point Of Sale Page
 
                         </tbody>
                         <tfoot>
-                            <tr>
+                            <tr class="form-group">
                                 <th></th>
                                 <th></th>
                                 <th></th>
                                 <th>Total : </th>
-                                <th><input type="number" class="form-control input-sm total-price" disabled min="0"
-                                        value="0"></th>
+                                <th><input type="number" name="total" class="form-control input-sm total-price" min="0"
+                                        readonly value="0"></th>
                             </tr>
-                            <tr>
+                            <tr class="form-group">
                                 <th></th>
                                 <th></th>
                                 <th></th>
                                 <th>Discount : </th>
-                                <th><input type="number" id="discount" class="form-control input-sm discount" min="0"
-                                        value="0"></th>
+                                <th><input type="number" id="discount" name="discount"
+                                        class="form-control input-sm discount" min="0" value="0"></th>
                             </tr>
-                            <tr>
+                            <tr class="form-group">
                                 <th></th>
                                 <th></th>
                                 <th></th>
                                 <th>Total Amount : </th>
-                                <th><input type="number" id="total-amount" class="form-control input-sm total-amount"
-                                        disabled min="0" value="0"></th>
+                                <th><input type="number" id="total-amount" name="total_amount"
+                                        class="form-control input-sm total-amount" readonly min="0" value="0"></th>
                             </tr>
                             <tr>
                                 <th></th>
@@ -97,7 +89,7 @@ Point Of Sale Page
                                 <th>Select Payment Status : </th>
                                 <th>
                                     <div class="form-group">
-                                        <select class="form-control">
+                                        <select class="form-control" name="status">
                                             <option>paid</option>
                                             <option>notpaid</option>
                                             <option>dept</option>
@@ -110,15 +102,17 @@ Point Of Sale Page
 
                     </table>
 
-                    <a href="{{ route('sale.store') }}" type="" class="btn btn-primary float-right"><i class="fa fa-plus"></i>
-                        Add new
-                        sale</a>
-                </form>
-            </div>
+                    <div class="modal-footer form-group">
+                        <button type="submit" class="btn btn-success" href="{{ route('sale.store') }}"><i
+                                class="fas fa-user-plus"></i>
+                            Add new sale</button>
+                    </div>
+            </form>
+        </div>
 
 
-        </div><!-- /.card-body -->
-    </div>
+    </div><!-- /.card-body -->
+</div>
 </div>
 <div class="col-md-5 col-sm-12">
     <div class="card card-primary card-outline" style="height:80vh;">
@@ -151,9 +145,10 @@ Point Of Sale Page
                         @foreach ($products as $product)
                         <li>
                             <a href="" id="product-{{ $product->id }}" + data-name="{{ $product->product_name }}" +
-                                data-id="{{ $product->id }}" + data-price="{{ $product->sale_price }}" class="btn btn-success btn-sm add-product-btn">
-                                <img src="{{ $product -> image_path }}" style="width: 200px;" class="img-circle img-thumbnail"
-                                    alt="">
+                                data-id="{{ $product->id }}" + data-price="{{ $product->sale_price }}"
+                                class="btn btn-success btn-sm add-product-btn">
+                                <img src="{{ $product -> image_path }}" style="width: 200px;"
+                                    class="img-circle img-thumbnail" alt="">
                             </a>
                         </li>
                         @endforeach

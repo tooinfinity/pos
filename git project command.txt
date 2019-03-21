@@ -1,0 +1,15 @@
+-git status
+
+-git add .
+
+-git commit -m "whatever you change"
+
+-git push
+
+
+work in project laravel in two laptops in bitbucket with this command
+ 
+
+-git pull
+
+

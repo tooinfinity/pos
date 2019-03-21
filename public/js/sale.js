@@ -10,10 +10,11 @@ $(document).ready(function () {
 
         $(this).removeClass('btn-success').addClass('btn-default disabled');
         var html =
-            `<tr>
+            `<tr class="form-group">
                 <td>${i++}</td>
                 <td>${name}</td>
-                <td><input type="number" name="quanities[]" data-price="${price}" class="form-control input-sm product-quantity" min="1" value="1"></td>
+                <input type="hidden" name="products_id[]" value="${id}">
+                <td><input type="number" name="quantities[]" data-price="${price}" class="form-control input-sm product-quantity" min="1" value="1"></td>
                 <td class="product-price">${price}</td>
                 <td><button type="button" class="btn btn-danger btn-sm remove-product-btn" data-id="${id}"><span class="fa fa-trash"></span></button></td>
             </tr>`;

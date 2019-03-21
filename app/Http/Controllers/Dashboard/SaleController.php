@@ -22,7 +22,7 @@ class SaleController extends Controller
         $categories = Category::all();
         $products = Product::all();
         $sales = Sale::all();
-        return view('dashboard.sale.index', compact('sales','clients', 'categories', 'products'));
+        return view('dashboard.sale.index', compact('sales', 'clients', 'categories', 'products'));
     }
 
     /**
@@ -35,7 +35,7 @@ class SaleController extends Controller
         $clients = Client::all();
         $categories = Category::all();
         $products = Product::all();
-        return view('dashboard.pos.index', compact('clients', 'categories', 'products'));
+        return view('dashboard.sale.create', compact('clients', 'categories', 'products'));
     }
 
     /**
@@ -47,7 +47,7 @@ class SaleController extends Controller
     public function store(Request $request)
     {
         $sale = $request->all();
-        dd($sale);
+        return dd($sale);
     }
 
     /**
