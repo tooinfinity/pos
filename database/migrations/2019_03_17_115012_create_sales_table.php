@@ -15,7 +15,9 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('number_sale');
+            $table->string('number_sale');
+            $table->double('total');
+            $table->double('discount');
             $table->double('total_amount');
             $table->enum('status', ['paid', 'nopaid', 'debt']);
             $table->integer('client_id')->unsigned();

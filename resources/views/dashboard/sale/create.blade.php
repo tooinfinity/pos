@@ -7,9 +7,10 @@ Point Of Sale Page
 @section('content')
 
 <div class="col-md-7  col-sm-12 ">
-    <div class="card card-primary card-outline scroll" style="height:80vh;">
+    <div class="card card-primary card-outline" style="height:80vh;">
         <div class="card-header">
             <h3 class="card-title">List Of Sales Products</h3>
+
         </div> <!-- /.card-body -->
         <div class="card-body" style="overflow-y:scroll;">
             <form action="{{ route('sale.store') }}" method="post">
@@ -18,6 +19,11 @@ Point Of Sale Page
                 {{ method_field('post') }}
 
                 @include('partials._errors')
+                <div class="form-group form-inline float-right">
+                    <label class="col-sm-7 col-form-label"> Referance Sale Numder : </label>
+                    <input type="text" name="number_sale" class="form-control col-sm-5" readonly
+                        value="{{ $sale_number }}">
+                </div>
                 <div class="row no-gutters">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -143,13 +149,30 @@ Point Of Sale Page
                 <div class="row">
                     <ul class="users-list clearfix">
                         @foreach ($products as $product)
-                        <li>
-                            <a href="" id="product-{{ $product->id }}" + data-name="{{ $product->product_name }}" +
-                                data-id="{{ $product->id }}" + data-price="{{ $product->sale_price }}"
-                                class="btn btn-success btn-sm add-product-btn">
-                                <img src="{{ $product -> image_path }}" style="width: 200px;"
-                                    class="img-circle img-thumbnail" alt="">
+                        <li class="col-md-3 col-xs-4" style="line-height: 0;">
+                            {{--  <a href="" id="product-{{ $product->id }}" + data-name="{{ $product->product_name }}"
+                            +
+                            data-id="{{ $product->id }}" + data-price="{{ $product->sale_price }}"
+                            class="btn btn-success btn-sm add-product-btn">
+                            <img src="{{ $product -> image_path }}" style="width: 200px;"
+                                class="img-circle img-thumbnail" alt="">
+                            </a> --}}
+
+                            <a href="" data-toggle="tooltip"
+                                title="{{ $product->product_name }} Price : {{ $product->sale_price }}"
+                                data-placement="top" id="product-{{ $product->id }}" +
+                                data-name="{{ $product->product_name }}" + data-id="{{ $product->id }}" +
+                                data-price="{{ $product->sale_price }}" class=" con
+                                add-product-btn" style="width: 10rem;">
+                                <img class="image img-card" src="{{ $product -> image_path }}" alt="">
+                                <div class="overlay overlayFade">
+                                    <div class="text">
+                                        <h6>Stock Rest</h6>
+                                        <h6 class="text-nowrap">{{ $product->stock }}</h6>
+                                    </div>
+                                </div>
                             </a>
+
                         </li>
                         @endforeach
                     </ul>

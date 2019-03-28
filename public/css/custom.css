@@ -1,0 +1,82 @@
+/*////////////////////////////////////////////////////////////////////
+text animation
+///////////////////////////////////////////////////////////////////*/
+
+.img-card {
+    width: 100%;
+    height: 160px !important;
+    border-top-left-radius: calc(0.25rem - 1px) !important;
+    border-top-right-radius: calc(0.25rem - 1px) !important;
+    border-radius: unset !important;
+}
+
+.con {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    display: inline-block;
+}
+
+.image {
+    display: block;
+    width: 160px;
+    height: 160px;
+}
+
+.text {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.overlayFade {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: #008cba !important;
+}
+
+.overlay {
+    position: absolute;
+    opacity: 0;
+    transition: all .3s ease;
+    background-color: #008cba;
+}
+
+.con:hover .overlay,
+.con:hover .overlayFade {
+    opacity: 1;
+}
+
+/* Custom ScrollBar design*/
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    border-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: #009578;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #04daaf;
+}
+
+/*///////////////////////////////////*/
+.ref {
+    display: block;
+}

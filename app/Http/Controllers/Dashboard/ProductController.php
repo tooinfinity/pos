@@ -61,7 +61,7 @@ class ProductController extends Controller
         $request_data = $request->all();
         if ($request->image) {
             Image::make($request->image)
-                ->resize(300, null, function ($constraint) {
+                ->resize(160, 160, function ($constraint) {
                     $constraint->aspectRatio();
                 })
                 ->save(
@@ -135,7 +135,7 @@ class ProductController extends Controller
                 );
             }
             Image::make($request->image)
-                ->resize(300, null, function ($constraint) {
+                ->resize(160, 160, function ($constraint) {
                     $constraint->aspectRatio();
                 })
                 ->save(

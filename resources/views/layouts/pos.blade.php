@@ -9,6 +9,7 @@
 
     <title>Store LTE</title>
     <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/custom.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/all.css" />
 
@@ -57,9 +58,9 @@
     <!-- ./wrapper -->
 
     <!-- REQUIRED SCRIPTS -->
-
-    <script src="/js/app.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="/js/app.js"></script>
+
     <script src="/js/ean13.min.js"></script>
     <script src="/js/jquery-ean13.min.js"></script>
     <script src="/js/JsBarcode.all.min.js"></script>
@@ -74,8 +75,8 @@
 
     @include('sweetalert::alert')
     <script>
-        $(document).ready(function () {
-            $("body").niceScroll();
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
         });
 
     </script>

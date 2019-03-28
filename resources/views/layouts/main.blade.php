@@ -11,7 +11,33 @@
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/all.css" />
+    <style>
+        /* Custom ScrollBar design*/
 
+        /* width */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            border-radius: 5px;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.25) !important;
+        }
+
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background: #009578;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #04daaf;
+        }
+
+    </style>
     {{--
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">
     --}}
@@ -93,12 +119,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
 
     @include('sweetalert::alert')
-    <script>
-        $(document).ready(function () {
-            $("html").niceScroll();
-        });
-
-    </script>
     <script type="text/javascript">
         function deletemoderator(id) {
             Swal({

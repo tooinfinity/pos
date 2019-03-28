@@ -36,7 +36,6 @@ class ModeratorController extends Controller
                         '%' . $request->search . '%'
                     );
             });
-
         })->latest()->paginate(5);
         return view('dashboard.moderator.index', compact('moderator'));
     }

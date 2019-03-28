@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Client;
-use App\Category;
-use App\Product;
 use App\Sale;
+use App\Client;
+use App\Product;
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 
 class SaleController extends Controller
 {
@@ -35,7 +36,19 @@ class SaleController extends Controller
         $clients = Client::all();
         $categories = Category::all();
         $products = Product::all();
-        return view('dashboard.sale.create', compact('clients', 'categories', 'products'));
+        $sales = Sale::all();
+        //$lastsaleId = sale::all()->last()->number_sale;
+
+        //$sale_number = 'SN' . date('Ymd') . '0001';
+        if (sale::all()->last() == null) {
+            $sale_number = 'SN' . date('Ymd') . '0001';
+        } else {
+            $lastsaleId = sale::all()->last()->number_sale;
+            $lastIncreament = substr($lastsaleId, -4);
+            $sale_number = 'SN' . date('Ymd') . str_pad($lastIncreament + 1, 4, 0, STR_PAD_LEFT);
+        }
+
+        return view('dashboard.sale.create', compact('sale_number', 'clients', 'categories', 'products'));
     }
 
     /**
@@ -46,7 +59,36 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        $sale = $request->all();
+        $request->validate([
+            'number_sale' => 'required',
+            'total' => 'required',
+            'discount' => 'required',
+            'total_amount' => 'required',
+            'status' => 'required',
+            'client_id' => 'required',
+        ]);
+        $data = $request->all();
+
+        $sale = Sale::create([
+            'number_sale' => $data['number_sale'],
+            'total' => $data['total'],
+            'discount' => $data['discount'],
+            'total_amount' => $data['total_amount'],
+            'status' => $data['status'],
+            'client_id' => $data['client_id'],
+        ]);
+
+
+        $sale->products()->sync($sync_data);
+
+
+        //$datap = request('product_id');
+
+        //$sale = $request->all();
+        /*foreach (Input::get('product_id') as $PId) {
+            $sale->products()->attach($request->$PId);
+        }*/
+        //$sale->products()->attach($request->product_id, $request->quantity);
         return dd($sale);
     }
 
@@ -92,6 +134,7 @@ class SaleController extends Controller
      */
     public function destroy(Sale $sale)
     {
+
         //
     }
 }

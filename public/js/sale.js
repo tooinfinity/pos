@@ -1,6 +1,5 @@
 $(document).ready(function () {
-    var i = 1;
-    var qty = 1;
+    //var i = 1;
     $('.add-product-btn').on('click', function (e) {
 
         e.preventDefault();
@@ -11,20 +10,21 @@ $(document).ready(function () {
         $(this).removeClass('btn-success').addClass('btn-default disabled');
         var html =
             `<tr class="form-group">
-                <td>${i++}</td>
-                <td>${name}</td>
-                <input type="hidden" name="products_id[]" value="${id}">
-                <td><input type="number" name="quantities[]" data-price="${price}" class="form-control input-sm product-quantity" min="1" value="1"></td>
+                <td>${id}</td>
+                <td class="namex">${name}</td>
+                <input type="hidden" name="productids[]" value="${id}">
+                <td><input type="number" name="quantities[]" data-price="${price}" id="qty" class="form-control input-sm product-quantity" min="1" value="1"></td>
                 <td class="product-price">${price}</td>
                 <td><button type="button" class="btn btn-danger btn-sm remove-product-btn" data-id="${id}"><span class="fa fa-trash"></span></button></td>
             </tr>`;
-
         $('.order-list').append(html);
-
-        //to calculate total price
         calculateTotal();
         calculateTotalAmount();
     });
+
+
+    //to calculate total price
+
 
 
     $('body').on('click', '.disabled', function (e) {
