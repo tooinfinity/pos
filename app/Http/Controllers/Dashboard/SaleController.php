@@ -77,19 +77,12 @@ class SaleController extends Controller
             'status' => $data['status'],
             'client_id' => $data['client_id'],
         ]);
-
-
-        $sale->products()->sync($sync_data);
-
-
-        //$datap = request('product_id');
-
-        //$sale = $request->all();
-        /*foreach (Input::get('product_id') as $PId) {
-            $sale->products()->attach($request->$PId);
-        }*/
-        //$sale->products()->attach($request->product_id, $request->quantity);
-        return dd($sale);
+        $dat = $data['productids'];
+        $qty = $request->get('quantities');
+        $attach_data = [];
+        for ($i = 0; $i < count($dat); $i++)
+            $attach_data[$dat[$i]] = ['quantity' => $qty[$i]];
+        $sale->products()->attach($attach_data);
     }
 
     /**
@@ -111,6 +104,7 @@ class SaleController extends Controller
      */
     public function edit(Sale $sale)
     {
+
         //
     }
 
