@@ -158,6 +158,7 @@ Point Of Sale Page
             </div>
 
             <div class="col-md-12 text-center">
+                @if ($products->count() > 0)
                 <div class="row">
                     <ul class="users-list clearfix row">
                         @foreach ($products as $product)
@@ -181,6 +182,32 @@ Point Of Sale Page
                         @endforeach
                     </ul>
                 </div>
+                @else
+                <style>
+                    .lam {
+                        height: 50vh;
+                        position: relative;
+
+                    }
+
+                    .centered {
+                        margin: 0;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        -ms-transform: translate(-50%, -50%);
+                        transform: translate(-50%, -50%);
+                    }
+
+                </style>
+                <div class="lam">
+                    <div class="centered">
+                        <h5>There is no product for sale</h5>
+                    </div>
+                </div>
+
+
+                @endif
             </div>
         </div><!-- /.card-body -->
     </div>
