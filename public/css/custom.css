@@ -4,7 +4,7 @@ text animation
 
 .img-card {
     width: 100%;
-    height: 160px !important;
+    /*height: 160px !important;*/
     border-top-left-radius: calc(0.25rem - 1px) !important;
     border-top-right-radius: calc(0.25rem - 1px) !important;
     border-radius: unset !important;
@@ -12,15 +12,15 @@ text animation
 
 .con {
     position: relative;
-    width: 160px;
-    height: 160px;
+    width: 100% !important;
+    height: 100%;
     display: inline-block;
 }
 
 .image {
     display: block;
-    width: 160px;
-    height: 160px;
+    width: 200px;
+    height: 200px;
 }
 
 .text {
@@ -79,4 +79,16 @@ text animation
 /*///////////////////////////////////*/
 .ref {
     display: block;
+}
+
+/*////////////////////////////////*/
+
+.product-quantity::-webkit-inner-spin-button,
+.product-quantity::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.product-quantity {
+    -moz-appearance: textfield;
 }

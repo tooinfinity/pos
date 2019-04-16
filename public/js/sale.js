@@ -1,31 +1,52 @@
 $(document).ready(function () {
+
+
     var i = 1;
+
     $('.add-product-btn').on('click', function (e) {
-
         e.preventDefault();
-        var name = $(this).data('name');
-        var id = $(this).data('id');
-        var price = $(this).data('price');
+        var stock = $(this).data('stock');
+        if (stock == 0) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000
+            });
 
-        $(this).removeClass('btn-success').addClass('btn-default disabled');
-        var html =
-            `<tr class="form-group">
+            Toast.fire({
+                type: 'error',
+                title: 'You Product Stock is Empty !! Please Update It'
+            });
+            // Swal('Oops...', 'You Product Stock is Empty !! Please Update It', 'error')
+        } else {
+            e.preventDefault();
+            var name = $(this).data('name');
+            var id = $(this).data('id');
+            var price = $(this).data('price');
+
+            $(this).addClass('disabled');
+            var html =
+                `<tr class="form-group items">
                 <td>${i++}</td>
                 <td class="namex">${name}</td>
-                <input type="hidden" name="productids[]" value="${id}">
-                <td><input type="number" name="quantities[]" data-price="${price}" id="qty" class="form-control input-sm product-quantity" min="1" value="1"></td>
+                <input type="hidden" name="product[]" value="${id}">
+                <td style="display: flex;">        
+                <input id="qty" style="width: 60% !important;" type="number" name="quantity[]" data-price="${price}" data-stock="${stock}" class="form-control input-sm product-quantity" min="1" max="${stock}" value="1">
+                </td>
                 <td class="product-price">${price}</td>
                 <td><button type="button" class="btn btn-danger btn-sm remove-product-btn" data-id="${id}"><span class="fa fa-trash"></span></button></td>
             </tr>`;
-        $('.order-list').append(html);
-        calculateTotal();
-        calculateTotalAmount();
+            $('.order-list').append(html);
+            calculateTotal();
+            calculateTotalAmount();
+
+        }
+
+
     });
 
-
     //to calculate total price
-
-
 
     $('body').on('click', '.disabled', function (e) {
 
@@ -47,19 +68,30 @@ $(document).ready(function () {
 
     }); //end of remove product btn
 
-    $('body').on('keyup focus', '.product-quantity', function () {
+    $('body').on('keyup focus', '.product-quantity', function (e) {
 
         var quantity = parseInt($(this).val()); //2
         var unitPrice = $(this).data('price'); //150
-        var discount = $('#discount').val();
+
         $(this).closest('tr').find('.product-price').html(quantity * unitPrice);
         calculateTotal();
         calculateTotalAmount();
 
     }); //end of product quantity change
+
     $('body').on('keyup focus', '.discount', function () {
         calculateTotalAmount();
     }); //end of product quantity change
+
+    /// add input when selected debt
+    $('#select').change(function () {
+        if ($('#select option:selected').text() == "debt") {
+            $('#rest').show();
+        } else {
+            $('#rest').hide();
+        }
+    });
+
 }); //end of document ready
 
 function calculateTotal() {
@@ -83,4 +115,4 @@ function calculateTotalAmount() {
     var total_amount = total - discount;
     $('#total-amount').val(total_amount);
 
-} //end of calculate total
+} //end of calculate total Amount

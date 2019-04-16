@@ -23,8 +23,9 @@ List Of Sales
                                 class="fas fa-user-plus"></i>
                             Make new Sale</a>
                         @else
-                        <a type="" class="btn btn-success disabled btn float-right" href="#"><i class="fas fa-user-plus"></i>
-                        Make new Sale
+                        <a type="" class="btn btn-success disabled btn float-right" href="#"><i
+                                class="fas fa-user-plus"></i>
+                            Make new Sale
                         </a>
                         @endif
                     </div>
@@ -42,18 +43,24 @@ List Of Sales
                             <thead>
                                 <tr role="row">
                                     <th class="sorting_asc" tabindex="0" aria-controls="category_table" rowspan="1"
-                                        colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Rendering engine: activate to sort column descending"
                                         style="width: 283px;">No</th>
-                                    <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1" colspan="1"
-                                        aria-label="Browser: activate to sort column ascending" style="width: 359px;">Number Sale</th>
-                                    <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1" colspan="1"
-                                        aria-label="Platform(s): activate to sort column ascending" style="width: 320px;">Total Amount</th>
-                                    <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1" colspan="1"
-                                        aria-label="Platform(s): activate to sort column ascending" style="width: 320px;">Sale By</th>
-                                        <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1" colspan="1"
-                                        aria-label="Platform(s): activate to sort column ascending" style="width: 320px;">Status</th>
-                                    <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1" colspan="1"
-                                        aria-label="Engine version: activate to sort column ascending" style="width: 243px;">Action</th>
+                                    <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1"
+                                        colspan="1" aria-label="Browser: activate to sort column ascending"
+                                        style="width: 359px;">Number Sale</th>
+                                    <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1"
+                                        colspan="1" aria-label="Platform(s): activate to sort column ascending"
+                                        style="width: 320px;">Total</th>
+                                    <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1"
+                                        colspan="1" aria-label="Platform(s): activate to sort column ascending"
+                                        style="width: 320px;">Discount</th>
+                                    <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1"
+                                        colspan="1" aria-label="Platform(s): activate to sort column ascending"
+                                        style="width: 320px;">Total Amount</th>
+                                    <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1"
+                                        colspan="1" aria-label="Engine version: activate to sort column ascending"
+                                        style="width: 243px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,30 +70,40 @@ List Of Sales
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $sale -> number_sale }}</td>
-                                    <td>{{ $sale -> total_amount }}</td>
-                                    <td>{{ $sale -> sale_by }}</td>
-                                    <td>{{ $sale -> status }}</td>
+                                    <td>{{ $sale -> total }}</td>
+                                    <td>{{ $sale -> discount }}</td>
+                                    @if ($sale -> status == "paid")
+                                    <td><span class="badge bg-success">{{ $sale -> total_amount }}</span></td>
+                                    @endif
+                                    @if ($sale -> status == "nopaid")
+                                    <td><span class="badge bg-warning">{{ $sale -> total_amount }}</span></td>
+                                    @endif
+                                    @if ($sale -> status == "debt")
+                                    <td><span class="badge bg-danger">{{ $sale -> total_amount }}</span></td>
+                                    @endif
                                     <td>
                                         @if (auth()->user()->hasPermission('update_sales'))
                                         <a class="btn btn-warning btn-sm" href="{{ route('sale.edit', $sale->id) }}"><i
                                                 class="fas fa-edit"></i>
                                             update</a>
                                         @else
-                                        <a class="btn btn-warning btn-sm disabled" href="{{ route('sale.edit', $sale->id) }}"><i
-                                                class="fas fa-edit"></i>
+                                        <a class="btn btn-warning btn-sm disabled"
+                                            href="{{ route('sale.edit', $sale->id) }}"><i class="fas fa-edit"></i>
                                             update</a>
                                         @endif
                                         @if (auth()->user()->hasPermission('delete_categories'))
-                                        <button id="delete" onclick="deletemoderator({{ $sale->id }})" class="btn btn-danger btn-sm"><i
-                                                class="fas fa-trash"></i>
+                                        <button id="delete" onclick="deletemoderator({{ $sale->id }})"
+                                            class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>
                                             delete</button>
-                                        <form id="form-delete-{{ $sale->id }}" action="{{ route('sale.destroy', $sale->id) }}"
-                                            method="post" style="display:inline-block;">
+                                        <form id="form-delete-{{ $sale->id }}"
+                                            action="{{ route('sale.destroy', $sale->id) }}" method="post"
+                                            style="display:inline-block;">
                                             {{ csrf_field() }}
                                             {{ method_field('delete') }}
                                         </form>
                                         @else
-                                        <button type="submit" class="btn btn-danger btn-sm disabled"><i class="fas fa-trash"></i>
+                                        <button type="submit" class="btn btn-danger btn-sm disabled"><i
+                                                class="fas fa-trash"></i>
                                             delete</button>
                                         @endif
 
@@ -99,9 +116,9 @@ List Of Sales
                                 <tr>
                                     <th rowspan="1" colspan="1">No</th>
                                     <th rowspan="1" colspan="1">Number Sale</th>
+                                    <th rowspan="1" colspan="1">Total</th>
+                                    <th rowspan="1" colspan="1">Discount</th>
                                     <th rowspan="1" colspan="1">Total Amount</th>
-                                    <th rowspan="1" colspan="1">Sale By</th>
-                                    <th rowspan="1" colspan="1">Status</th>
                                     <th rowspan="1" colspan="1">Action</th>
                                 </tr>
                             </tfoot>

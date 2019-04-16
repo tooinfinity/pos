@@ -7,6 +7,7 @@ use App\Client;
 use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 
@@ -59,6 +60,7 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'number_sale' => 'required',
             'total' => 'required',
@@ -66,6 +68,8 @@ class SaleController extends Controller
             'total_amount' => 'required',
             'status' => 'required',
             'client_id' => 'required',
+            'product' => 'required',
+            'quantity' => 'required',
         ]);
         $data = $request->all();
 
@@ -76,13 +80,27 @@ class SaleController extends Controller
             'total_amount' => $data['total_amount'],
             'status' => $data['status'],
             'client_id' => $data['client_id'],
+
         ]);
-        $dat = $data['productids'];
-        $qty = $request->get('quantities');
+        $dat = $data['product'];
+        $qty = $request->get('quantity');
+        //attach sale with there products and quantities
         $attach_data = [];
-        for ($i = 0; $i < count($dat); $i++)
+        for ($i = 0; $i < count($dat); $i++) {
             $attach_data[$dat[$i]] = ['quantity' => $qty[$i]];
+        }
         $sale->products()->attach($attach_data);
+        //check products stock and substract quntities that is sale
+        for ($i = 0; $i < count($dat); $i++) {
+            $product = Product::find($dat[$i]);
+            if ($product->stock == 0) {
+                toast('this product stock is empty', 'error', 'top-right');
+            } else {
+                $product->stock = $product->stock - ($qty[$i]);
+                $product->save();
+            }
+        }
+        return redirect()->back();
     }
 
     /**
@@ -127,8 +145,5 @@ class SaleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Sale $sale)
-    {
-
-        //
-    }
+    { }
 }

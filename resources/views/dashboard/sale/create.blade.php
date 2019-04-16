@@ -95,15 +95,27 @@ Point Of Sale Page
                                 <th>Select Payment Status : </th>
                                 <th>
                                     <div class="form-group">
-                                        <select class="form-control" name="status">
+                                        <select id="select" class="form-control" name="status">
                                             <option>paid</option>
-                                            <option>notpaid</option>
-                                            <option>dept</option>
+                                            <option>nopaid</option>
+                                            <option>debt</option>
                                         </select>
+
                                     </div>
                                 </th>
                             </tr>
-
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>Rest Payment : </th>
+                                <th>
+                                    <label id="rest" style="display:none;">
+                                        <input type="number" name="rest" class="form-control input-sm"
+                                            value="0"></input>
+                                    </label>
+                                </th>
+                            </tr>
                         </tfoot>
 
                     </table>
@@ -147,28 +159,20 @@ Point Of Sale Page
 
             <div class="col-md-12 text-center">
                 <div class="row">
-                    <ul class="users-list clearfix">
+                    <ul class="users-list clearfix row">
                         @foreach ($products as $product)
                         <li class="col-md-3 col-xs-4" style="line-height: 0;">
-                            {{--  <a href="" id="product-{{ $product->id }}" + data-name="{{ $product->product_name }}"
-                            +
-                            data-id="{{ $product->id }}" + data-price="{{ $product->sale_price }}"
-                            class="btn btn-success btn-sm add-product-btn">
-                            <img src="{{ $product -> image_path }}" style="width: 200px;"
-                                class="img-circle img-thumbnail" alt="">
-                            </a> --}}
-
                             <a href="" data-toggle="tooltip"
                                 title="{{ $product->product_name }} Price : {{ $product->sale_price }}"
                                 data-placement="top" id="product-{{ $product->id }}" +
                                 data-name="{{ $product->product_name }}" + data-id="{{ $product->id }}" +
-                                data-price="{{ $product->sale_price }}" class=" con
-                                add-product-btn" style="width: 10rem;">
+                                data-price="{{ $product->sale_price }}" + data-stock="{{ $product->stock }}" class=" con
+                                add-product-btn">
                                 <img class="image img-card" src="{{ $product -> image_path }}" alt="">
                                 <div class="overlay overlayFade">
                                     <div class="text">
                                         <h6>Stock Rest</h6>
-                                        <h6 class="text-nowrap">{{ $product->stock }}</h6>
+                                        <h6 class="text-nowrap stock">{{ $product->stock }}</h6>
                                     </div>
                                 </div>
                             </a>
@@ -181,7 +185,6 @@ Point Of Sale Page
         </div><!-- /.card-body -->
     </div>
 </div>
-
 
 
 

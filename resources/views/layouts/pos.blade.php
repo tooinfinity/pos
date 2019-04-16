@@ -67,6 +67,7 @@
     <script src="/js/moment.js"></script>
     <script src="/js/sale.js"></script>
     <script src="/js/jquery.nicescroll.min.js"></script>
+    <script src="/js/bootstrap-input-spinner.js"></script>
 
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
@@ -80,6 +81,7 @@
         });
 
     </script>
+
     <script>
         $(document).ready(function () {
             var interval = setInterval(function () {
@@ -92,6 +94,7 @@
     </script>
     <script>
         $(document).ready(function () {
+            $(".items input[type='number']").inputSpinner();
 
             $('#add').click(function () {
 
