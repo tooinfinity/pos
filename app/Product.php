@@ -12,7 +12,7 @@ class Product extends Model
 
     protected $appends = ['image_path', 'profit'];
 
-    public function category()
+    public function Category()
     {
         return $this->belongsTo(Category::class);
     }

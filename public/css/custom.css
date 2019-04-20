@@ -12,16 +12,9 @@ text animation
 
 .con {
     position: relative;
-    width: 100% !important;
-    height: 100%;
-    display: inline-block;
 }
 
-.image {
-    display: block;
-    width: 200px;
-    height: 200px;
-}
+
 
 .text {
     color: white;
@@ -91,4 +84,19 @@ text animation
 
 .product-quantity {
     -moz-appearance: textfield;
+}
+
+.lam {
+    height: 50vh;
+    position: relative;
+
+}
+
+.centered {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }

@@ -39,7 +39,7 @@ Point Of Sale Page
                                     </select>
                                 </div>
                                 <div class="col-md-3">
-                                    <a type="button" href="{{ route('client.create') }}" class=" btn btn btn-primary"><i
+                                    <a href="{{ route('client.create') }}" class="btn btn-primary"><i
                                             class="fas fa-plus"> Add
                                             Client</i></a>
                                 </div>
@@ -110,10 +110,9 @@ Point Of Sale Page
                                 <th></th>
                                 <th>Rest Payment : </th>
                                 <th>
-                                    <label id="rest" style="display:none;">
-                                        <input type="number" name="rest" class="form-control input-sm"
-                                            value="0"></input>
-                                    </label>
+
+                                    <input id="rest" style="display:none;" type="number" name="rest"
+                                        class="form-control input-sm rest" value="0"></input>
                                 </th>
                             </tr>
                         </tfoot>
@@ -139,67 +138,42 @@ Point Of Sale Page
         </div> <!-- /.card-body -->
         <div class="card-body" style="overflow-y:scroll;">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
-                        <label for="">Select Category</label>
-                        <select class="form-control">
-                            <option>All Categories</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="">Select Brand</label>
-                        <select class="form-control">
-                            <option>All Brands</option>
-                        </select>
+                        <label for="">Search for Product by name or category</label>
+                        <input id="search" class="form-control search" type="search" placeholder="Search For Product">
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-12 text-center">
+            <div class="col-md-12">
                 @if ($products->count() > 0)
-                <div class="row">
-                    <ul class="users-list clearfix row">
-                        @foreach ($products as $product)
-                        <li class="col-md-3 col-xs-4" style="line-height: 0;">
-                            <a href="" data-toggle="tooltip"
-                                title="{{ $product->product_name }} Price : {{ $product->sale_price }}"
-                                data-placement="top" id="product-{{ $product->id }}" +
-                                data-name="{{ $product->product_name }}" + data-id="{{ $product->id }}" +
-                                data-price="{{ $product->sale_price }}" + data-stock="{{ $product->stock }}" class=" con
-                                add-product-btn">
-                                <img class="image img-card" src="{{ $product -> image_path }}" alt="">
-                                <div class="overlay overlayFade">
-                                    <div class="text">
-                                        <h6>Stock Rest</h6>
-                                        <h6 class="text-nowrap stock">{{ $product->stock }}</h6>
-                                    </div>
-                                </div>
-                            </a>
+                <div class="row text-center text-lg-left containerItems">
 
-                        </li>
-                        @endforeach
-                    </ul>
+                    @foreach ($products as $product)
+
+                    <div class="col-lg-3 col-md-4 col-6" {{ $cat = $product->Category()->first()->category_name }}
+                        data-search="{{ $product->product_name }} {{ $cat }}">
+                        <a href="" data-toggle="tooltip"
+                            title="{{ $product->product_name }} Price : {{ $product->sale_price }}" data-placement="top"
+                            id="product-{{ $product->id }}" + data-name="{{ $product->product_name }}" +
+                            data-id="{{ $product->id }}" + data-price="{{ $product->sale_price }}" +
+                            data-stock="{{ $product->stock }}" class="con d-block mb-4
+                                add-product-btn">
+                            <img class="img-fluid img-thumbnail" src="{{ $product -> image_path }}" alt="">
+                            <div class="overlay overlayFade text-center">
+                                <div class="text">
+                                    <h6>Stock Left</h6>
+                                    <h6 class="text-nowrap stock">{{ $product->stock }}</h6>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                    @endforeach
+
                 </div>
                 @else
-                <style>
-                    .lam {
-                        height: 50vh;
-                        position: relative;
-
-                    }
-
-                    .centered {
-                        margin: 0;
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        -ms-transform: translate(-50%, -50%);
-                        transform: translate(-50%, -50%);
-                    }
-
-                </style>
                 <div class="lam">
                     <div class="centered">
                         <h5>There is no product for sale</h5>
@@ -212,8 +186,6 @@ Point Of Sale Page
         </div><!-- /.card-body -->
     </div>
 </div>
-
-
 
 
 @stop

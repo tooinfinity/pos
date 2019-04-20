@@ -68,6 +68,7 @@
     <script src="/js/sale.js"></script>
     <script src="/js/jquery.nicescroll.min.js"></script>
     <script src="/js/bootstrap-input-spinner.js"></script>
+    <script src="/js/e-search.min.js"></script>
 
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
@@ -89,6 +90,11 @@
                 $('#date-part').html(momentNow.format('dddd') + ' ' + momentNow.format('DD MMMM YYYY'));
                 $('#time-part').html(momentNow.format('kk:mm:ss'));
             }, 100);
+
+            ////////////////
+            $('input.form-control.search').search();
+
+
         });
 
     </script>

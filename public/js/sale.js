@@ -85,12 +85,14 @@ $(document).ready(function () {
 
     /// add input when selected debt
     $('#select').change(function () {
-        if ($('#select option:selected').text() == "debt") {
+        if ($('#select option:selected').text() == "nopaid" || $('#select option:selected').text() == "debt") {
             $('#rest').show();
         } else {
             $('#rest').hide();
         }
     });
+
+
 
 }); //end of document ready
 
