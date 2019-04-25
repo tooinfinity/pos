@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ProductSale extends Migration
+class ProductPurchase extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class ProductSale extends Migration
      */
     public function up()
     {
-        Schema::create('product_sale', function (Blueprint $table) {
+        Schema::create('product_purchase', function (Blueprint $table) {
 
             $table->integer('product_id')->unsigned();
             $table->string('quantity');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->integer('sale_id')->unsigned();
-            $table->foreign('sale_id')->references('id')->on('sales')->onDelete('cascade');
+            $table->integer('purchase_id')->unsigned();
+            $table->foreign('purchase_id')->references('id')->on('purchases')->onDelete('cascade');
         });
     }
 
@@ -30,6 +30,6 @@ class ProductSale extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_sale');
+        Schema::dropIfExists('product_purchase');
     }
 }

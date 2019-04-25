@@ -30,8 +30,25 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/product', 'Dashboard\ProductController')->except([
         'show'
     ]);
+    Route::get('/search', ['uses' => 'Dashboard\ProductController@search', 'as' => 'product.search']);
+
     Route::resource('/sale', 'Dashboard\SaleController')->except([
         'show'
+    ]);
+    Route::resource('/purchase', 'Dashboard\PurchaseController')->except([
+        'show'
+    ]);
+    Route::post('/newproduct', 'Dashboard\NewProductController@store');
+    Route::resource('/newproduct', 'Dashboard\NewProductController')->except([
+        'show', 'index', 'update', 'destroy', 'create', 'edit'
+    ]);
+    Route::post('/newprovider', 'Dashboard\NewProviderController@store');
+    Route::resource('/newprovider', 'Dashboard\NewProviderController')->except([
+        'show', 'index', 'update', 'destroy', 'create', 'edit'
+    ]);
+    Route::post('/newclient', 'Dashboard\NewClientController@store');
+    Route::resource('/newclient', 'Dashboard\NewClientController')->except([
+        'show', 'index', 'update', 'destroy', 'create', 'edit'
     ]);
     Route::resource('/client', 'Dashboard\ClientController')->except([
         'show'

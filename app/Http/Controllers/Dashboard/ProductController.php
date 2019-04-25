@@ -55,7 +55,7 @@ class ProductController extends Controller
             'sale_price' => 'required',
             'stock' => 'required',
             'min_stock' => 'required',
-            'image' => 'image',
+            //'image' => 'image',
 
         ]);
         $request_data = $request->all();
@@ -87,6 +87,32 @@ class ProductController extends Controller
     {
         //
     }
+
+    public function search(Request $request)
+    {
+        $output = "";
+        $product = $request->pro;
+        $products = Product::where('product_name', 'like', '%' . $product . '%')->orwhere('codebar', 'like', '%' . $product . '%')->get();
+        foreach ($products as $product) {
+            $output .= '<div class="col-lg-3 col-md-4 col-6"><a href="" id="product" data-toggle="tooltip" title="' . $product->product_name . ' Price : ' . $product->purchase_price . '"
+                            data-placement="top" id="product-' . $product->id . '" +
+                            data-name="' . $product->product_name . '" + data-id="' . $product->id . '" +
+                            data-price="' . $product->purchase_price . '" + data-stock="' . $product->stock . '" class="con d-block mb-4
+                                add-product-btn">
+                            <img class="img-fluid img-thumbnail" src="' . $product->image_path . '" alt="">
+                            <div class="overlay overlayFade text-center">
+                                <div class="text">
+                                    <h6>Stock Left</h6>
+                                    <h6 class="text-nowrap stock">' . $product->stock . '</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>';
+        }
+        return $data = array('row_result' => $output,);
+    }
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -148,7 +174,7 @@ class ProductController extends Controller
         }
         $product->update($request_data);
         toast('Product Updated Successfully', 'success', 'top-right');
-        return redirect()->route('product.index');
+        return redirect()->back();
     }
 
     /**

@@ -20,11 +20,11 @@ Create provider
                 {{ method_field('post') }}
                 @include('partials._errors')
                 <div class="row">
-
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>provider name</label>
-                            <input type="text" name="provider_name" id="" class="form-control" value="{{ old('provider_name') }}">
+                            <input type="text" name="provider_name" id="" class="form-control"
+                                value="{{ old('provider_name') }}">
                         </div>
                         <div class="form-group">
                             <label>phone</label>
@@ -32,17 +32,20 @@ Create provider
                         </div>
                         <div class="form-group">
                             <label>Address</label>
-                            <textarea type="text" name="address" id="" class="form-control">{{ old('address') }}</textarea>
+                            <textarea type="text" name="address" id=""
+                                class="form-control">{{ old('address') }}</textarea>
 
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea type="text" name="description" id="" class="form-control">{{ old('description') }}</textarea>
+                            <textarea type="text" name="description" id=""
+                                class="form-control">{{ old('description') }}</textarea>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer form-group">
-                    <button type="submit" class="btn btn-primary" href="{{ route('provider.store') }}"><i class="nav-icon fas fa-truck"></i>
+                    <button type="submit" class="btn btn-primary" href="{{ route('provider.store') }}"><i
+                            class="nav-icon fas fa-truck"></i>
                         Add new provider</button>
                 </div>
             </form>

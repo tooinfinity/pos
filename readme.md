@@ -3,6 +3,12 @@
 pos is project based on laravel framework 5.7 with AdminLTE 3  dashboard to manage your store with this features :
 
 - manage moderators with their roles and Permissions
+- CRUD category product
+- CRUD and search products 
+- CRUD and search clients
+- CRUD and search providers
+- CRUD and search sale and add to cart sale
+- CRUD and search purchase and add to cart purchase 
 - __.....__
 
 ## Installation

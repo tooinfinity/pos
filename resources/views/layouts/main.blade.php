@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Store LTE</title>
     <link rel="stylesheet" href="/css/app.css">
@@ -111,6 +112,7 @@
     <script src="/js/JsBarcode.all.min.js"></script>
     <script src="/js/moment.js"></script>
     <script src="/js/sale.js"></script>
+    <script src="/js/img-preview.js"></script>
     <script src="/js/jquery.nicescroll.min.js"></script>
 
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -146,23 +148,6 @@
                 }
             });
         }
-
-    </script>
-    <script>
-        $(document).ready(function () {
-            $(".image").change(function () {
-                if (this.files && this.files[0]) {
-                    var reader = new FileReader();
-
-                    reader.onload = function (e) {
-                        $('.img-preview').attr('src', e.target.result);
-                    }
-
-                    reader.readAsDataURL(this.files[0]);
-                }
-
-            });
-        });
 
     </script>
     <script type="text/javascript">

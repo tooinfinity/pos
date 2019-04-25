@@ -61,6 +61,7 @@
                     </a>
                 </li>
                 @endif
+                @if (auth()->user()->hasPermission('read_purchases'))
                 <li class="nav-item">
                     <a href="{{ url('/purchase') }}" class="nav-link">
                         <i class="nav-icon fas fa-cart-arrow-down"></i>
@@ -69,6 +70,7 @@
                         </p>
                     </a>
                 </li>
+                @endif
                 @if (auth()->user()->hasPermission('read_providers'))
                 <li class="nav-item">
                     <a href="{{ url('/provider') }}" class="nav-link">

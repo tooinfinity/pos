@@ -4,6 +4,7 @@ namespace App;
 
 use App\Sale;
 use App\Category;
+use App\Purchase;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -19,6 +20,10 @@ class Product extends Model
     public function sales()
     {
         return $this->belongsToMany(Sale::class, 'product_sale', 'product_id', 'sale_id');
+    }
+    public function purchases()
+    {
+        return $this->belongsToMany(Purchase::class, 'product_purchase', 'product_id', 'purchase_id');
     }
     public function getImagePathAttribute()
     {

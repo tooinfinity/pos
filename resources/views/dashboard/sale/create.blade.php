@@ -19,17 +19,12 @@ Point Of Sale Page
                 {{ method_field('post') }}
 
                 @include('partials._errors')
-                <div class="form-group form-inline float-right">
-                    <label class="col-sm-7 col-form-label"> Referance Sale Numder : </label>
-                    <input type="text" name="number_sale" class="form-control col-sm-5" readonly
-                        value="{{ $sale_number }}">
-                </div>
-                <div class="row no-gutters">
+                <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="">Select Client </label>
-                            <div class="row  no-gutters">
-                                <div class="col-md-9">
+                        <div id="client" class="form-group">
+                            <label for="">Select Client</label>
+                            <div class="row">
+                                <div class="col-md-8">
                                     <select name="client_id" class="form-control">
                                         @foreach ($clients as $client)
                                         <option value="{{ $client->id }}"
@@ -38,12 +33,24 @@ Point Of Sale Page
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-3">
-                                    <a href="{{ route('client.create') }}" class="btn btn-primary"><i
-                                            class="fas fa-plus"> Add
-                                            Client</i></a>
+                                <div class="col-md-4">
+
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target=".bd-example-modal-lg-client"><i class="fas fa-plus"> Add
+                                            Client</i></button>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label> Referance Purchase Numder : </label>
+
+
+                            <input type="text" name="number_purchase" class="form-control text-center" readonly
+                                value="{{ $sale_number }}">
+
+
                         </div>
                     </div>
                 </div>
@@ -125,6 +132,55 @@ Point Of Sale Page
                             Add new sale</button>
                     </div>
             </form>
+            <div class="modal fade bd-example-modal-lg-client" tabindex="-1" role="dialog"
+                aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Create
+                                new Client</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form id="new_client" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            {{ method_field('post') }}
+                            @include('partials._errors')
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Client name</label>
+                                            <input type="text" name="client_name" id="client_name" class="form-control"
+                                                value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>phone</label>
+                                            <input type="text" name="phone" id="phone" class="form-control" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Address</label>
+                                            <textarea type="text" name="address" id="address"
+                                                class="form-control"></textarea>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <textarea type="text" name="description" id="description"
+                                                class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
 
@@ -141,14 +197,15 @@ Point Of Sale Page
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="">Search for Product by name or category</label>
-                        <input id="search" class="form-control search" type="search" placeholder="Search For Product">
+                        <input id="search" class="form-control" type="text" name="product"
+                            placeholder="Search For Product" autocomplete="off">
                     </div>
                 </div>
             </div>
 
             <div class="col-md-12">
                 @if ($products->count() > 0)
-                <div class="row text-center text-lg-left containerItems">
+                <div id="pds" class="row text-center text-lg-left containerItems">
 
                     @foreach ($products as $product)
 
@@ -188,4 +245,72 @@ Point Of Sale Page
 </div>
 
 
-@stop
+@endsection
+
+@section('script')
+<script type="text/javascript">
+    $(document).ready(function () {
+        // add new client in sale page
+        $('#new_client').on('submit', function (e) {
+            e.preventDefault();
+            var formData = new FormData($(this)[0]);
+            $.ajax({
+                type: "POST",
+                url: "/newclient",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (reponse) {
+                    console.log(reponse)
+                    $('.bd-example-modal-lg-client').modal('hide')
+                    $("#client").load(" #client");
+
+                },
+                error: function (error) {
+                    const errors = error.responseJSON.errors
+                    const firstitem = Object.keys(errors)[0]
+                    const firstitemDOM = document.getElementById(firstitem)
+                    const firstErrorMessage = errors[firstitem][0]
+                    firstitemDOM.scrollIntoView({})
+
+                    const errorMessages = document.querySelectorAll('.text-danger')
+                    errorMessages.forEach((element) => element.textContent = '')
+
+                    firstitemDOM.insertAdjacentHTML('afterend',
+                        `<div class="text-danger">${firstErrorMessage}</div>`)
+
+                    const formControls = document.querySelectorAll('.form-control')
+                    formControls.forEach((element) => element.classList.remove('border',
+                        'border-danger'))
+
+                    firstitemDOM.classList.add('border', 'border-danger')
+                }
+            });
+        });
+        // Search for product to sale by product id or category id
+        let old_content = $('#pds').html();
+        // Search for product to sale by product name and codebar
+        $("#search").keyup(function () {
+            var pro = $("#search").val();
+            if (pro != '') {
+                $.ajax({
+                    type: "GET",
+                    url: "/search",
+                    data: 'pro=' + pro,
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#pds').html(data.row_result);
+                        console.log(data)
+
+                    }
+                });
+            } else {
+                $('#pds').html(old_content);
+            }
+        })
+    });
+
+</script>
+
+
+@endsection

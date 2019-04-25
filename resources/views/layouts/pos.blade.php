@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Store LTE</title>
     <link rel="stylesheet" href="/css/app.css">
@@ -66,6 +67,7 @@
     <script src="/js/JsBarcode.all.min.js"></script>
     <script src="/js/moment.js"></script>
     <script src="/js/sale.js"></script>
+    <script src="/js/img-preview.js"></script>
     <script src="/js/jquery.nicescroll.min.js"></script>
     <script src="/js/bootstrap-input-spinner.js"></script>
     <script src="/js/e-search.min.js"></script>
@@ -92,13 +94,11 @@
             }, 100);
 
             ////////////////
-            $('input.form-control.search').search();
-
-
+            // $('input.form-control.search').search();
         });
 
     </script>
-    <script>
+    {{--  <script>
         $(document).ready(function () {
             $(".items input[type='number']").inputSpinner();
 
@@ -112,7 +112,8 @@
             });
         });
 
-    </script>
+    </script>  --}}
+    @yield('script')
 </body>
 
 </html>
