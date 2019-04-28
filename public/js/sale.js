@@ -1,8 +1,5 @@
 $(document).ready(function () {
 
-
-    var i = 1;
-
     $('.add-product-btn').on('click', function (e) {
         e.preventDefault();
         var stock = $(this).data('stock');
@@ -24,12 +21,25 @@ $(document).ready(function () {
             var name = $(this).data('name');
             var id = $(this).data('id');
             var price = $(this).data('price');
+            numRows = $('.order-list .items').length + 1;
+            //var qty = $('#qty').val();
+            for (var i = 1; i < numRows; i++) {
+                var code = $("tr:nth-child(" + i + ") td:nth-child(1)").html();
+                var next = $("tr:nth-child(" + i + ") td:nth-child(3) input").val();
+                if (code == name) {
+                    var add = parseInt(next) + 1;
+                    if (add <= stock) {
+                        $("tr:nth-child(" + i + ") td:nth-child(3) input").val(add);
+                    }
+                    calculateTotal();
+                    calculateTotalAmount();
+                    return true;
 
-            $(this).addClass('disabled');
+                }
+            }
             var html =
-                `<tr class="form-group items">
-                <td>${i++}</td>
-                <td class="namex">${name}</td>
+                `<tr id="${id}" class="form-group items">
+                <td id="name" class="namex">${name}</td>
                 <input type="hidden" name="product[]" value="${id}">
                 <td style="display: flex;">        
                 <input id="qty" style="width: 60% !important;" type="number" name="quantity[]" data-price="${price}" data-stock="${stock}" class="form-control input-sm product-quantity" min="1" max="${stock}" value="1">
@@ -40,6 +50,13 @@ $(document).ready(function () {
             $('.order-list').append(html);
             calculateTotal();
             calculateTotalAmount();
+            return true;
+
+            //$("tbody").append("<tr><td>" + numRows + "</td><td>" + $("#code").val() + "</td><td>1</td></tr>");
+
+
+
+
 
         }
 

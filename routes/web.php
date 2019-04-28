@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
         'show'
     ]);
     Route::get('/search', ['uses' => 'Dashboard\ProductController@search', 'as' => 'product.search']);
-
+    Route::get('/addproduct', ['uses' => 'Dashboard\ProductController@addproduct', 'as' => 'product.addproduct']);
     Route::resource('/sale', 'Dashboard\SaleController')->except([
         'show'
     ]);

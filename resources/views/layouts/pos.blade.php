@@ -70,7 +70,7 @@
     <script src="/js/img-preview.js"></script>
     <script src="/js/jquery.nicescroll.min.js"></script>
     <script src="/js/bootstrap-input-spinner.js"></script>
-    <script src="/js/e-search.min.js"></script>
+    <script src="/js/jquery.scannerdetection.js"></script>
 
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
@@ -98,21 +98,6 @@
         });
 
     </script>
-    {{--  <script>
-        $(document).ready(function () {
-            $(".items input[type='number']").inputSpinner();
-
-            $('#add').click(function () {
-
-                var name = document.getElementById('name');
-                var price = document.getElementById('price');
-                var stock = document.getElementById('stock');
-                alert(name);
-
-            });
-        });
-
-    </script>  --}}
     @yield('script')
 </body>
 

@@ -56,11 +56,10 @@ Point Of Sale Page
                 </div>
                 <div class="col-xs-12 table-responsive">
 
-                    <table class="table table-striped table-hover">
+                    <table id="sale" class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>Index</th>
-                                <th>Product</th>
+                                <th style="width: 400px;">Product</th>
                                 <th>Quntite</th>
                                 <th>Price</th>
                                 <th>Remove</th>
@@ -73,31 +72,26 @@ Point Of Sale Page
                         <tfoot>
                             <tr class="form-group">
                                 <th></th>
-                                <th></th>
-                                <th></th>
                                 <th>Total : </th>
                                 <th><input type="number" name="total" class="form-control input-sm total-price" min="0"
                                         readonly value="0"></th>
+                                <th></th>
                             </tr>
                             <tr class="form-group">
-                                <th></th>
-                                <th></th>
                                 <th></th>
                                 <th>Discount : </th>
                                 <th><input type="number" id="discount" name="discount"
                                         class="form-control input-sm discount" min="0" value="0"></th>
+                                <th></th>
                             </tr>
                             <tr class="form-group">
-                                <th></th>
-                                <th></th>
                                 <th></th>
                                 <th>Total Amount : </th>
                                 <th><input type="number" id="total-amount" name="total_amount"
                                         class="form-control input-sm total-amount" readonly min="0" value="0"></th>
+                                <th></th>
                             </tr>
                             <tr>
-                                <th></th>
-                                <th></th>
                                 <th></th>
                                 <th>Select Payment Status : </th>
                                 <th>
@@ -110,10 +104,9 @@ Point Of Sale Page
 
                                     </div>
                                 </th>
+                                <th></th>
                             </tr>
                             <tr>
-                                <th></th>
-                                <th></th>
                                 <th></th>
                                 <th>Rest Payment : </th>
                                 <th>
@@ -121,6 +114,7 @@ Point Of Sale Page
                                     <input id="rest" style="display:none;" type="number" name="rest"
                                         class="form-control input-sm rest" value="0"></input>
                                 </th>
+                                <th></th>
                             </tr>
                         </tfoot>
 
@@ -193,6 +187,15 @@ Point Of Sale Page
             <h3 class="card-title">List Of Sales Products</h3>
         </div> <!-- /.card-body -->
         <div class="card-body" style="overflow-y:scroll;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="">add product to sale with barcode</label>
+                        <input id="addbarcode" class="form-control" type="text" name="addbarcode"
+                            placeholder="Scan Barcode" autocomplete="off">
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
@@ -307,7 +310,33 @@ Point Of Sale Page
             } else {
                 $('#pds').html(old_content);
             }
-        })
+        });
+
+        // Add product to sale by barcode
+        $("#addbarcode").keypress(function () {
+            var code = $("#addbarcode").val();
+            if (code.length == 13) {
+                $.ajax({
+                    type: "GET",
+                    url: "/addproduct",
+                    data: 'code=' + code,
+                    dataType: 'json',
+                    success: function (data) {
+                        $('.order-list').append(data.addproduct);
+                        $("#addbarcode").val("");
+                        calculateTotal();
+                        calculateTotalAmount();
+
+                        console.log(data.addproduct)
+
+                    }
+                });
+            }
+        });
+
+
+
+
     });
 
 </script>

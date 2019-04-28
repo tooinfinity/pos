@@ -42,11 +42,11 @@ class PurchaseController extends Controller
 
         //$sale_number = 'SN' . date('Ymd') . '0001';
         if (Purchase::all()->last() == null) {
-            $purchase_number = 'SN' . date('Ymd') . '0001';
+            $purchase_number = 'PN' . date('Ymd') . '0001';
         } else {
             $lastsaleId = sale::all()->last()->number_purchase;
             $lastIncreament = substr($lastsaleId, -4);
-            $purchase_number = 'SN' . date('Ymd') . str_pad($lastIncreament + 1, 4, 0, STR_PAD_LEFT);
+            $purchase_number = 'PN' . date('Ymd') . str_pad($lastIncreament + 1, 4, 0, STR_PAD_LEFT);
         }
 
         return view('dashboard.purchase.create', compact('purchase_number', 'providers', 'categories', 'products'));

@@ -90,9 +90,11 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
+        $barcode = $request->barcode;
+        $addproduct = Product::where('barcode', '=', $barcode)->get();
         $output = "";
         $product = $request->pro;
-        $products = Product::where('product_name', 'like', '%' . $product . '%')->orwhere('codebar', 'like', '%' . $product . '%')->get();
+        $products = Product::where('product_name', 'like', '%' . $product . '%')->get();
         foreach ($products as $product) {
             $output .= '<div class="col-lg-3 col-md-4 col-6"><a href="" id="product" data-toggle="tooltip" title="' . $product->product_name . ' Price : ' . $product->purchase_price . '"
                             data-placement="top" id="product-' . $product->id . '" +
@@ -109,9 +111,30 @@ class ProductController extends Controller
                         </a>
                     </div>';
         }
+
         return $data = array('row_result' => $output,);
     }
 
+    public function addproduct(Request $request)
+    {
+        $out = "";
+        $barcode = $request->code;
+        $products = Product::where('codebar', '=', $barcode)->get();
+        foreach ($products as $product) {
+            $out .= '
+                    <tr class="form-group items">
+                                <td class="namex">' . $product->product_name . '</td>
+                                <input type="hidden" name="product[]" value="' . $product->id . '">
+                                <td style="display: flex;">        
+                                <input id="qty" style="width: 60% !important;" type="number" name="quantity[]" data-price="' . $product->purchase_price . '" data-stock="' . $product->stock . '" class="form-control input-sm product-quantity" min="1" max="${stock}" value="1">
+                                </td>
+                                <td class="product-price">' . $product->purchase_price . '</td>
+                                <td><button type="button" class="btn btn-danger btn-sm remove-product-btn" data-id="' . $product->id . '"><span class="fa fa-trash"></span></button></td>
+                    </tr>';
+        }
+
+        return $data = array('addproduct' => $out,);
+    }
 
 
     /**
