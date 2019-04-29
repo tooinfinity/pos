@@ -90,8 +90,6 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
-        $barcode = $request->barcode;
-        $addproduct = Product::where('barcode', '=', $barcode)->get();
         $output = "";
         $product = $request->pro;
         $products = Product::where('product_name', 'like', '%' . $product . '%')->get();
