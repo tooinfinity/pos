@@ -30,12 +30,15 @@ $(document).ready(function () {
                     var add = parseInt(next) + 1;
                     if (add <= stock) {
                         $("tr:nth-child(" + i + ") td:nth-child(3) input").val(add);
+                        var all = add * price;
+
                     }
+                    $("tr:nth-child(" + i + ") td:nth-child(4)").html(all);
                     calculateTotal();
                     calculateTotalAmount();
                     return true;
-
                 }
+
             }
             var html =
                 `<tr id="${id}" class="form-group items">
@@ -51,17 +54,11 @@ $(document).ready(function () {
             calculateTotal();
             calculateTotalAmount();
             return true;
-
-            //$("tbody").append("<tr><td>" + numRows + "</td><td>" + $("#code").val() + "</td><td>1</td></tr>");
-
-
-
-
-
         }
 
 
     });
+
 
     //to calculate total price
 
@@ -100,6 +97,12 @@ $(document).ready(function () {
         calculateTotalAmount();
     }); //end of product quantity change
 
+    $('body').on('keyup focus', '.paid', function () {
+        calculateCredit();
+
+    }); //end of product quantity change
+
+
     /// add input when selected debt
     $('#select').change(function () {
         if ($('#select option:selected').text() == "nopaid" || $('#select option:selected').text() == "debt") {
@@ -133,5 +136,13 @@ function calculateTotalAmount() {
     var discount = $('#discount').val();
     var total_amount = total - discount;
     $('#total-amount').val(total_amount);
+    $('#paid').val(total_amount);
 
 } //end of calculate total Amount
+function calculateCredit() {
+    var totalamount = $('#total-amount').val();
+    var paid = $('#paid').val();
+    var credit = totalamount - paid;
+    $('#credit').val(credit);
+
+}
