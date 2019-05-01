@@ -44,7 +44,7 @@ class PurchaseController extends Controller
         if (Purchase::all()->last() == null) {
             $purchase_number = 'PN' . date('Ymd') . '0001';
         } else {
-            $lastsaleId = sale::all()->last()->number_purchase;
+            $lastsaleId = Purchase::all()->last()->number_purchase;
             $lastIncreament = substr($lastsaleId, -4);
             $purchase_number = 'PN' . date('Ymd') . str_pad($lastIncreament + 1, 4, 0, STR_PAD_LEFT);
         }
@@ -63,7 +63,46 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'number_purchase' => 'required',
+            'total' => 'required',
+            'discount' => 'required',
+            'total_amount' => 'required',
+            'paid' => 'required',
+            'credit' => 'required',
+            'status' => 'required',
+            'provider_id' => 'required',
+            'product' => 'required',
+            'quantity' => 'required',
+        ]);
+        $data = $request->all();
+
+        $purchase = Purchase::create([
+            'number_purchase' => $data['number_purchase'],
+            'total' => $data['total'],
+            'discount' => $data['discount'],
+            'total_amount' => $data['total_amount'],
+            'paid' => $data['paid'],
+            'due' => $data['credit'],
+            'status' => $data['status'],
+            'provider_id' => $data['provider_id'],
+
+        ]);
+        $dat = $data['product'];
+        $qty = $request->get('quantity');
+        //attach sale with there products and quantities
+        $attach_data = [];
+        for ($i = 0; $i < count($dat); $i++) {
+            $attach_data[$dat[$i]] = ['quantity' => $qty[$i]];
+        }
+        $purchase->products()->attach($attach_data);
+        //check products stock and substract quntities that is sale
+        for ($i = 0; $i < count($dat); $i++) {
+            $product = Product::find($dat[$i]);
+            $product->stock = $product->stock + ($qty[$i]);
+            $product->save();
+        }
+        return redirect()->back();
     }
 
     /**
