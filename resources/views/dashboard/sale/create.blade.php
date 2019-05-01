@@ -45,12 +45,8 @@ Point Of Sale Page
                     <div class="col-md-6">
                         <div class="form-group">
                             <label> Referance Purchase Numder : </label>
-
-
-                            <input type="text" name="number_purchase" class="form-control text-center" readonly
+                            <input type="text" name="number_sale" class="form-control text-center" readonly
                                 value="{{ $sale_number }}">
-
-
                         </div>
                     </div>
                 </div>
@@ -95,9 +91,9 @@ Point Of Sale Page
                                 <div class="form-group row">
                                     <label class="col-sm-6 col-form-label">Payment Method : </label>
                                     <select id="select" class="form-control col-sm-6" name="status">
-                                        <option>paid</option>
-                                        <option>nopaid</option>
-                                        <option>debt</option>
+                                        <option value="paid">paid</option>
+                                        <option value="nopaid">nopaid</option>
+                                        <option value="debt">debt</option>
                                     </select>
 
                                 </div>
@@ -175,8 +171,6 @@ Point Of Sale Page
                 </div>
             </div>
         </div>
-
-
     </div><!-- /.card-body -->
 </div>
 <div class="col-md-5 col-sm-12">

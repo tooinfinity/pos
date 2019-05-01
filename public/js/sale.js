@@ -53,6 +53,7 @@ $(document).ready(function () {
             $('.order-list').append(html);
             calculateTotal();
             calculateTotalAmount();
+            calculateCredit();
             return true;
         }
 
@@ -79,6 +80,7 @@ $(document).ready(function () {
         //to calculate total price
         calculateTotal();
         calculateTotalAmount();
+        calculateCredit();
 
     }); //end of remove product btn
 
@@ -90,26 +92,40 @@ $(document).ready(function () {
         $(this).closest('tr').find('.product-price').html(quantity * unitPrice);
         calculateTotal();
         calculateTotalAmount();
+        calculateCredit();
 
     }); //end of product quantity change
 
     $('body').on('keyup focus', '.discount', function () {
         calculateTotalAmount();
+        var totalamount = $('#total-amount').val();
+        var paid = $('#paid').val();
+        var credit = totalamount - paid;
+        $("#paid").attr({
+            "max": totalamount, // substitute your own
+            "min": 0 // values (or variables) here
+        });
+        $('#credit').val(credit);
+
     }); //end of product quantity change
 
     $('body').on('keyup focus', '.paid', function () {
+
         calculateCredit();
-
-    }); //end of product quantity change
-
-
-    /// add input when selected debt
-    $('#select').change(function () {
-        if ($('#select option:selected').text() == "nopaid" || $('#select option:selected').text() == "debt") {
-            $('#rest').show();
+        var totalamount = $('#total-amount').val();
+        var paid = $('#paid').val();
+        if (paid == 0) {
+            $('#select option[value="nopaid"]').prop('selected', true);
+        } else if (totalamount == paid) {
+            $('#select option[value="paid"]').prop('selected', true);
         } else {
-            $('#rest').hide();
+            $('#select option[value="debt"]').prop('selected', true);
         }
+
+    });
+    $('body').on('change', '.paid', function () {
+        $('#select option[value="debt"]').prop('selected', true);
+
     });
 
 
@@ -143,6 +159,10 @@ function calculateCredit() {
     var totalamount = $('#total-amount').val();
     var paid = $('#paid').val();
     var credit = totalamount - paid;
+    $("#paid").attr({
+        "max": totalamount, // substitute your own
+        "min": 0 // values (or variables) here
+    });
     $('#credit').val(credit);
 
 }

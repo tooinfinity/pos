@@ -20,6 +20,8 @@ class CreatePurchasesTable extends Migration
             $table->double('discount');
             $table->double('total_amount');
             $table->enum('status', ['paid', 'nopaid', 'debt']);
+            $table->double('paid');
+            $table->double('due'); // credit 
             $table->integer('provider_id')->unsigned();
             $table->foreign('provider_id')->references('id')->on('providers')->onDelete('cascade');
             $table->timestamps();

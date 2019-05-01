@@ -59,6 +59,12 @@ List Of Purchases
                                         colspan="1" aria-label="Platform(s): activate to sort column ascending"
                                         style="width: 320px;">Total Amount</th>
                                     <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1"
+                                        colspan="1" aria-label="Platform(s): activate to sort column ascending"
+                                        style="width: 320px;">Paid</th>
+                                    <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1"
+                                        colspan="1" aria-label="Platform(s): activate to sort column ascending"
+                                        style="width: 320px;">due(credit)</th>
+                                    <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1"
                                         colspan="1" aria-label="Engine version: activate to sort column ascending"
                                         style="width: 243px;">Action</th>
                                 </tr>
@@ -69,18 +75,20 @@ List Of Purchases
 
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
-                                    <td>{{ $purchase -> number_purchase }}</td>
-                                    <td>{{ $purchase -> total }}</td>
-                                    <td>{{ $purchase -> discount }}</td>
-                                    @if ($purchase -> status == "paid")
-                                    <td><span class="badge bg-success">{{ $purchase -> total_amount }}</span></td>
+                                    <td>{{ $purchase->number_purchase }}</td>
+                                    <td>{{ $purchase->total }}</td>
+                                    <td>{{ $purchase->discount }}</td>
+                                    @if ($purchase->status == "paid")
+                                    <td><span class="badge bg-success">{{ $purchase->total_amount }}</span></td>
                                     @endif
-                                    @if ($purchase -> status == "nopaid")
-                                    <td><span class="badge bg-warning">{{ $purchase -> total_amount }}</span></td>
+                                    @if ($purchase->status == "nopaid")
+                                    <td><span class="badge bg-warning">{{ $purchase->total_amount }}</span></td>
                                     @endif
-                                    @if ($purchase -> status == "debt")
-                                    <td><span class="badge bg-danger">{{ $purchase -> total_amount }}</span></td>
+                                    @if ($purchase->status == "debt")
+                                    <td><span class="badge bg-danger">{{ $purchase->total_amount }}</span></td>
                                     @endif
+                                    <td>{{ $purchase->paid }}</td>
+                                    <td>{{ $purchase->due }}</td>
                                     <td>
                                         @if (auth()->user()->hasPermission('update_purchases'))
                                         <a class="btn btn-warning btn-sm"
@@ -121,6 +129,8 @@ List Of Purchases
                                     <th rowspan="1" colspan="1">Total</th>
                                     <th rowspan="1" colspan="1">Discount</th>
                                     <th rowspan="1" colspan="1">Total Amount</th>
+                                    <th rowspan="1" colspan="1">Paid</th>
+                                    <th rowspan="1" colspan="1">due(credit)</th>
                                     <th rowspan="1" colspan="1">Action</th>
                                 </tr>
                             </tfoot>

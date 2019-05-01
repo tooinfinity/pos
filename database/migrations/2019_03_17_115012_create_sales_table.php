@@ -20,6 +20,8 @@ class CreateSalesTable extends Migration
             $table->double('discount');
             $table->double('total_amount');
             $table->enum('status', ['paid', 'nopaid', 'debt']);
+            $table->double('paid');
+            $table->double('due'); // credit 
             $table->integer('client_id')->unsigned();
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->timestamps();

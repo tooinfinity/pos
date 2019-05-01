@@ -60,12 +60,13 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'number_sale' => 'required',
             'total' => 'required',
             'discount' => 'required',
             'total_amount' => 'required',
+            'paid' => 'required',
+            'credit' => 'required',
             'status' => 'required',
             'client_id' => 'required',
             'product' => 'required',
@@ -78,6 +79,8 @@ class SaleController extends Controller
             'total' => $data['total'],
             'discount' => $data['discount'],
             'total_amount' => $data['total_amount'],
+            'paid' => $data['paid'],
+            'due' => $data['credit'],
             'status' => $data['status'],
             'client_id' => $data['client_id'],
 

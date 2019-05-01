@@ -54,16 +54,15 @@ Point Of Purchase Page
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12 table-responsive">
+                <div class="col-md-12 table-responsive">
 
                     <table class="table table-striped table-hover ">
                         <thead>
                             <tr>
-                                <th>Index</th>
                                 <th>Product</th>
                                 <th>Quntite</th>
                                 <th>Price</th>
-                                <th>Remove</th>
+                                <th style="width: 25px;">Remove</th>
                             </tr>
                         </thead>
 
@@ -71,66 +70,58 @@ Point Of Purchase Page
 
                         </tbody>
                         <tfoot>
-                            <tr class="form-group">
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th>Total : </th>
-                                <th><input type="number" name="total" class="form-control input-sm total-price" min="0"
-                                        readonly value="0"></th>
-                            </tr>
-                            <tr class="form-group">
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th>Discount : </th>
-                                <th><input type="number" id="discount" name="discount"
-                                        class="form-control input-sm discount" min="0" value="0"></th>
-                            </tr>
-                            <tr class="form-group">
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th>Total Amount : </th>
-                                <th><input type="number" id="total-amount" name="total_amount"
-                                        class="form-control input-sm total-amount" readonly min="0" value="0"></th>
-                            </tr>
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th>Select Payment Status : </th>
-                                <th>
-                                    <div class="form-group">
-                                        <select id="select" class="form-control" name="status">
-                                            <option>paid</option>
-                                            <option>nopaid</option>
-                                            <option>debt</option>
-                                        </select>
-
-                                    </div>
-                                </th>
-                            </tr>
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th>Rest Payment : </th>
-                                <th>
-
-                                    <input id="rest" style="display:none;" type="number" name="rest"
-                                        class="form-control input-sm rest" value="0"></input>
-                                </th>
-                            </tr>
                         </tfoot>
-
                     </table>
+                    <div class="row">
+                        <div class="col-md-6 offset-md-4">
+                            <div class="form-group row">
+                                <label class="col-sm-6 col-form-label">Total : </label>
+                                <input type="number" name="total" class="form-control  col-sm-6 total-price" min="0"
+                                    readonly value="0">
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-6 col-form-label">Discount : </label>
+                                <input type="number" id="discount" name="discount"
+                                    class="form-control col-sm-6 discount" min="0" value="0">
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-6 col-form-label">Total Amount : </label>
+                                <input type="number" id="total-amount" name="total_amount"
+                                    class="form-control col-sm-6 total-amount" readonly min="0" value="0">
+                            </div>
+                            <div>
+                                <div class="form-group row">
+                                    <label class="col-sm-6 col-form-label">Payment Method : </label>
+                                    <select id="select" class="form-control col-sm-6" name="status">
+                                        <option value="paid">paid</option>
+                                        <option value="nopaid">nopaid</option>
+                                        <option value="debt">debt</option>
+                                    </select>
 
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group row">
+                                    <label class="col-sm-6 col-form-label">Paid : </label>
+                                    <input id="paid" type="number" name="paid" class="form-control col-sm-6 paid"
+                                        value="0"></input>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group row">
+                                    <label class="col-sm-6 col-form-label">Due(credit) : </label>
+                                    <input id="credit" type="number" name="credit" class="form-control col-sm-6 credit"
+                                        readonly value="0"></input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="modal-footer form-group">
                         <button type="submit" class="btn btn-success" href="{{ route('purchase.store') }}"><i
                                 class="fas fa-user-plus"></i>
                             Add new purchase</button>
                     </div>
+                </div>
             </form>
             <div class="modal fade bd-example-modal-lg-provider" tabindex="-1" role="dialog"
                 aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -182,10 +173,7 @@ Point Of Purchase Page
                 </div>
             </div>
         </div>
-
-
     </div><!-- /.card-body -->
-</div>
 </div>
 <div class="col-md-5 col-sm-12">
     <div class="card card-primary card-outline" style="height:80vh;">
