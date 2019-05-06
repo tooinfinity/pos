@@ -44,7 +44,7 @@ Point Of Sale Page
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label> Referance Purchase Numder : </label>
+                            <label> Referance Sale Numder : </label>
                             <input type="text" name="number_sale" class="form-control text-center" readonly
                                 value="{{ $sale_number }}">
                         </div>
@@ -192,7 +192,7 @@ Point Of Sale Page
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="">Search for Product by name or category</label>
-                        <input id="search" class="form-control" type="text" name="product"
+                        <input id="searchsale" class="form-control" type="text" name="product"
                             placeholder="Search For Product" autocomplete="off">
                     </div>
                 </div>
@@ -204,21 +204,14 @@ Point Of Sale Page
 
                     @foreach ($products as $product)
 
-                    <div class="col-lg-3 col-md-4 col-6" {{ $cat = $product->Category()->first()->category_name }}
-                        data-search="{{ $product->product_name }} {{ $cat }}">
-                        <a href="" data-toggle="tooltip"
-                            title="{{ $product->product_name }} Price : {{ $product->sale_price }}" data-placement="top"
+                    <div class="col-lg-3 col-md-4 col-6">
+                        <a href="" data-toggle="tooltip" title="Price : {{ $product->sale_price }}" data-placement="top"
                             id="product-{{ $product->id }}" + data-name="{{ $product->product_name }}" +
                             data-id="{{ $product->id }}" + data-price="{{ $product->sale_price }}" +
                             data-stock="{{ $product->stock }}" class="con d-block mb-4
                                 add-product-btn">
-                            <img class="img-fluid img-thumbnail" src="{{ $product -> image_path }}" alt="">
-                            <div class="overlay overlayFade text-center">
-                                <div class="text">
-                                    <h6>Stock Left</h6>
-                                    <h6 class="text-nowrap stock">{{ $product->stock }}</h6>
-                                </div>
-                            </div>
+                            <img class="img-fluid img-product" src="{{ $product -> image_path }}" alt="">
+                            <span class="mbr-gallery-title">{{ $product->product_name }}</span>
                         </a>
 
                     </div>
@@ -282,15 +275,14 @@ Point Of Sale Page
                 }
             });
         });
-        // Search for product to sale by product id or category id
+        // Search for product to sale by product name
         let old_content = $('#pds').html();
-        // Search for product to sale by product name and codebar
-        $("#search").keyup(function () {
-            var pro = $("#search").val();
+        $("#searchsale").keyup(function () {
+            var pro = $("#searchsale").val();
             if (pro != '') {
                 $.ajax({
                     type: "GET",
-                    url: "/search",
+                    url: "/searchsale",
                     data: 'pro=' + pro,
                     dataType: 'json',
                     success: function (data) {

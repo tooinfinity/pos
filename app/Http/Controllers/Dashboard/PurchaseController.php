@@ -124,7 +124,10 @@ class PurchaseController extends Controller
      */
     public function edit(Purchase $purchase)
     {
-        //
+        $providers = Provider::all();
+        $categories = Category::all();
+        $products = Product::all();
+        return view('dashboard.purchase.edit', compact('purchase', 'providers', 'categories', 'products'));
     }
 
     /**
@@ -138,7 +141,21 @@ class PurchaseController extends Controller
     {
         //
     }
+// Payment of credit function
+    public function paymentduep(Request $request,$id)
+    { 
+        $credits= Sale::find($id);
+        $paid= $request->input('paid');
+        $due = $request->input('credit');
+        $pdue = $request->input('paidcredit');
+        $credits->due =  $due -  $pdue;
+        $credits->paid = $paid + $pdue;
+        $credits->status = "paid";
+        $credits->save();
+        
+        
 
+    }
     /**
      * Remove the specified resource from storage.
      *

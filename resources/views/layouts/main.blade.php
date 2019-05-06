@@ -108,7 +108,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="/js/ean13.min.js"></script>
     <script src="/js/jquery-ean13.min.js"></script>
-    <script src="/js/printThis.js"></script>
     <script src="/js/JsBarcode.all.min.js"></script>
     <script src="/js/moment.js"></script>
     <script src="/js/sale.js"></script>
@@ -221,6 +220,7 @@
         });
 
     </script>
+    @yield('script')
 </body>
 
 </html>

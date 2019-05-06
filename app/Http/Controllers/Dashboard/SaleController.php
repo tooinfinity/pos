@@ -124,10 +124,8 @@ class SaleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Sale $sale)
-    {
+    { }
 
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -137,10 +135,23 @@ class SaleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Sale $sale)
-    {
-        //
-    }
+    { }
 
+    // Payment of credit function
+    public function paymentdue(Request $request,$id)
+    { 
+        $credits= Sale::find($id);
+        $paid= $request->input('paid');
+        $due = $request->input('credit');
+        $pdue = $request->input('paidcredit');
+        $credits->due =  $due -  $pdue;
+        $credits->paid = $paid + $pdue;
+        $credits->status = "paid";
+        $credits->save();
+        
+        
+
+    }
     /**
      * Remove the specified resource from storage.
      *

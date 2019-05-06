@@ -30,8 +30,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/product', 'Dashboard\ProductController')->except([
         'show'
     ]);
-    Route::get('/search', ['uses' => 'Dashboard\ProductController@search', 'as' => 'product.search']);
+    Route::get('/searchsale', ['uses' => 'Dashboard\ProductController@searchsale', 'as' => 'product.searchsale']);
+    Route::get('/searchpurchase', ['uses' => 'Dashboard\ProductController@searchpurchase', 'as' => 'product.searchpurchase']);
     Route::get('/addproduct', ['uses' => 'Dashboard\ProductController@addproduct', 'as' => 'product.addproduct']);
+
+    Route::put('/paymentdue/{id}', 'Dashboard\SaleController@paymentdue');
+    Route::put('/paymentduep/{id}', 'Dashboard\purchaseController@paymentduep');
     Route::resource('/sale', 'Dashboard\SaleController')->except([
         'show'
     ]);

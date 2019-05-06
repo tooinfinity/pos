@@ -91,15 +91,9 @@ List Of Purchases
                                     <td>{{ $purchase->due }}</td>
                                     <td>
                                         @if (auth()->user()->hasPermission('update_purchases'))
-                                        <a class="btn btn-warning btn-sm"
-                                            href="{{ route('purchase.edit', $purchase->id) }}"><i
-                                                class="fas fa-edit"></i>
-                                            update</a>
-                                        @else
-                                        <a class="btn btn-warning btn-sm disabled"
-                                            href="{{ route('purchase.edit', $purchase->id) }}"><i
-                                                class="fas fa-edit"></i>
-                                            update</a>
+                                            @if ($purchase->due != 0)
+                                                <button class="btn btn-warning btn-sm pcredit">Payment of dues</button>
+                                            @endif
                                         @endif
                                         @if (auth()->user()->hasPermission('delete_categories'))
                                         <button id="delete" onclick="deletemoderator({{ $purchase->id }})"
@@ -140,9 +134,113 @@ List Of Purchases
             </div>
         </div>
         <!-- /.card-body -->
-
+<div class="modal fade" id="payment_credit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Payment of dues</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="paymentcredit">
+                        {{ csrf_field() }}
+                        {{ method_field('post') }}
+                        @include('partials._errors')
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="hidden" id="id" name="id">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label">Referance Sale Numder : </label>
+                                        <input type="text" id="number_sale" name="number_sale"
+                                            class="form-control col-sm-6 text-center" readonly>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label">Total Amount : </label>
+                                        <input type="number" id="paid" name="paid"
+                                            class="form-control col-sm-6 text-center" readonly>
+                                    </div>
+                                    <div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-5 col-form-label">Total Due(credit) : </label>
+                                            <input id="credit" type="number" name="credit"
+                                                class="form-control col-sm-6 text-center" readonly></input>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-5 col-form-label">Paid credit : </label>
+                                            <input id="paidcredit" type="number" name="paidcredit"
+                                                class="form-control col-sm-6 text-center" value="0"></input>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save Payment of dues</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
 
 @stop
+@section('script')
+<script type="text/javascript">
+    $(document).ready(function () {
+        jQuery.noConflict();
+        $('.pcredit').on('click', function () {
+            $('#payment_credit').modal('show');
+
+            $tr = $(this).closest('tr');
+            var data = $tr.children("td").map(function () {
+                return $(this).text();
+            }).get();
+            console.log(data);
+            $('#id').val(data[0]);
+            $('#number_sale').val(data[1]);
+            $('#paid').val(data[5]);
+            $('#credit').val(data[6]);
+            $('#paidcredit').val();
+            
+
+
+        });
+
+        $('#paymentcredit').on('submit', function (e) {
+            e.preventDefault();
+
+            var id = $('#id').val();
+
+            $.ajax({
+                type: 'PUT',
+                url: "/paymentduep/"+id,
+                data: $('#paymentcredit').serialize(),
+                success: function (data) {
+                    console.log(data);
+                    $('#payment_credit').modal('hide');
+                    location.reload();
+
+
+                },
+                error:function (error) {
+                    console.log(error);
+                    
+
+
+                }
+            });
+        });
+    });
+
+</script>
+
+
+@endsection

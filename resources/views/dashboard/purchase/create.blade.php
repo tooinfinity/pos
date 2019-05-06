@@ -185,7 +185,7 @@ Point Of Purchase Page
             <div class="row">
                 <div class="col-md-8">
                     <div class="form-group">
-                        <input id="search" class="form-control" type="text" name="product"
+                        <input id="searchpurchase" class="form-control" type="text" name="product"
                             placeholder="Search For Product" autocomplete="off">
                     </div>
                 </div>
@@ -289,24 +289,24 @@ Point Of Purchase Page
                     @foreach ($products as $product)
 
                     <div class="col-lg-3 col-md-4 col-6 prod">
-                        <a href="" id="product" data-toggle="tooltip"
-                            title="{{ $product->product_name }} Price : {{ $product->purchase_price }}"
+                        <a href="" id="product" data-toggle="tooltip" title="Price : {{ $product->purchase_price }}"
                             data-placement="top" id="product-{{ $product->id }}" +
                             data-name="{{ $product->product_name }}" + data-id="{{ $product->id }}" +
                             data-price="{{ $product->purchase_price }}" + data-stock="{{ $product->stock }}" class="con d-block
                     mb-4
-                    add-product-btn">
-                            <img class="img-fluid img-thumbnail" src="{{ $product -> image_path }}" alt="">
-                            <div class="overlay overlayFade text-center">
-                                <div class="text">
-                                    <h6>Stock Left</h6>
-                                    <h6 class="text-nowrap stock">{{ $product->stock }}</h6>
-                                </div>
-                            </div>
+                    add-product-purchase">
+                            <img class="img-fluid img-product" src="{{ $product -> image_path }}" alt="">
+                            <span class="mbr-gallery-title">{{ $product->product_name }}</span>
                         </a>
                     </div>
                     @endforeach
 
+                </div>
+                @else
+                <div class="lam">
+                    <div class="centered">
+                        <h5>There is no product for sale</h5>
+                    </div>
                 </div>
                 @endif
             </div>
@@ -406,15 +406,14 @@ Point Of Purchase Page
                 }
             });
         });
-        // Search for product to purchase by product id or category id
+        // Search for product to purchase by product name
         let old_content = $('#pds').html();
-        // Search for product to purchase by product name and codebar
-        $("#search").keyup(function () {
-            var pro = $("#search").val();
+        $("#searchpurchase").keyup(function () {
+            var pro = $("#searchpurchase").val();
             if (pro != '') {
                 $.ajax({
                     type: "GET",
-                    url: "/search",
+                    url: "/searchpurchase",
                     data: 'pro=' + pro,
                     dataType: 'json',
                     success: function (data) {
