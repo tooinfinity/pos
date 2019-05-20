@@ -91,9 +91,9 @@ List Of Purchases
                                     <td>{{ $purchase->due }}</td>
                                     <td>
                                         @if (auth()->user()->hasPermission('update_purchases'))
-                                            @if ($purchase->due != 0)
-                                                <button class="btn btn-warning btn-sm pcredit">Payment of dues</button>
-                                            @endif
+                                        @if ($purchase->due != 0)
+                                        <button class="btn btn-warning btn-sm pcredit">Payment of dues</button>
+                                        @endif
                                         @endif
                                         @if (auth()->user()->hasPermission('delete_categories'))
                                         <button id="delete" onclick="deletemoderator({{ $purchase->id }})"
@@ -134,7 +134,7 @@ List Of Purchases
             </div>
         </div>
         <!-- /.card-body -->
-<div class="modal fade" id="payment_credit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        <div class="modal fade" id="payment_credit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -209,7 +209,9 @@ List Of Purchases
             $('#paid').val(data[5]);
             $('#credit').val(data[6]);
             $('#paidcredit').val();
-            
+            $("#paidcredit").attr({
+                "max": data[6], // substitute your own
+            });
 
 
         });
@@ -221,7 +223,7 @@ List Of Purchases
 
             $.ajax({
                 type: 'PUT',
-                url: "/paymentduep/"+id,
+                url: "/paymentduep/" + id,
                 data: $('#paymentcredit').serialize(),
                 success: function (data) {
                     console.log(data);
@@ -230,9 +232,9 @@ List Of Purchases
 
 
                 },
-                error:function (error) {
+                error: function (error) {
                     console.log(error);
-                    
+
 
 
                 }

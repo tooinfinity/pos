@@ -91,9 +91,9 @@ List Of Sales
                                     <td>{{ $sale->due }}</td>
                                     <td>
                                         @if (auth()->user()->hasPermission('update_sales'))
-                                            @if ($sale->due != 0)
-                                                <button class="btn btn-warning btn-sm pcredit">Payment of dues</button>
-                                            @endif
+                                        @if ($sale->due != 0)
+                                        <button class="btn btn-warning btn-sm pcredit">Payment of dues</button>
+                                        @endif
                                         @endif
                                         @if (auth()->user()->hasPermission('delete_categories'))
                                         <button id="delete" onclick="deletemoderator({{ $sale->id }})"
@@ -209,10 +209,11 @@ List Of Sales
             $('#number_sale').val(data[1]);
             $('#paid').val(data[5]);
             $('#credit').val(data[6]);
-            $('#paidcredit').val();
-            
-
-
+            $('#paidcredit').val(data[6]);
+            console.log(data[6]);
+            $("#paidcredit").attr({
+                "max": data[6], // substitute your own
+            });
         });
 
         $('#paymentcredit').on('submit', function (e) {
@@ -222,20 +223,16 @@ List Of Sales
 
             $.ajax({
                 type: 'PUT',
-                url: "/paymentdue/"+id,
+                url: "/paymentdue/" + id,
                 data: $('#paymentcredit').serialize(),
                 success: function (data) {
                     console.log(data);
                     $('#payment_credit').modal('hide');
                     location.reload();
-
-
                 },
-                error:function (error) {
-                    console.log(error);
-                    
-
-
+                error: function (error) {
+                    const errors = error.responseJSON.errors
+                    console.log(errors);
                 }
             });
         });

@@ -138,19 +138,22 @@ class SaleController extends Controller
     { }
 
     // Payment of credit function
-    public function paymentdue(Request $request,$id)
-    { 
-        $credits= Sale::find($id);
-        $paid= $request->input('paid');
+    public function paymentdue(Request $request, $id)
+    {
+        $credits = Sale::find($id);
+        $paid = $request->input('paid');
         $due = $request->input('credit');
         $pdue = $request->input('paidcredit');
-        $credits->due =  $due -  $pdue;
-        $credits->paid = $paid + $pdue;
-        $credits->status = "paid";
+        if ($pdue == $due) {
+            $credits->due =  $due -  $pdue;
+            $credits->paid = $paid + $pdue;
+            $credits->status = "paid";
+        } elseif ($pdue < $due) {
+            $credits->due =  $due -  $pdue;
+            $credits->paid = $paid + $pdue;
+            $credits->status = "debt";
+        }
         $credits->save();
-        
-        
-
     }
     /**
      * Remove the specified resource from storage.

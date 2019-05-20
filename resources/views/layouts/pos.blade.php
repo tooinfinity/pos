@@ -11,6 +11,8 @@
     <title>Store LTE</title>
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/css/custom.css">
+    <link rel="stylesheet" href="/css/select2.min.css">
+    <link rel="stylesheet" href="/css/jquery.bootstrap-touchspin.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/all.css" />
 
@@ -62,12 +64,12 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="/js/app.js"></script>
     @yield('script')
-    <script src="/js/ean13.min.js"></script>
-    <script src="/js/jquery-ean13.min.js"></script>
-    <script src="/js/JsBarcode.all.min.js"></script>
+    <script src="/js/select2.min.js"></script>
+    <script src="/js/jquery.bootstrap-touchspin.min.js"></script>
     <script src="/js/moment.js"></script>
     <script src="/js/sale.js"></script>
     <script src="/js/img-preview.js"></script>
+
     <script src="/js/jquery.nicescroll.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
@@ -95,6 +97,18 @@
 
 
 
+        });
+
+    </script>
+    <script>
+        $("input[name='quantity[]']").TouchSpin({
+            min: 0,
+            max: 100,
+            step: 0.1,
+            decimals: 2,
+            boostat: 5,
+            maxboostedstep: 10,
+            postfix: '%'
         });
 
     </script>
