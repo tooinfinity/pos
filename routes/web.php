@@ -60,4 +60,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/provider', 'Dashboard\ProviderController')->except([
         'show'
     ]);
+    Route::resource('/categoryspending', 'Dashboard\CategorySpendingController')->except([
+        'show'
+    ]);
+    Route::resource('/spending', 'Dashboard\SpendingController')->except([
+        'show'
+    ]);
 });

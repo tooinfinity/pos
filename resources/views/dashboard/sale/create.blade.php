@@ -95,7 +95,6 @@ Point Of Sale Page
                                         <option value="nopaid">nopaid</option>
                                         <option value="debt">debt</option>
                                     </select>
-
                                 </div>
                             </div>
                             <div>

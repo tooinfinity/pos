@@ -9,6 +9,7 @@ pos is project based on laravel framework 5.7 with AdminLTE 3  dashboard to mana
 - CRUD and search providers
 - CRUD and search sale and add to cart sale
 - CRUD and search purchase and add to cart purchase 
+- Payment of Credit (Due)
 - __.....__
 
 ## Installation
@@ -92,4 +93,5 @@ __do that with one command :__
 ## NPM Packages used on this Project
   -  [___AdminLTE3___](https://adminlte.io/docs/2.4/installation)  Dashboard Template
   -  [___fontawesome-free___](https://github.com/realrashid/sweet-alert) Font Icon Template
+  -  [___Select2.js___](https://select2.org/) a customizable select box
   -  __.....__

@@ -10,6 +10,7 @@ return [
             'purchases' => 'c,r,u,d',
             'clients' => 'c,r,u,d',
             'providers' => 'c,r,u,d',
+            'spendings' => 'c,r,u,d',
         ],
         'employer' => []
     ],

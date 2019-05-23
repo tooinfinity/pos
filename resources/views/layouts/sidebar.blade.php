@@ -91,6 +91,16 @@
                     </a>
                 </li>
                 @endif
+                @if (auth()->user()->hasPermission('read_spendings'))
+                <li class="nav-item">
+                    <a href="{{ url('/spending') }}" class="nav-link">
+                        <i class="nav-icon fas fa-money-check-alt"></i>
+                        <p>
+                            Spendings
+                        </p>
+                    </a>
+                </li>
+                @endif
 
                 <li class="nav-item">
                     <a href="{{ url('/report') }}" class="nav-link">
