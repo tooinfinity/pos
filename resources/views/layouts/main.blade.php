@@ -106,14 +106,11 @@
 
     <script src="/js/app.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="/js/ean13.min.js"></script>
-    <script src="/js/jquery-ean13.min.js"></script>
-    <script src="/js/JsBarcode.all.min.js"></script>
     <script src="/js/moment.js"></script>
     <script src="/js/sale.js"></script>
     <script src="/js/img-preview.js"></script>
     <script src="/js/jquery.nicescroll.min.js"></script>
-
+    <script src="/js/select2.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
@@ -180,6 +177,13 @@
                 "iDisplayLength": 5
             });
             $('#moderator_table').DataTable({
+                "aLengthMenu": [
+                    [5, 10, 20, -1],
+                    [5, 10, 20, "All"]
+                ],
+                "iDisplayLength": 5
+            });
+            $('#spending_table').DataTable({
                 "aLengthMenu": [
                     [5, 10, 20, -1],
                     [5, 10, 20, "All"]

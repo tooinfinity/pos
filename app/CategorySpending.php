@@ -8,7 +8,7 @@ class CategorySpending extends Model
 {
     protected $guarded = [];
 
-    public function products()
+    public function Spendings()
     {
         return $this->hasMany(Spending::class);
     }

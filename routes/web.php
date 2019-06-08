@@ -63,7 +63,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/categoryspending', 'Dashboard\CategorySpendingController')->except([
         'show'
     ]);
+    Route::post('/catspend', 'Dashboard\CategorySpendingController@store');
+
     Route::resource('/spending', 'Dashboard\SpendingController')->except([
         'show'
     ]);
+    Route::post('/newspend', 'Dashboard\SpendingController@store');
 });

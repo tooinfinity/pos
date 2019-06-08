@@ -12,37 +12,105 @@ Spendings page
         <div class="card-header with-border">
             <div class="row">
                 <h3 class="card-title">Spendings</h3>
-                <button class="btn btn-primary ml-auto">create new category spending</button>
-            </div>
-
-            <form action="{{ route('spending.store') }}">
-                <div class="col-md-6">
-                    <h4 class="card-title">create new Spendings :</h4>
-                    <div class="form-group row">
-                        <label class="col-sm-6 col-form-label"> : </label>
-                        <select id="select" class="form-control col-sm-6" name="status">
-                            <option value="paid">paid</option>
-                            <option value="nopaid">nopaid</option>
-                            <option value="debt">debt</option>
-                        </select>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-6 col-form-label">Total Amount : </label>
-                        <input type="number" id="total-amount" name="total_amount"
-                            class="form-control col-sm-6 total-amount" readonly min="0" value="0">
+                {{--  create new category spending --}}
+                <button class="btn btn-success ml-auto" data-toggle="modal" data-target=".catspend">create category
+                    spending</button>
+                <div class="modal fade catspend" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-dark" id="exampleModalLongTitle">Create
+                                    new Category Spending</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form id="cat_spend">
+                                {{ csrf_field() }}
+                                {{ method_field('post') }}
+                                @include('partials._errors')
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="text-dark">Category Spending name</label>
+                                                <input type="text" name="category_spending_name"
+                                                    id="category_spending_name" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </form>
-
+                <br>
+                {{--  create new spending  --}}
+                <button class="btn btn-success ml-5" data-toggle="modal" data-target=".newspend">create
+                    spending</button>
+                <div class="modal fade newspend" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-dark" id="exampleModalLongTitle">Create
+                                    new Spending</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form id="new_spend">
+                                {{ csrf_field() }}
+                                {{ method_field('post') }}
+                                @include('partials._errors')
+                                <div class="modal-body">
+                                    <div class="col-md-8 text-dark">
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label"> Category Spending: </label>
+                                            <select name="category_spending_id"
+                                                class="form-control col-sm-6 select_cat">
+                                                @foreach ($categoryspendings as $categoryspending)
+                                                <option value="{{ $categoryspending->id }}"
+                                                    {{ old('category_spending_id') == $categoryspending->id ? 'selected' : ''}}>{{
+                                    $categoryspending->category_spending_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label"> Description : </label>
+                                            <textarea name="spending_description" id="spending_description"
+                                                class="form-control col-sm-6 "></textarea>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label">Total Amount Spending : </label>
+                                            <input type="number" id="spending_price" name="spending_price"
+                                                class="form-control col-sm-6">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- /.card-header -->
         <div class="card-body">
-            <div id="category_table_wrapper" class="dataTables_wrapper dt-bootstrap4">
+            <div id="spending_table_wrapper" class="dataTables_wrapper dt-bootstrap4">
                 <div class="row">
                     <div class="col-sm-12">
-                        <table id="category_table" class="table table-bordered table-striped table-hover  dataTable"
-                            role="grid" aria-describedby="category_table_info">
+                        <table id="spending_table" class="table table-bordered table-striped table-hover  dataTable"
+                            role="grid" aria-describedby="spending_table_info">
                             <thead>
                                 <tr role="row">
                                     <th class="sorting_asc" tabindex="0" aria-controls="category_table" rowspan="1"
@@ -52,7 +120,7 @@ Spendings page
                                     <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1"
                                         colspan="1" aria-label="Browser: activate to sort column ascending"
                                         style="width: 359px;">Spending
-                                        name</th>
+                                        Type</th>
                                     <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1"
                                         colspan="1" aria-label="Platform(s): activate to sort column ascending"
                                         style="width: 320px;">Description</th>
@@ -67,17 +135,11 @@ Spendings page
                             <tbody>
 
                                 @foreach ($spendings as $index => $spending)
-                                dd($spending)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
-                                    <td>{{ $spending->spending_name }}</td>
-                                    <td>{{ $spending->brand_name }}</td>
-                                    <td><a href="{{ route('product.index', ['spending_id'=>$spending->id]) }}"
-                                            class="btn btn-info text-white"><i class="fas fa-link"></i>
-                                            {{
-                                            $spending->
-                                            products->count() }} Related
-                                            Product</a></td>
+                                    <td>{{ $spending->CategorySpending->category_spending_name }}</td>
+                                    <td>{{ $spending->spending_description }}</td>
+                                    <td>{{ $spending->spending_price }}</td>
                                     <td>
                                         @if (auth()->user()->hasPermission('update_categories'))
                                         <a class="btn btn-warning btn-sm"
@@ -114,7 +176,7 @@ Spendings page
                             <tfoot>
                                 <tr>
                                     <th rowspan="1" colspan="1">No</th>
-                                    <th rowspan="1" colspan="1">Spending name</th>
+                                    <th rowspan="1" colspan="1">Spending Type</th>
                                     <th rowspan="1" colspan="1">Description</th>
                                     <th rowspan="1" colspan="1">Spending price</th>
                                     <th rowspan="1" colspan="1">Action</th>
@@ -129,7 +191,108 @@ Spendings page
 
 
     </div>
+    <div class="card card-primary">
+        <div class="card-header with-border">
+            <div class="row">
+                <h3 class="card-title">Total Amount Spendings</h3>
+                <div class="ml-auto">
+                    <input type="number" readonly class="form-control text-center" value="{{ $totalspendings }}">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
 @stop
+@section('script')
+<script type="text/javascript">
+    $(document).ready(function () {
+        jQuery.noConflict();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        // add new category spending ajax request
+        $('#cat_spend').on('submit', function (e) {
+            e.preventDefault();
+            var formData = new FormData($(this)[0]);
+            $.ajax({
+                type: "POST",
+                url: "/catspend",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (reponse) {
+                    console.log(reponse)
+                    $('#catspend').modal('hide')
+                    location.reload();
+
+                },
+                error: function (error) {
+                    const errors = error.responseJSON.errors
+                    const firstitem = Object.keys(errors)[0]
+                    const firstitemDOM = document.getElementById(firstitem)
+                    const firstErrorMessage = errors[firstitem][0]
+                    firstitemDOM.scrollIntoView({})
+
+                    const errorMessages = document.querySelectorAll('.text-danger')
+                    errorMessages.forEach((element) => element.textContent = '')
+
+                    firstitemDOM.insertAdjacentHTML('afterend',
+                        `<div class="text-danger">${firstErrorMessage}</div>`)
+
+                    const formControls = document.querySelectorAll('.form-control')
+                    formControls.forEach((element) => element.classList.remove('border',
+                        'border-danger'))
+
+                    firstitemDOM.classList.add('border', 'border-danger')
+                }
+            });
+        });
+
+        // add new spending ajax request
+        $('#new_spend').on('submit', function (e) {
+            e.preventDefault();
+            var formData = new FormData($(this)[0]);
+            $.ajax({
+                type: "POST",
+                url: "/newspend",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (reponse) {
+                    console.log(reponse)
+                    $('.newspend').modal('hide')
+                    location.reload();
+
+                },
+                error: function (error) {
+                    console.log(error)
+                    const errors = error.responseJSON.errors
+                    const firstitem = Object.keys(errors)[0]
+                    const firstitemDOM = document.getElementById(firstitem)
+                    const firstErrorMessage = errors[firstitem][0]
+                    firstitemDOM.scrollIntoView({})
+
+                    const errorMessages = document.querySelectorAll('.text-danger')
+                    errorMessages.forEach((element) => element.textContent = '')
+
+                    firstitemDOM.insertAdjacentHTML('afterend',
+                        `<div class="text-danger">${firstErrorMessage}</div>`)
+
+                    const formControls = document.querySelectorAll('.form-control')
+                    formControls.forEach((element) => element.classList.remove('border',
+                        'border-danger'))
+
+                    firstitemDOM.classList.add('border', 'border-danger')
+                }
+            });
+        });
+    });
+
+</script>
+
+
+@endsection

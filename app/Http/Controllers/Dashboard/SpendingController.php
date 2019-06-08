@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Spending;
+use App\CategorySpending;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,7 +17,9 @@ class SpendingController extends Controller
     public function index()
     {
         $spendings = Spending::all();
-        return view('dashboard.spending.index', compact('spendings'));
+        $categoryspendings = CategorySpending::all();
+        $totalspendings = collect($spendings)->sum('spending_price');
+        return view('dashboard.spending.index', compact('categoryspendings', 'spendings', 'totalspendings'));
     }
 
     /**
@@ -95,5 +98,6 @@ class SpendingController extends Controller
     public function destroy(Spending $spending)
     {
         $spending->delete();
+        return redirect()->back();
     }
 }

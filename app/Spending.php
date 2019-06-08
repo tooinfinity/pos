@@ -8,7 +8,7 @@ class Spending extends Model
 {
     protected $guarded = [];
 
-    public function Category()
+    public function CategorySpending()
     {
         return $this->belongsTo(CategorySpending::class);
     }

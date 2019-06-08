@@ -91,24 +91,6 @@
                 $('#date-part').html(momentNow.format('dddd') + ' ' + momentNow.format('DD MMMM YYYY'));
                 $('#time-part').html(momentNow.format('kk:mm:ss'));
             }, 100);
-
-            ////////////////
-
-
-
-
-        });
-
-    </script>
-    <script>
-        $("input[name='quantity[]']").TouchSpin({
-            min: 0,
-            max: 100,
-            step: 0.1,
-            decimals: 2,
-            boostat: 5,
-            maxboostedstep: 10,
-            postfix: '%'
         });
 
     </script>
