@@ -1,4 +1,4 @@
-<footer class="">
+<footer class="fixed-bottom">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
         by : Meghlaoui TouwfiQ
