@@ -18,6 +18,7 @@ class SpendingController extends Controller
     {
         $spendings = Spending::all();
         $categoryspendings = CategorySpending::all();
+        // somme of column spending price in table spendings
         $totalspendings = collect($spendings)->sum('spending_price');
         return view('dashboard.spending.index', compact('categoryspendings', 'spendings', 'totalspendings'));
     }
@@ -78,15 +79,24 @@ class SpendingController extends Controller
      * @param  \App\Spending  $spending
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Spending $spending)
+
+
+    public function updatespend(Request $request, $id)
     {
+
         $request->validate([
             'category_spending_id' => 'required',
             'spending_description' => 'required',
             'spending_price' => 'required',
 
         ]);
-        $spending->update($request->all());
+
+        $spending = Spending::findOrFail($id);
+        $spending->category_spending_id = $request->input('category_spending_id');
+        $spending->spending_description = $request->input('spending_description');
+        $spending->spending_price = $request->input('spending_price');
+
+        $spending->save();
     }
 
     /**

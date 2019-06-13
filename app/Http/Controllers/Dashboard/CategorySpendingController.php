@@ -15,8 +15,8 @@ class CategorySpendingController extends Controller
      */
     public function index()
     {
-        $category_spending = CategorySpending::all();
-        return view('dashboard.spending.category.index', compact('category_spending'));
+        $category_spendings = CategorySpending::all();
+        return view('dashboard.spending.index', compact('category_spending'));
     }
 
     /**
@@ -73,13 +73,16 @@ class CategorySpendingController extends Controller
      * @param  \App\CategorySpending  $categorySpending
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CategorySpending $categorySpending)
+
+    public function updatecatspend(Request $request, $id)
     {
+        $categorySpending = CategorySpending::findOrFail($id);
         $request->validate([
-            'category_spending_name' => 'required|unique:category_spendings,category_spending_name' . $categorySpending->id,
+            'category_spending_name' => 'required|unique:category_spendings',
 
         ]);
-        $categorySpending->update($request->all());
+        $categorySpending->category_spending_name = $request->input('category_spending_name');
+        $categorySpending->save();
     }
 
     /**
@@ -88,8 +91,12 @@ class CategorySpendingController extends Controller
      * @param  \App\CategorySpending  $categorySpending
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CategorySpending $categorySpending)
+    public function destroy(categorySpending $categoryspending)
+    { }
+    public function catdpenddelete(Request $request)
     {
+        $categorySpending = CategorySpending::find($request->input('id'));
         $categorySpending->delete();
+        return redirect()->back();
     }
 }

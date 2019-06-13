@@ -60,13 +60,21 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/provider', 'Dashboard\ProviderController')->except([
         'show'
     ]);
+
+    // category spending route
+
+    Route::post('/catspend', 'Dashboard\CategorySpendingController@store');
+    Route::put('/updatecatspend/{id}', 'Dashboard\CategorySpendingController@updatecatspend');
+    Route::get('/categoryspending/catdpenddelete', 'Dashboard\CategorySpendingController@catdpenddelete')->name('categoryspending.catdpenddelete');
     Route::resource('/categoryspending', 'Dashboard\CategorySpendingController')->except([
         'show'
     ]);
-    Route::post('/catspend', 'Dashboard\CategorySpendingController@store');
 
+    // spending route
+
+    Route::post('/newspend', 'Dashboard\SpendingController@store');
+    Route::put('/updatespend/{id}', 'Dashboard\SpendingController@updatespend');
     Route::resource('/spending', 'Dashboard\SpendingController')->except([
         'show'
     ]);
-    Route::post('/newspend', 'Dashboard\SpendingController@store');
 });

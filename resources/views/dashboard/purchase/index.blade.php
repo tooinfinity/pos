@@ -196,6 +196,7 @@ List Of Purchases
 <script type="text/javascript">
     $(document).ready(function () {
         jQuery.noConflict();
+        // update purchase with ajax request
         $('.pcredit').on('click', function () {
             $('#payment_credit').modal('show');
 

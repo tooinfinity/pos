@@ -112,7 +112,6 @@
     <script src="/js/jquery.nicescroll.min.js"></script>
     <script src="/js/select2.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
 
@@ -184,6 +183,14 @@
                 "iDisplayLength": 5
             });
             $('#spending_table').DataTable({
+                "aLengthMenu": [
+                    [5, 10, 20, -1],
+                    [5, 10, 20, "All"]
+                ],
+                "iDisplayLength": 5
+            });
+
+            $('#cat_spending_table').DataTable({
                 "aLengthMenu": [
                     [5, 10, 20, -1],
                     [5, 10, 20, "All"]

@@ -162,19 +162,15 @@ List Of Sales
                                         <input type="number" id="paid" name="paid"
                                             class="form-control col-sm-6 text-center" readonly>
                                     </div>
-                                    <div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-5 col-form-label">Total Due(credit) : </label>
-                                            <input id="credit" type="number" name="credit"
-                                                class="form-control col-sm-6 text-center" readonly></input>
-                                        </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label">Total Due(credit) : </label>
+                                        <input id="credit" type="number" name="credit"
+                                            class="form-control col-sm-6 text-center" readonly></input>
                                     </div>
-                                    <div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-5 col-form-label">Paid credit : </label>
-                                            <input id="paidcredit" type="number" name="paidcredit"
-                                                class="form-control col-sm-6 text-center" value="0"></input>
-                                        </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label">Paid credit : </label>
+                                        <input id="paidcredit" type="number" name="paidcredit"
+                                            class="form-control col-sm-6 text-center" value="0"></input>
                                     </div>
                                 </div>
                             </div>
