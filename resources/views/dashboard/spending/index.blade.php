@@ -372,9 +372,10 @@ Spendings page
     <div class="card card-primary">
         <div class="card-header with-border">
             <div class="row">
-                <h3 class="card-title"></h3>
+                <h3 class="card-title">Category Spendings Count</h3>
                 <div class="ml-auto">
-                    <input type="number" readonly class="form-control text-center" value="">
+                    <input type="number" readonly class="form-control text-center"
+                        value="{{ $count_category_spendings }}">
                 </div>
             </div>
         </div>

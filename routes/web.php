@@ -77,4 +77,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/spending', 'Dashboard\SpendingController')->except([
         'show'
     ]);
+
+    // Money box route
+    Route::get('/moneybox', 'Dashboard\MoneyBoxController@index');
 });

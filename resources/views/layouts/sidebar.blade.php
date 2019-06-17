@@ -111,7 +111,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('/box') }}" class="nav-link">
+                    <a href="{{ url('/moneybox') }}" class="nav-link">
                         <i class="nav-icon fas fa-cash-register"></i>
                         <p>
                             Box Money

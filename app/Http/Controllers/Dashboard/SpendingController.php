@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Spending;
 use App\CategorySpending;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class SpendingController extends Controller
@@ -20,7 +21,8 @@ class SpendingController extends Controller
         $categoryspendings = CategorySpending::all();
         // somme of column spending price in table spendings
         $totalspendings = collect($spendings)->sum('spending_price');
-        return view('dashboard.spending.index', compact('categoryspendings', 'spendings', 'totalspendings'));
+        $count_category_spendings = DB::table('category_spendings')->count();
+        return view('dashboard.spending.index', compact('categoryspendings', 'spendings', 'totalspendings', 'count_category_spendings'));
     }
 
     /**

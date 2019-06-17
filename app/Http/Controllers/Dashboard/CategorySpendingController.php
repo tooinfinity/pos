@@ -16,6 +16,7 @@ class CategorySpendingController extends Controller
     public function index()
     {
         $category_spendings = CategorySpending::all();
+
         return view('dashboard.spending.index', compact('category_spending'));
     }
 
