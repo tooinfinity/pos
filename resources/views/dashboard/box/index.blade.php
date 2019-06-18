@@ -100,7 +100,6 @@ Money Box
         </div>
     </div>
 </div>
-</div>
 
 
 @stop

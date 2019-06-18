@@ -80,4 +80,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Money box route
     Route::get('/moneybox', 'Dashboard\MoneyBoxController@index');
+
+    // generale Settings route
+    Route::get('/general', 'Dashboard\GeneralSettingController@index');
+    Route::put('/updatesetting/{id}', 'Dashboard\GeneralSettingController@update');
 });

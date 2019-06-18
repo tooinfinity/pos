@@ -82,7 +82,7 @@ Procuct Update
                         </div>
                         <div class="form-group">
                             <img src="{{ $product->image_path }}" style="width:200px;"
-                                class="img-circle img-thumbnail img-preview" alt="" srcset="">
+                                class="img-circle img-thumbnail img-preview">
                         </div>
                     </div>
                 </div>
