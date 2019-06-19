@@ -17,7 +17,7 @@ class CreateGeneralSettingsTable extends Migration
             $table->increments('id');
             $table->string('store_name');
             $table->date('start_day');
-            $table->string('image')->default('logo_default.png');
+            $table->string('image');
             $table->timestamps();
         });
     }

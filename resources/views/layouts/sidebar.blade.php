@@ -2,7 +2,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-        <img src="{{ asset('/uploads/settings/logo_default.png') }}">
+        <img src="{{ asset('/uploads/settings/'.$logo) }}" style="width: 200px;">
     </a>
 
     <!-- Sidebar -->
@@ -128,7 +128,7 @@
                 </li>
                 @endif
                 <li class="nav-item">
-                    <a href="{{ url('/general') }}" class="nav-link">
+                    <a href="{{ url('/generalsetting')  }}" class="nav-link">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>
                             Settings
