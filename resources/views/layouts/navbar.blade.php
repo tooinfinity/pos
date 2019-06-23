@@ -5,8 +5,29 @@
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
         </li>
+        <li class="nav-item">
+            <div class="font-weight-bold" style="font-size: 1.2em;padding: 5px;">Welcome to your Store :
+                {{ $store_name }}</div>
+        </li>
     </ul>
-    <ul class="navbar-nav">
+
+    <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+            <div class="font-weight-bold" id='date-part' style="font-size: 1.2em;padding: 5px;"></div>
+        </li>
+        <li class="nav-item">
+            <div class="font-weight-bold" id='time-part' style="font-size: 1.3em;padding: 5px;"></div>
+        </li>
+    </ul>
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item" style="font-size: 1.3em;padding: 5px;">
+            <a href="" title="" data-toggle="tooltip" data-placement="bottom"
+                class="btn btn-primary btn-flat pull-left m-8 hidden-xs btn-sm mt-10" data-original-title="POS">
+                <strong><i class="fas fa-cash-register"></i> &nbsp; Money Box</strong>
+            </a>
+        </li>
         <li class="nav-item" style="font-size: 1.3em;padding: 5px;">
             <a href="{{ route('sale.create') }}" title="" data-toggle="tooltip" data-placement="bottom"
                 class="btn btn-primary btn-flat pull-left m-8 hidden-xs btn-sm mt-10" data-original-title="POS">
@@ -19,17 +40,6 @@
                 <i class="fas fa-bell"></i> <span>9</span>
             </a>
         </li>
-    </ul>
-    <ul class="navbar-nav mx-auto">
-        <li class="nav-item">
-            <div class="font-weight-bold" id='date-part' style="font-size: 1.2em;padding: 5px;"></div>
-        </li>
-        <li class="nav-item">
-            <div class="font-weight-bold" id='time-part' style="font-size: 1.3em;padding: 5px;"></div>
-        </li>
-    </ul>
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
         <li class="dropdown user user-menu" style="font-size: 1.3em;padding: 5px>
             <a href=" #" class="dropdown-toggle user-panel" style="text-decoration: none;" data-toggle="dropdown">
             <img src="{{ auth()->user()->image_path }}" style="width:40px;" class="user-image img-circle"

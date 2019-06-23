@@ -18,6 +18,7 @@ class CreateGeneralSettingsTable extends Migration
             $table->string('store_name');
             $table->date('start_day');
             $table->string('image');
+            $table->double('investment_capital');
             $table->timestamps();
         });
     }

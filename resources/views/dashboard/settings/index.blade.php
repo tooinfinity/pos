@@ -33,6 +33,11 @@ General Settings
                             value="{{ $start_day }}">
                     </div>
                     <div class="form-group">
+                        <label>Investment Capital</label>
+                        <input type="text" name="investment_capital" id="" class="form-control"
+                            value="{{ $investment_capital }}">
+                    </div>
+                    <div class="form-group">
                         <div class="custom-file">
                             <input type="file" name="image" class="form-control image custom-file-input"
                                 id="customFile">
@@ -43,6 +48,7 @@ General Settings
                         <img src="{{ asset('/uploads/settings/'.$logo) }}" style="width:200px;"
                             class="img-circle img-thumbnail img-preview">
                     </div>
+
                     <div class="form-group">
                         <button type="submit" class="btn btn-success">General Settigs Update</button>
                     </div>
@@ -56,52 +62,3 @@ General Settings
 
 
 @stop
-@section('script')
-<script type="text/javascript">
-    /* $(document).ready(function () {
-        jQuery.noConflict();
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $('#update_settings').on('submit', function (e) {
-            e.preventDefault();
-
-            $.ajax({
-                type: 'POST',
-                url: "/updatesetting/",
-                data: $('#update_settings').serialize(),
-                success: function (data) {
-                    console.log(data);
-                    location.reload();
-
-                },
-                error: function (error) {
-                    console.log(error)
-                    const errors = error.responseJSON.errors
-                    const firstitem = Object.keys(errors)[0]
-                    const firstitemDOM = document.getElementById(firstitem)
-                    const firstErrorMessage = errors[firstitem][0]
-                    firstitemDOM.scrollIntoView({})
-
-                    const errorMessages = document.querySelectorAll('.text-danger')
-                    errorMessages.forEach((element) => element.textContent = '')
-
-                    firstitemDOM.insertAdjacentHTML('afterend',
-                        `<div class="text-danger">${firstErrorMessage}</div>`)
-
-                    const formControls = document.querySelectorAll('.form-control')
-                    formControls.forEach((element) => element.classList.remove('border',
-                        'border-danger'))
-
-                    firstitemDOM.classList.add('border', 'border-danger')
-                }
-            });
-        });
-    });*/
-
-</script>
-
-
-@endsection

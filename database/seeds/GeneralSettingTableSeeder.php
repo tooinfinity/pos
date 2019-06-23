@@ -15,7 +15,8 @@ class GeneralSettingTableSeeder extends Seeder
         App\GeneralSetting::create([
             'store_name' => 'TouwfiQ',
             'start_day' => Carbon::parse('2019-06-17'),
-            'image' => 'logo_default.png'
+            'image' => 'logo_default.png',
+            'investment_capital' => '1000000'
         ]);
     }
 }

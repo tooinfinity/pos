@@ -18,15 +18,8 @@ class GeneralSettingController extends Controller
      */
     public function index(GeneralSetting $generalSetting)
     {
-        $general_settings = DB::table('general_settings')->where('id', 1)->get();
-        foreach ($general_settings as $key => $general_setting) {
-            $store_id = $general_setting->id;
-            $store_name = $general_setting->store_name;
-            $start_day = $general_setting->start_day;
-            $logo = $general_setting->image;
-        }
 
-        return view('dashboard.settings.index', compact('general_settings', 'store_id', 'store_name', 'start_day', 'logo', 'generalSetting'));
+        return view('dashboard.settings.index');
     }
 
     /**
@@ -51,6 +44,7 @@ class GeneralSettingController extends Controller
             'store_name' => 'required',
             'start_day' => 'required',
             'image' => 'image',
+            'investment_capital' => 'required',
         ]);
         $id = $request->input('id');
         $general_setting = GeneralSetting::findOrFail($id);

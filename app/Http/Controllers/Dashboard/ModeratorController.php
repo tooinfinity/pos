@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use Alert;
+use View;
 use App\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Alert;
-use Intervention\Image\ImageManagerStatic as Image;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ModeratorController extends Controller
 {
@@ -18,6 +20,21 @@ class ModeratorController extends Controller
         $this->middleware(['permission:create_users'])->only('create');
         $this->middleware(['permission:update_users'])->only('edit');
         $this->middleware(['permission:delete_users'])->only('destroy');
+
+        $general_settings = DB::table('general_settings')->where('id', 1)->get();
+        foreach ($general_settings as $key => $general_setting) {
+            $store_id = $general_setting->id;
+            $store_name = $general_setting->store_name;
+            $start_day = $general_setting->start_day;
+            $logo = $general_setting->image;
+            $investment_capital = $general_setting->investment_capital;
+        }
+        // Sharing is caring
+        View::share('store_id', $store_id);
+        View::share('store_name', $store_name);
+        View::share('start_day', $start_day);
+        View::share('logo', $logo);
+        View::share('investment_capital', $investment_capital);
     }
     /**
      * Display a listing of the resource.
