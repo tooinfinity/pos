@@ -9,6 +9,7 @@ use App\Spending;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\GeneralSetting;
 
 class MoneyBoxController extends Controller
 {
@@ -18,13 +19,17 @@ class MoneyBoxController extends Controller
         $salemoneys = Sale::all();
         $purchasemoneys = Purchase::all();
         $spendmoneys = Spending::all();
+        $general_settings = GeneralSetting::all();
 
 
         $totalsalemoneys = collect($salemoneys)->sum('total_amount');
+        $totalsaleduemoneys = collect($salemoneys)->sum('due');
         $totalpurchasemoneys = collect($purchasemoneys)->sum('total_amount');
+        $totalpurchaseduemoneys = collect($purchasemoneys)->sum('due');
         $totalspendmoneys = collect($spendmoneys)->sum('spending_price');
-        $totalboxmoneys = $totalsalemoneys - $totalpurchasemoneys - $totalspendmoneys;
+        $investment_capital = collect($general_settings)->sum('investment_capital');
+        $totalboxmoneys = $investment_capital + $totalsalemoneys + $totalpurchasemoneys - $totalpurchasemoneys - $totalspendmoneys - $totalsaleduemoneys;
 
-        return view('dashboard.box.index', compact('salemoneys', 'purchasemoneys', 'spendmoneys', 'productmoneys', 'totalsalemoneys', 'totalpurchasemoneys', 'totalspendmoneys', 'totalboxmoneys'));
+        return view('dashboard.box.index', compact('salemoneys', 'purchasemoneys', 'spendmoneys', 'productmoneys', 'totalsalemoneys', 'totalpurchasemoneys', 'totalsaleduemoneys', 'totalpurchaseduemoneys', 'totalspendmoneys', 'totalboxmoneys'));
     }
 }

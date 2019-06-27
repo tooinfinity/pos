@@ -623,6 +623,4 @@ Spendings page
     });
 
 </script>
-
-
 @endsection

@@ -78,17 +78,27 @@ Money Box
     <div class="card card-primary">
         <div class="card-header with-border">
             <div class="row">
-                <div class="col-md-4 text-center">
-                    <h1><span class="badge bg-success col-md-12">Total Sale Money : {{ $totalsalemoneys }}</span></h1>
+                <div class="col-md-2 text-center">
+                    <h4><span class="badge bg-success col-md-12">Total Sale Money : {{ $totalsalemoneys }}</span></h4>
                 </div>
-                <div class="col-md-4 text-center">
-                    <h1><span class="badge bg-warning col-md-12">Total Purchase Money :
+                <div class="col-md-2 text-center">
+                    <h4><span class="badge bg-warning col-md-12">Total Purchase Money :
                             {{ $totalpurchasemoneys }}</span>
-                    </h1>
+                    </h4>
                 </div>
-                <div class="col-md-4 text-center">
-                    <h1><span class="badge bg-danger col-md-12">Total Spending Money : {{ $totalspendmoneys }}</span>
-                    </h1>
+                <div class="col-md-2 text-center">
+                    <h4><span class="badge bg-danger col-md-12">Total Credit Provider Money :
+                            {{ $totalpurchaseduemoneys }}</span>
+                    </h4>
+                </div>
+                <div class="col-md-2 text-center">
+                    <h4><span class="badge bg-danger col-md-12">Total Credit Client Money :
+                            {{ $totalsaleduemoneys }}</span>
+                    </h4>
+                </div>
+                <div class="col-md-2 text-center">
+                    <h4><span class="badge bg-danger col-md-12">Total Spending Money : {{ $totalspendmoneys }}</span>
+                    </h4>
                 </div>
             </div>
             <div class="row">

@@ -7,6 +7,7 @@ General Settings
 @section('content')
 @include('sweet::alert')
 <div class="col-md-12">
+    {{--  Start General Settings card  --}}
     <div class="card card-primary">
         <div class="card-header with-border">
             <h2>General Settings</h2>
@@ -58,7 +59,116 @@ General Settings
         </div>
         <!-- /.card-body -->
     </div>
+    {{-- End General Settings card    --}}
+
+    {{--  Start Print barcode card  --}}
+    <div class="card card-primary">
+        <div class="card-header with-border">
+            <h2>Print Barcode</h2>
+        </div>
+
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div id="category_table_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="category_table" class="table table-bordered table-striped table-hover  dataTable"
+                            role="grid" aria-describedby="category_table_info">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="category_table" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Rendering engine: activate to sort column descending"
+                                        style="width: 360px;">Product Name</th>
+                                    <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1"
+                                        colspan="1" aria-label="Browser: activate to sort column ascending"
+                                        style="width: 359px;">Barcode</th>
+                                    <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1"
+                                        colspan="1" aria-label="Browser: activate to sort column ascending"
+                                        style="width: 359px;">Preview</th>
+                                    <th class="sorting" tabindex="0" aria-controls="category_table" rowspan="1"
+                                        colspan="1" aria-label="Platform(s): activate to sort column ascending"
+                                        style="width: 100px;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+                                @foreach ($products as $index => $product)
+                                <tr>
+                                    <input type="hidden" id="id_product" name="id" value="{{ $product->id }}">
+                                    <td>{{ $product ->product_name }}</td>
+                                    <td>{{ $product->codebar }}</td>
+                                    <td>
+                                        <div class="barcode_print_label"
+                                            style="display:inline-block;vertical-align:middle;line-height:16px !important; text-align: center;">
+
+                                            <b style="display: block !important"
+                                                class="text-uppercase">{{ $store_name }}</b>
+                                            <dir>
+                                                {!! DNS1D::getBarcodeHTML($product->codebar , "EAN13") !!}
+                                            </dir>
+
+                                            <b class="text-uppercase">Price:</b>
+                                            <span class="display_currency"
+                                                data-currency_symbol="true">{{ $product->sale_price }} DZD</span>
+                                        </div>
+                                    </td>
+                                    <td><button class="btn btn-primary barcode_print_button">Print</button>
+                                    </td>
+
+                                </tr>
+                                @endforeach
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th rowspan="1" colspan="1">Product Name</th>
+                                    <th rowspan="1" colspan="1">Barcode</th>
+                                    <th rowspan="1" colspan="1">Preview</th>
+                                    <th rowspan="1" colspan="1">Action</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.card-body -->
+
+    </div>
+    {{-- End Print barcode card    --}}
+
+    {{--  Start  settigs Print card  --}}
+    <div class="card card-primary">
+        <div class="card-header with-border">
+            <h2>Printing Settings</h2>
+        </div>
+
+        <!-- /.card-header -->
+        <div class="card-body">
+            <h2>Printing Settings</h2>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    {{-- End settings Print  card    --}}
+
 </div>
 
 
 @stop
+
+
+
+@section(' script') <script type="text/javascript">
+    $(document).ready(function () {
+        $('body').on('click', '.barcode_print_button', function (e) {
+
+            e.preventDefault();
+            console.log("work");
+            $('.barcode_print_label').printThis();
+        });
+    });
+
+</script>
+@endsection
