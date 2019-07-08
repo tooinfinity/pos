@@ -132,7 +132,6 @@ General Settings
                     </div>
                 </div>
             </div>
-
         </div>
         <!-- /.card-body -->
 
@@ -160,13 +159,17 @@ General Settings
 
 
 
-@section(' script') <script type="text/javascript">
+@section('script')
+<script type="text/javascript">
     $(document).ready(function () {
+        var codebarnum = $('#barcode_number').val();
+        JsBarcode("#ean-13", codebarnum, {
+            format: "ean13"
+        });
         $('body').on('click', '.barcode_print_button', function (e) {
-
             e.preventDefault();
-            console.log("work");
-            $('.barcode_print_label').printThis();
+            $('#barcode_print').printThis();
+
         });
     });
 

@@ -95,3 +95,10 @@ __do that with one command :__
   -  [___fontawesome-free___](https://github.com/realrashid/sweet-alert) Font Icon Template
   -  [___Select2.js___](https://select2.org/) a customizable select box
   -  __.....__
+## Todo List featured
+  - [ ] create a backup and restore for this application
+  - [ ] create printing system for my app
+  - [ ] Multipe and Soft Delete for Some featured actions
+  - [ ] New Design with dark mode toggle
+  - [ ] ............
+ 
